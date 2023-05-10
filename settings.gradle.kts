@@ -13,4 +13,3 @@ plugins {
 }
 
 rootProject.name = "androidx-ktx-extras"
-include("lib")
