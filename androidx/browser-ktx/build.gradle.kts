@@ -25,6 +25,19 @@ publishing.publications {
             url.set("https://github.com/EdricChan03/android-ktx-extras/tree/main/androidx/browser-ktx")
             inceptionYear.set("2023")
 
+            licenses {
+                license {
+                    name.set("GPLv3")
+                    url.set("https://github.com/EdricChan03/androidx-ktx-extras/blob/main/LICENSE")
+                }
+
+                // AndroidX license
+                license {
+                    name.set("Apache License 2.0")
+                    url.set("https://github.com/androidx/androidx/blob/androidx-main/LICENSE.txt")
+                }
+            }
+
             developers {
                 developer {
                     id.set("EdricChan03")
