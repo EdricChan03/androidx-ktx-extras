@@ -1,0 +1,7 @@
+[versions]
+android-gradle = "8.0.1"
+kotlin = "1.8.21"
+
+[plugins]
+android-gradle-library = { id = "com.android.library", version.ref = "android-gradle" }
+kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
