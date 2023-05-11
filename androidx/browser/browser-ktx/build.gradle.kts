@@ -9,10 +9,6 @@ android {
     namespace = "io.github.edricchan03.androidx.browser.ktx"
 }
 
-kotlin {
-    explicitApi()
-}
-
 dependencies {
     api(androidLibs.androidx.browser)
 }
