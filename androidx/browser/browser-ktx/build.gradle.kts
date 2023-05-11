@@ -18,7 +18,7 @@ publishing.publications {
         pom {
             name.set("androidx-ktx-extras-browser")
             description.set("Kotlin extensions for AndroidX Browser")
-            url.set("https://github.com/EdricChan03/android-ktx-extras/tree/main/androidx/browser-ktx")
+            url.set("https://github.com/EdricChan03/android-ktx-extras/tree/main/androidx/browser/browser-ktx")
             inceptionYear.set("2023")
 
             licenses {
