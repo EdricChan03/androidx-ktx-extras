@@ -27,4 +27,4 @@ plugins {
 
 rootProject.name = "androidx-ktx-extras"
 
-include(":androidx:browser-ktx")
+include(":androidx:browser:browser-ktx")
