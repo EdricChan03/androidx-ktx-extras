@@ -1,6 +1,7 @@
 plugins {
     io.github.edricchan03.library.android
     io.github.edricchan03.publishing.maven
+    io.github.edricchan03.docs.`dokka-android`
 }
 
 version = "0.0.1"

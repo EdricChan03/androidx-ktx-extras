@@ -18,6 +18,7 @@ gradlePlugin {
 dependencies {
     implementation(libs.plugins.android.gradle.library.asDependency)
     implementation(libs.plugins.kotlin.android.asDependency)
+    implementation(libs.plugins.dokkatoo.html.asDependency)
 }
 
 private val Provider<PluginDependency>.asDependency

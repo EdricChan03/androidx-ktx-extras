@@ -25,6 +25,9 @@ plugins {
     id("org.gradle.toolchains.foojay-resolver-convention") version "0.4.0"
 }
 
+// Enable type-safe project accessors
+enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
+
 rootProject.name = "androidx-ktx-extras"
 
 include(":androidx:browser:browser-ktx")
