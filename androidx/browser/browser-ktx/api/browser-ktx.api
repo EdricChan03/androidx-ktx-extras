@@ -1,0 +1,98 @@
+public final class io/github/edricchan03/androidx/browser/ktx/CustomTabColorSchemeParamsExtsKt {
+	public static final fun colorSchemeParams (Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;)Landroidx/browser/customtabs/CustomTabColorSchemeParams;
+	public static final fun colorSchemeParams (Lkotlin/jvm/functions/Function1;)Landroidx/browser/customtabs/CustomTabColorSchemeParams;
+	public static synthetic fun colorSchemeParams$default (Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;ILjava/lang/Object;)Landroidx/browser/customtabs/CustomTabColorSchemeParams;
+	public static final fun setDefaultColorSchemeParams (Landroidx/browser/customtabs/CustomTabsIntent$Builder;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;)Landroidx/browser/customtabs/CustomTabsIntent$Builder;
+	public static final fun setDefaultColorSchemeParams (Landroidx/browser/customtabs/CustomTabsIntent$Builder;Lkotlin/jvm/functions/Function1;)Landroidx/browser/customtabs/CustomTabsIntent$Builder;
+	public static synthetic fun setDefaultColorSchemeParams$default (Landroidx/browser/customtabs/CustomTabsIntent$Builder;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;ILjava/lang/Object;)Landroidx/browser/customtabs/CustomTabsIntent$Builder;
+}
+
+public final class io/github/edricchan03/androidx/browser/ktx/CustomTabIntentBuilderExtsKt {
+	public static final fun setCloseButtonPosition (Landroidx/browser/customtabs/CustomTabsIntent$Builder;Lio/github/edricchan03/androidx/browser/ktx/enums/CloseButtonPosition;)Landroidx/browser/customtabs/CustomTabsIntent$Builder;
+	public static final fun setColorScheme (Landroidx/browser/customtabs/CustomTabsIntent$Builder;Lio/github/edricchan03/androidx/browser/ktx/enums/ColorScheme;)Landroidx/browser/customtabs/CustomTabsIntent$Builder;
+	public static final fun setColorSchemeParams (Landroidx/browser/customtabs/CustomTabsIntent$Builder;Lio/github/edricchan03/androidx/browser/ktx/enums/ColorScheme;Landroidx/browser/customtabs/CustomTabColorSchemeParams;)Landroidx/browser/customtabs/CustomTabsIntent$Builder;
+	public static final fun setColorSchemeParams (Landroidx/browser/customtabs/CustomTabsIntent$Builder;Lio/github/edricchan03/androidx/browser/ktx/enums/ColorScheme;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;)Landroidx/browser/customtabs/CustomTabsIntent$Builder;
+	public static final fun setColorSchemeParams (Landroidx/browser/customtabs/CustomTabsIntent$Builder;Lio/github/edricchan03/androidx/browser/ktx/enums/ColorScheme;Lkotlin/jvm/functions/Function1;)Landroidx/browser/customtabs/CustomTabsIntent$Builder;
+	public static synthetic fun setColorSchemeParams$default (Landroidx/browser/customtabs/CustomTabsIntent$Builder;Lio/github/edricchan03/androidx/browser/ktx/enums/ColorScheme;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;ILjava/lang/Object;)Landroidx/browser/customtabs/CustomTabsIntent$Builder;
+	public static final fun setInitialActivityHeightPx (Landroidx/browser/customtabs/CustomTabsIntent$Builder;ILio/github/edricchan03/androidx/browser/ktx/enums/ActivityHeightResizeBehavior;)Landroidx/browser/customtabs/CustomTabsIntent$Builder;
+	public static final fun setShareState (Landroidx/browser/customtabs/CustomTabsIntent$Builder;Lio/github/edricchan03/androidx/browser/ktx/enums/ShareState;)Landroidx/browser/customtabs/CustomTabsIntent$Builder;
+}
+
+public final class io/github/edricchan03/androidx/browser/ktx/CustomTabIntentExtsKt {
+	public static final fun customTabsIntent (Landroidx/browser/customtabs/CustomTabsSession;Lkotlin/jvm/functions/Function1;)Landroidx/browser/customtabs/CustomTabsIntent;
+	public static synthetic fun customTabsIntent$default (Landroidx/browser/customtabs/CustomTabsSession;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Landroidx/browser/customtabs/CustomTabsIntent;
+	public static final fun customTabsIntentBuilder (Landroidx/browser/customtabs/CustomTabsSession;)Landroidx/browser/customtabs/CustomTabsIntent$Builder;
+	public static synthetic fun customTabsIntentBuilder$default (Landroidx/browser/customtabs/CustomTabsSession;ILjava/lang/Object;)Landroidx/browser/customtabs/CustomTabsIntent$Builder;
+	public static final fun getActivityResizeBehavior (Landroid/content/Intent;)Lio/github/edricchan03/androidx/browser/ktx/enums/ActivityHeightResizeBehavior;
+	public static final fun getCloseButtonPosition (Landroid/content/Intent;)Lio/github/edricchan03/androidx/browser/ktx/enums/CloseButtonPosition;
+	public static final fun getColorSchemeParams (Landroid/content/Intent;Lio/github/edricchan03/androidx/browser/ktx/enums/ColorScheme;)Landroidx/browser/customtabs/CustomTabColorSchemeParams;
+	public static final fun getInitialActivityHeightPx (Landroid/content/Intent;)I
+	public static final fun getShouldAlwaysUseBrowserUI (Landroid/content/Intent;)Z
+	public static final fun getToolbarCornerRadiusDp (Landroid/content/Intent;)I
+	public static final fun setAlwaysUseBrowserUI (Landroid/content/Intent;)Landroid/content/Intent;
+}
+
+public final class io/github/edricchan03/androidx/browser/ktx/enums/ActivityHeightResizeBehavior : java/lang/Enum {
+	public static final field Adjustable Lio/github/edricchan03/androidx/browser/ktx/enums/ActivityHeightResizeBehavior;
+	public static final field Companion Lio/github/edricchan03/androidx/browser/ktx/enums/ActivityHeightResizeBehavior$Companion;
+	public static final field Default Lio/github/edricchan03/androidx/browser/ktx/enums/ActivityHeightResizeBehavior;
+	public static final field Fixed Lio/github/edricchan03/androidx/browser/ktx/enums/ActivityHeightResizeBehavior;
+	public final fun getValue ()I
+	public static fun valueOf (Ljava/lang/String;)Lio/github/edricchan03/androidx/browser/ktx/enums/ActivityHeightResizeBehavior;
+	public static fun values ()[Lio/github/edricchan03/androidx/browser/ktx/enums/ActivityHeightResizeBehavior;
+}
+
+public final class io/github/edricchan03/androidx/browser/ktx/enums/ActivityHeightResizeBehavior$Companion {
+	public final fun fromValue (I)Lio/github/edricchan03/androidx/browser/ktx/enums/ActivityHeightResizeBehavior;
+	public final fun fromValueOrElse (ILio/github/edricchan03/androidx/browser/ktx/enums/ActivityHeightResizeBehavior;)Lio/github/edricchan03/androidx/browser/ktx/enums/ActivityHeightResizeBehavior;
+	public static synthetic fun fromValueOrElse$default (Lio/github/edricchan03/androidx/browser/ktx/enums/ActivityHeightResizeBehavior$Companion;ILio/github/edricchan03/androidx/browser/ktx/enums/ActivityHeightResizeBehavior;ILjava/lang/Object;)Lio/github/edricchan03/androidx/browser/ktx/enums/ActivityHeightResizeBehavior;
+}
+
+public final class io/github/edricchan03/androidx/browser/ktx/enums/CloseButtonPosition : java/lang/Enum {
+	public static final field Companion Lio/github/edricchan03/androidx/browser/ktx/enums/CloseButtonPosition$Companion;
+	public static final field Default Lio/github/edricchan03/androidx/browser/ktx/enums/CloseButtonPosition;
+	public static final field End Lio/github/edricchan03/androidx/browser/ktx/enums/CloseButtonPosition;
+	public static final field Start Lio/github/edricchan03/androidx/browser/ktx/enums/CloseButtonPosition;
+	public final fun getValue ()I
+	public static fun valueOf (Ljava/lang/String;)Lio/github/edricchan03/androidx/browser/ktx/enums/CloseButtonPosition;
+	public static fun values ()[Lio/github/edricchan03/androidx/browser/ktx/enums/CloseButtonPosition;
+}
+
+public final class io/github/edricchan03/androidx/browser/ktx/enums/CloseButtonPosition$Companion {
+	public final fun fromValue (I)Lio/github/edricchan03/androidx/browser/ktx/enums/CloseButtonPosition;
+	public final fun fromValueOrElse (ILio/github/edricchan03/androidx/browser/ktx/enums/CloseButtonPosition;)Lio/github/edricchan03/androidx/browser/ktx/enums/CloseButtonPosition;
+	public static synthetic fun fromValueOrElse$default (Lio/github/edricchan03/androidx/browser/ktx/enums/CloseButtonPosition$Companion;ILio/github/edricchan03/androidx/browser/ktx/enums/CloseButtonPosition;ILjava/lang/Object;)Lio/github/edricchan03/androidx/browser/ktx/enums/CloseButtonPosition;
+}
+
+public final class io/github/edricchan03/androidx/browser/ktx/enums/ColorScheme : java/lang/Enum {
+	public static final field Companion Lio/github/edricchan03/androidx/browser/ktx/enums/ColorScheme$Companion;
+	public static final field Dark Lio/github/edricchan03/androidx/browser/ktx/enums/ColorScheme;
+	public static final field Light Lio/github/edricchan03/androidx/browser/ktx/enums/ColorScheme;
+	public static final field System Lio/github/edricchan03/androidx/browser/ktx/enums/ColorScheme;
+	public final fun getValue ()I
+	public static fun valueOf (Ljava/lang/String;)Lio/github/edricchan03/androidx/browser/ktx/enums/ColorScheme;
+	public static fun values ()[Lio/github/edricchan03/androidx/browser/ktx/enums/ColorScheme;
+}
+
+public final class io/github/edricchan03/androidx/browser/ktx/enums/ColorScheme$Companion {
+	public final fun fromValue (I)Lio/github/edricchan03/androidx/browser/ktx/enums/ColorScheme;
+	public final fun fromValueOrElse (ILio/github/edricchan03/androidx/browser/ktx/enums/ColorScheme;)Lio/github/edricchan03/androidx/browser/ktx/enums/ColorScheme;
+	public static synthetic fun fromValueOrElse$default (Lio/github/edricchan03/androidx/browser/ktx/enums/ColorScheme$Companion;ILio/github/edricchan03/androidx/browser/ktx/enums/ColorScheme;ILjava/lang/Object;)Lio/github/edricchan03/androidx/browser/ktx/enums/ColorScheme;
+}
+
+public final class io/github/edricchan03/androidx/browser/ktx/enums/ShareState : java/lang/Enum {
+	public static final field Companion Lio/github/edricchan03/androidx/browser/ktx/enums/ShareState$Companion;
+	public static final field Default Lio/github/edricchan03/androidx/browser/ktx/enums/ShareState;
+	public static final field Off Lio/github/edricchan03/androidx/browser/ktx/enums/ShareState;
+	public static final field On Lio/github/edricchan03/androidx/browser/ktx/enums/ShareState;
+	public final fun getValue ()I
+	public static fun valueOf (Ljava/lang/String;)Lio/github/edricchan03/androidx/browser/ktx/enums/ShareState;
+	public static fun values ()[Lio/github/edricchan03/androidx/browser/ktx/enums/ShareState;
+}
+
+public final class io/github/edricchan03/androidx/browser/ktx/enums/ShareState$Companion {
+	public final fun fromValue (I)Lio/github/edricchan03/androidx/browser/ktx/enums/ShareState;
+	public final fun fromValueOrElse (ILio/github/edricchan03/androidx/browser/ktx/enums/ShareState;)Lio/github/edricchan03/androidx/browser/ktx/enums/ShareState;
+	public static synthetic fun fromValueOrElse$default (Lio/github/edricchan03/androidx/browser/ktx/enums/ShareState$Companion;ILio/github/edricchan03/androidx/browser/ktx/enums/ShareState;ILjava/lang/Object;)Lio/github/edricchan03/androidx/browser/ktx/enums/ShareState;
+}
+

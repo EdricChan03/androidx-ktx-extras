@@ -6,6 +6,7 @@ plugins {
     `android-library`
     `kotlin-android`
 //    id("io.github.edricchan03.kotlin-explicit-api")
+    id("io.github.edricchan03.library.common")
 }
 
 // TODO: Remove when https://youtrack.jetbrains.com/issue/KT-37652 is fixed
