@@ -2,6 +2,8 @@ plugins {
     dev.adamko.`dokkatoo-html`
 }
 
+group = "io.github.edricchan03.androidx"
+
 dependencies {
     dokkatoo(projects.androidx.browser.browserKtx)
 

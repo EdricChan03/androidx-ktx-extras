@@ -62,5 +62,9 @@ publishing.publications {
                 url.set("https://github.com/EdricChan03/androidx-ktx-extras/actions")
             }
         }
+
+        afterEvaluate {
+            from(components["release"])
+        }
     }
 }
