@@ -19,6 +19,8 @@ fun Project.pathAsFilePath() = path
     .removePrefix(GradleProjectPath.SEPARATOR)
     .replace(GradleProjectPath.SEPARATOR, "/")
 
+println("Project path for ${name}: ${pathAsFilePath()}")
+
 val AbstractDokkaTask.modulePath get() = provider { pathAsFilePath() }
 //</editor-fold>
 
@@ -55,12 +57,12 @@ tasks.withType<DokkaTaskPartial>().configureEach {
 
         // Link to source
         sourceLink {
-            localDirectory.set(file("src/${name}/kotlin"))
+            localDirectory.set(rootProject.projectDir)
             remoteUrl.set(
                 modulePath.map {
                     URL(
                         "https://github.com/EdricChan03/androidx-ktx-extras/" +
-                                "tree/main/${it}/src/${name}/kotlin"
+                                "tree/main/${it}"
                     )
                 }
             )
