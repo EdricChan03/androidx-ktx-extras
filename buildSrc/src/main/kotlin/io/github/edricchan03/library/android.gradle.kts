@@ -37,7 +37,8 @@ android {
     publishing {
         singleVariant("release") {
             withSourcesJar()
-            withJavadocJar()
+            // TODO: Uncomment when Dokkatoo gets merged into Dokka
+//            withJavadocJar()
         }
     }
 }
