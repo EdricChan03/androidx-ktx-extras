@@ -1,4 +1,5 @@
 plugins {
+    org.jetbrains.dokka // TODO: Remove
     dev.adamko.`dokkatoo-html`
 }
 
@@ -13,4 +14,10 @@ dependencies {
             "org.jetbrains.dokka:all-modules-page-plugin:$dokkaVersion"
         }
     )
+}
+
+dokkatoo {
+    // TODO: Remove
+    dokkatooPublicationDirectory.set(layout.buildDirectory.dir("dokkatoo"))
+    dokkatooConfigurationsDirectory.set(layout.buildDirectory.dir("dokkatoo-config"))
 }

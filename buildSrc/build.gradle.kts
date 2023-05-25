@@ -20,6 +20,8 @@ dependencies {
     implementation(libs.plugins.kotlin.android.asDependency)
     implementation(libs.plugins.dokkatoo.html.asDependency)
     implementation(libs.plugins.kotlinx.bcv.asDependency)
+    // TODO: Remove
+    implementation(libs.plugins.dokka.asDependency)
 }
 
 private val Provider<PluginDependency>.asDependency
