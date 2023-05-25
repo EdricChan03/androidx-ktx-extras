@@ -6,9 +6,10 @@ plugins {
 }
 
 signing {
+    val signingKeyId: String? by project
     val signingKey: String? by project
     val signingPassword: String? by project
-    useInMemoryPgpKeys(signingKey, signingPassword)
+    useInMemoryPgpKeys(signingKeyId, signingKey, signingPassword)
 
     sign(publishing.publications)
 }
