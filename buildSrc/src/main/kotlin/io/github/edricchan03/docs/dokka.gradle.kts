@@ -4,7 +4,9 @@ plugins {
     dev.adamko.`dokkatoo-html`
 }
 
-// TODO: Add Dokkatoo config
+// Path to the Module.md file, or null if it doesn't exist
+val moduleReadme = file("Module.md").takeIf { it.exists() }
+
 dokkatoo {
     dokkatooSourceSets.configureEach {
         reportUndocumented.set(true)
@@ -18,6 +20,11 @@ dokkatoo {
                             "tree/main/${it}/src/${name}/kotlin"
                 }
             )
+        }
+
+        // Only include the module docs if it exists
+        moduleReadme?.let {
+            includes.from(it)
         }
     }
 }
