@@ -47,8 +47,7 @@ jobs:
           gradle-home-cache-strict-match: true
 
       - name: Build docs
-#        run: ./gradlew dokkatooGeneratePublicationHtml --stacktrace
-        run: ./gradlew dokkaHtmlMultiModule --stacktrace
+        run: ./gradlew dokkatooGeneratePublicationHtml --stacktrace
 
       - name: Setup Pages
         uses: actions/configure-pages@v3
