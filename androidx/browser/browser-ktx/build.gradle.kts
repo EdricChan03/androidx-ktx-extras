@@ -5,7 +5,8 @@ plugins {
     io.github.edricchan03.docs.`dokka-android`
 }
 
-version = "0.0.1"
+group = "io.github.edricchan03.androidx.browser"
+version = "0.0.1-SNAPSHOT"
 
 android {
     namespace = "io.github.edricchan03.androidx.browser.ktx"
