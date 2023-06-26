@@ -21,35 +21,17 @@ private val stateIntsMap = mapOf(
 private val Arb.Companion.nonStateInts get() = int().filterNot { it in stateIntsMap }
 
 class ShareStateTest : DescribeSpec({
-    describe("fromValue") {
+    describe("fromValueOrNull") {
         it("should convert integer to enum") {
             checkAll(Exhaustive.collection(stateIntsMap.entries)) {
-                val value = ShareState.fromValue(it.key).shouldNotBeNull()
+                val value = ShareState.fromValueOrNull(it.key).shouldNotBeNull()
                 value shouldBeEqual it.value
             }
 
             // Non-existent values
             checkAll(Arb.nonStateInts) {
-                ShareState.fromValue(it).shouldBeNull()
+                ShareState.fromValueOrNull(it).shouldBeNull()
             }
-        }
-    }
-
-    describe("fromValueOrElse") {
-        it("should convert integer to enum") {
-            checkAll(Exhaustive.collection(stateIntsMap.entries)) {
-                val state = ShareState.fromValueOrElse(it.key).shouldNotBeNull()
-                state shouldBeEqual it.value
-            }
-
-            // Non-existent values
-            checkAll(
-                Arb.nonStateInts, Exhaustive.collection(stateIntsMap.values)
-            ) { nonInt, state ->
-                val result = ShareState.fromValueOrElse(nonInt, state).shouldNotBeNull()
-                result shouldBeEqual state
-            }
-
         }
     }
 })
