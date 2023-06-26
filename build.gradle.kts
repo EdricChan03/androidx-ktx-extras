@@ -6,6 +6,7 @@ group = "io.github.edricchan03.androidx"
 
 dependencies {
     dokkatoo(projects.androidx.browser.browserKtx)
+    dokkatoo(projects.androidx.common.commonEnums)
 
     // TODO: Remove when https://github.com/adamko-dev/dokkatoo/issues/14 is fixed
     dokkatooPluginHtml(
