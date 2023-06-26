@@ -8,11 +8,21 @@ plugins {
 group = "io.github.edricchan03.androidx.common.enums"
 version = "0.0.1"
 
+@Suppress("UnstableApiUsage")
 android {
     namespace = "io.github.edricchan03.androidx.common.enums"
+
+    testOptions {
+        unitTests.all {
+            it.useJUnitPlatform()
+        }
+    }
 }
 
 dependencies {
+    testImplementation(libs.kotest.runner.junit5)
+    testImplementation(libs.kotest.assertions.core)
+    testImplementation(libs.kotest.property)
 }
 
 publishing.publications {
