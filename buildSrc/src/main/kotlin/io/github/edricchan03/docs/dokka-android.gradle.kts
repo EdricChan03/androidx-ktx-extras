@@ -5,14 +5,15 @@ plugins {
 }
 
 dokkatoo {
-    dokkatooSourceSets.configureEach {
-        enableAndroidDocumentationLink.set(true)
-        suppress.set(true)
-    }
+    dokkatooSourceSets {
+        configureEach {
+            suppress.set(true)
+        }
 
-    // Only un-suppress the main source-set for now
-    // TODO: Remove
-    dokkatooSourceSets.named("main") {
-        suppress.set(false)
+        // Only un-suppress the main source-set for now
+        // TODO: Remove
+        val main by existing {
+            suppress.set(false)
+        }
     }
 }
