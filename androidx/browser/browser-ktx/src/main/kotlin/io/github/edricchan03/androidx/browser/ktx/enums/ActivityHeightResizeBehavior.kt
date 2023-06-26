@@ -17,6 +17,7 @@ import androidx.browser.customtabs.CustomTabsIntent
  *
  * @property value The numerical representation.
  *
+ * @see io.github.edricchan03.androidx.browser.ktx.setInitialActivityHeightPx
  * @see CustomTabsIntent.Builder.setInitialActivityHeightPx
  */
 @Suppress("unused")

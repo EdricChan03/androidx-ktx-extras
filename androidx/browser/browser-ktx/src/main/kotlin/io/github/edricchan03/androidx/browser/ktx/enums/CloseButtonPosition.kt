@@ -17,6 +17,7 @@ import androidx.browser.customtabs.CustomTabsIntent
  *
  * @property value The numerical representation.
  *
+ * @see io.github.edricchan03.androidx.browser.ktx.setCloseButtonPosition
  * @see CustomTabsIntent.Builder.setCloseButtonPosition
  */
 public enum class CloseButtonPosition(public val value: Int) {
