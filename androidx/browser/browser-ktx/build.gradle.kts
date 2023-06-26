@@ -8,12 +8,23 @@ plugins {
 group = "io.github.edricchan03.androidx.browser"
 version = "0.0.1-SNAPSHOT"
 
+@Suppress("UnstableApiUsage")
 android {
     namespace = "io.github.edricchan03.androidx.browser.ktx"
+
+    testOptions {
+        unitTests.all {
+            it.useJUnitPlatform()
+        }
+    }
 }
 
 dependencies {
     api(androidLibs.androidx.browser)
+
+    testImplementation(libs.kotest.runner.junit5)
+    testImplementation(libs.kotest.assertions.core)
+    testImplementation(libs.kotest.property)
 }
 
 publishing.publications {

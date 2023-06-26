@@ -6,7 +6,6 @@ import androidx.browser.customtabs.CustomTabsIntent
  * The share state to use.
  * @see CustomTabsIntent.Builder.setShareState
  */
-@Suppress("unused")
 public enum class ShareState(public val value: Int) {
     /**
      * Applies the default share settings depending on the browser.
