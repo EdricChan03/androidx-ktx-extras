@@ -13,7 +13,7 @@ plugins {
 apply<ExplicitApiModePlugin>()
 
 kotlin {
-    jvmToolchain(8)
+    jvmToolchain(11)
     explicitApi()
     println("Explicit API: $explicitApi")
 }
@@ -27,17 +27,17 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "11"
     }
 
     publishing {
         singleVariant("release") {
             withSourcesJar()
-            // TODO: Uncomment when Dokkatoo gets merged into Dokka
+            // TODO: Uncomment when Dokkatoo is merged into Dokka
 //            withJavadocJar()
         }
     }
