@@ -4,6 +4,19 @@ import androidx.browser.customtabs.CustomTabsIntent
 
 /**
  * Sets the resize behaviour for the custom tab activity.
+ *
+ * ## Numerical representations
+ *
+ * The numerical representation of this enum's entries are as listed below:
+ *
+ * Enum value | [Int] equivalent (accessible via [value])
+ * ---|---
+ * [ActivityHeightResizeBehavior.Default] | [CustomTabsIntent.ACTIVITY_HEIGHT_DEFAULT]
+ * [ActivityHeightResizeBehavior.Adjustable] | [CustomTabsIntent.ACTIVITY_HEIGHT_ADJUSTABLE]
+ * [ActivityHeightResizeBehavior.Fixed] | [CustomTabsIntent.ACTIVITY_HEIGHT_FIXED]
+ *
+ * @property value The numerical representation.
+ *
  * @see CustomTabsIntent.Builder.setInitialActivityHeightPx
  */
 @Suppress("unused")

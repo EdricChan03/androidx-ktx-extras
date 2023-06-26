@@ -4,6 +4,19 @@ import androidx.browser.customtabs.CustomTabsIntent
 
 /**
  * The colour scheme to use.
+ *
+ * ## Numerical representations
+ *
+ * The numerical representation of this enum's entries are as listed below:
+ *
+ * Enum value | [Int] equivalent (accessible via [value])
+ * ---|---
+ * [ColorScheme.System] | [CustomTabsIntent.COLOR_SCHEME_SYSTEM]
+ * [ColorScheme.Light] | [CustomTabsIntent.COLOR_SCHEME_LIGHT]
+ * [ColorScheme.Dark] | [CustomTabsIntent.COLOR_SCHEME_DARK]
+ *
+ * @property value The numerical representation.
+ *
  * @see CustomTabsIntent.Builder.setColorScheme
  */
 @Suppress("unused")

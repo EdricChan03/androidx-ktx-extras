@@ -4,6 +4,19 @@ import androidx.browser.customtabs.CustomTabsIntent
 
 /**
  * The share state to use.
+ *
+ * ## Numerical representations
+ *
+ * The numerical representation of this enum's entries are as listed below:
+ *
+ * Enum value | [Int] equivalent (accessible via [value])
+ * ---|---
+ * [ShareState.Default] | [CustomTabsIntent.SHARE_STATE_DEFAULT]
+ * [ShareState.On] | [CustomTabsIntent.SHARE_STATE_ON]
+ * [ShareState.Off] | [CustomTabsIntent.SHARE_STATE_OFF]
+ *
+ * @property value The numerical representation.
+ *
  * @see CustomTabsIntent.Builder.setShareState
  */
 public enum class ShareState(public val value: Int) {

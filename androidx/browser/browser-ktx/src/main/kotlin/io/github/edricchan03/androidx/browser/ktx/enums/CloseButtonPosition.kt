@@ -4,6 +4,19 @@ import androidx.browser.customtabs.CustomTabsIntent
 
 /**
  * The position of the close button.
+ *
+ * ## Numerical representations
+ *
+ * The numerical representation of this enum's entries are as listed below:
+ *
+ * Enum value | [Int] equivalent (accessible via [value])
+ * ---|---
+ * [CloseButtonPosition.Default] | [CustomTabsIntent.CLOSE_BUTTON_POSITION_DEFAULT]
+ * [CloseButtonPosition.Start] | [CustomTabsIntent.CLOSE_BUTTON_POSITION_START]
+ * [CloseButtonPosition.End] | [CustomTabsIntent.CLOSE_BUTTON_POSITION_END]
+ *
+ * @property value The numerical representation.
+ *
  * @see CustomTabsIntent.Builder.setCloseButtonPosition
  */
 public enum class CloseButtonPosition(public val value: Int) {
