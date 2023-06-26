@@ -1,6 +1,7 @@
 package io.github.edricchan03.androidx.browser.ktx.enums
 
 import androidx.browser.customtabs.CustomTabsIntent
+import io.github.edricchan03.androidx.common.enums.EnumFromValue
 
 /**
  * The share state to use.
@@ -39,23 +40,16 @@ public enum class ShareState(public val value: Int) {
      */
     Off(CustomTabsIntent.SHARE_STATE_OFF);
 
-    public companion object {
-        /**
-         * Gets the [ShareState] representation of [value], or `null` if no such
-         * representation exists.
-         */
-        public fun fromValue(value: Int): ShareState? = when (value) {
+    /**
+     * Companion object exposing methods to retrieve a [ShareState]
+     * given its numerical representation.
+     */
+    public companion object : EnumFromValue<Int, ShareState>(Default) {
+        override fun fromValueOrNull(value: Int): ShareState? = when (value) {
             CustomTabsIntent.SHARE_STATE_DEFAULT -> Default
             CustomTabsIntent.SHARE_STATE_ON -> On
             CustomTabsIntent.SHARE_STATE_OFF -> Off
             else -> null
         }
-
-        /**
-         * Gets the [ShareState] representation of [value], or [default] if no such
-         * representation exists.
-         */
-        public fun fromValueOrElse(value: Int, default: ShareState = Default): ShareState =
-            fromValue(value) ?: default
     }
 }

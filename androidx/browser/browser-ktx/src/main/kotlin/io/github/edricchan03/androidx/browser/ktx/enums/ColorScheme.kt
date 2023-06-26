@@ -1,6 +1,7 @@
 package io.github.edricchan03.androidx.browser.ktx.enums
 
 import androidx.browser.customtabs.CustomTabsIntent
+import io.github.edricchan03.androidx.common.enums.EnumFromValue
 
 /**
  * The colour scheme to use.
@@ -43,24 +44,20 @@ public enum class ColorScheme(public val value: Int) {
      */
     Dark(CustomTabsIntent.COLOR_SCHEME_DARK);
 
-    public companion object {
+    /**
+     * Companion object exposing methods to retrieve a [ColorScheme]
+     * given its numerical representation.
+     */
+    public companion object : EnumFromValue<Int, ColorScheme>(System) {
         /**
          * Gets the [ColorScheme] representation of [value], or `null` if no such
          * representation exists.
          */
-        public fun fromValue(value: Int): ColorScheme? = when (value) {
+        override fun fromValueOrNull(value: Int): ColorScheme? = when (value) {
             CustomTabsIntent.COLOR_SCHEME_SYSTEM -> System
             CustomTabsIntent.COLOR_SCHEME_LIGHT -> Light
             CustomTabsIntent.COLOR_SCHEME_DARK -> Dark
             else -> null
         }
-
-        /**
-         * Gets the [ColorScheme] representation of [value], or [default] if no such
-         * representation exists.
-         */
-        public fun fromValueOrElse(
-            value: Int, default: ColorScheme = System
-        ): ColorScheme = fromValue(value) ?: default
     }
 }

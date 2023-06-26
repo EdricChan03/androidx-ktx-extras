@@ -30,4 +30,7 @@ enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
 rootProject.name = "androidx-ktx-extras"
 
-include(":androidx:browser:browser-ktx")
+include(
+    ":androidx:common:common-enums",
+    ":androidx:browser:browser-ktx"
+)

@@ -1,6 +1,7 @@
 package io.github.edricchan03.androidx.browser.ktx.enums
 
 import androidx.browser.customtabs.CustomTabsIntent
+import io.github.edricchan03.androidx.common.enums.EnumFromValue
 
 /**
  * Sets the resize behaviour for the custom tab activity.
@@ -43,24 +44,17 @@ public enum class ActivityHeightResizeBehavior(public val value: Int) {
      */
     Fixed(CustomTabsIntent.ACTIVITY_HEIGHT_FIXED);
 
-    public companion object {
-        /**
-         * Gets the [ActivityHeightResizeBehavior] representation of [value], or `null` if
-         * no such representation exists.
-         */
-        public fun fromValue(value: Int): ActivityHeightResizeBehavior? = when (value) {
-            CustomTabsIntent.ACTIVITY_HEIGHT_DEFAULT -> Default
-            CustomTabsIntent.ACTIVITY_HEIGHT_ADJUSTABLE -> Adjustable
-            CustomTabsIntent.ACTIVITY_HEIGHT_FIXED -> Fixed
-            else -> null
-        }
-
-        /**
-         * Gets the [ActivityHeightResizeBehavior] representation of [value], or [default] if
-         * no such representation exists.
-         */
-        public fun fromValueOrElse(
-            value: Int, default: ActivityHeightResizeBehavior = Default
-        ): ActivityHeightResizeBehavior = fromValue(value) ?: default
+    /**
+     * Companion object exposing methods to retrieve a [ActivityHeightResizeBehavior]
+     * given its numerical representation.
+     */
+    public companion object : EnumFromValue<Int, ActivityHeightResizeBehavior>(Default) {
+        override fun fromValueOrNull(value: Int): ActivityHeightResizeBehavior? =
+            when (value) {
+                CustomTabsIntent.ACTIVITY_HEIGHT_DEFAULT -> Default
+                CustomTabsIntent.ACTIVITY_HEIGHT_ADJUSTABLE -> Adjustable
+                CustomTabsIntent.ACTIVITY_HEIGHT_FIXED -> Fixed
+                else -> null
+            }
     }
 }
