@@ -20,6 +20,7 @@ android {
 }
 
 dependencies {
+    api(androidLibs.androidx.annotation)
     api(androidLibs.androidx.browser)
 
     testImplementation(libs.kotest.runner.junit5)
