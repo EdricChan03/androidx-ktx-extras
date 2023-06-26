@@ -9,7 +9,7 @@ plugins {
     id("io.github.edricchan03.library.common")
 }
 
-// TODO: Remove when https://youtrack.jetbrains.com/issue/KT-37652 is fixed
+// TODO: Remove when Kotlin 1.9.0 is released (https://youtrack.jetbrains.com/issue/KT-37652)
 apply<ExplicitApiModePlugin>()
 
 kotlin {
@@ -26,6 +26,7 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    // TODO: Remove compileOptions and kotlinOptions when AGP 8.1.0 is out
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
