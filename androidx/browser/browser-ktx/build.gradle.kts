@@ -20,6 +20,8 @@ android {
 }
 
 dependencies {
+    api(projects.androidx.common.commonEnums)
+
     api(androidLibs.androidx.annotation)
     api(androidLibs.androidx.browser)
 
