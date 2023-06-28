@@ -28,6 +28,10 @@ dependencies {
     testImplementation(libs.kotest.runner.junit5)
     testImplementation(libs.kotest.assertions.core)
     testImplementation(libs.kotest.property)
+    testImplementation(libs.kotest.framework.datatest)
+    testImplementation(libs.kotlin.reflect) {
+        because("Kotlin extension support for enum tests")
+    }
 }
 
 publishing.publications {
