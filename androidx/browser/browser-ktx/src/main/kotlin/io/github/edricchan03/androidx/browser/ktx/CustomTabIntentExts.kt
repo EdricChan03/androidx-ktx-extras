@@ -5,6 +5,7 @@ import androidx.annotation.Dimension
 import androidx.browser.customtabs.CustomTabColorSchemeParams
 import androidx.browser.customtabs.CustomTabsIntent
 import androidx.browser.customtabs.CustomTabsSession
+import io.github.edricchan03.androidx.browser.ktx.annotations.ExperimentalBrowserApi
 import io.github.edricchan03.androidx.browser.ktx.enums.ActivityHeightResizeBehavior
 import io.github.edricchan03.androidx.browser.ktx.enums.CloseButtonPosition
 import io.github.edricchan03.androidx.browser.ktx.enums.ColorScheme
@@ -38,12 +39,25 @@ public inline fun customTabsIntent(
 public fun Intent.setAlwaysUseBrowserUI(): Intent =
     CustomTabsIntent.setAlwaysUseBrowserUI(this)
 
+// Copied from CustomTabsIntent as the field is private
+private const val EXTRA_USER_OPT_OUT_FROM_CUSTOM_TABS =
+    "android.support.customtabs.extra.user_opt_out"
+
 /**
  * Whether a browser receiving the given intent should always use browser UI
  * and avoid using any custom tabs UI.
+ *
+ * **Note:** The setter is a custom implementation and thus currently requires
+ * an experimental warning until further notice.
  */
-public val Intent.shouldAlwaysUseBrowserUI: Boolean
+@set:ExperimentalBrowserApi
+public var Intent.shouldAlwaysUseBrowserUI: Boolean
     get() = CustomTabsIntent.shouldAlwaysUseBrowserUI(this)
+    set(value) {
+        // Implementation from CustomTabsIntent#setAlwaysUseBrowserUI
+        addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+        putExtra(EXTRA_USER_OPT_OUT_FROM_CUSTOM_TABS, value)
+    }
 
 /**
  * Retrieves the instance of [androidx.browser.customtabs.CustomTabColorSchemeParams]

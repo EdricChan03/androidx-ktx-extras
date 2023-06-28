@@ -30,6 +30,10 @@ public final class io/github/edricchan03/androidx/browser/ktx/CustomTabIntentExt
 	public static final fun getShouldAlwaysUseBrowserUI (Landroid/content/Intent;)Z
 	public static final fun getToolbarCornerRadiusDp (Landroid/content/Intent;)I
 	public static final fun setAlwaysUseBrowserUI (Landroid/content/Intent;)Landroid/content/Intent;
+	public static final fun setShouldAlwaysUseBrowserUI (Landroid/content/Intent;Z)V
+}
+
+public abstract interface annotation class io/github/edricchan03/androidx/browser/ktx/annotations/ExperimentalBrowserApi : java/lang/annotation/Annotation {
 }
 
 public final class io/github/edricchan03/androidx/browser/ktx/enums/ActivityHeightResizeBehavior : java/lang/Enum {
