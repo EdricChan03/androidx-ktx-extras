@@ -69,9 +69,8 @@ public fun Intent.getColorSchemeParams(colorScheme: ColorScheme): CustomTabColor
 
 /** Gets the Custom Tab Activity's resize behavior. */
 public val Intent.activityResizeBehavior: ActivityHeightResizeBehavior
-    get() = ActivityHeightResizeBehavior.fromValueOrElse(
-        CustomTabsIntent.getActivityResizeBehavior(this),
-        ActivityHeightResizeBehavior.Default
+    get() = ActivityHeightResizeBehavior.fromValue(
+        CustomTabsIntent.getActivityResizeBehavior(this)
     )
 
 /**
@@ -99,9 +98,6 @@ public val Intent.toolbarCornerRadiusDp: Int
  * @see CustomTabsIntent.CLOSE_BUTTON_POSITION_END
  */
 public val Intent.closeButtonPosition: CloseButtonPosition
-    get() = CloseButtonPosition.fromValueOrElse(
-        CustomTabsIntent.getCloseButtonPosition(
-            this
-        ),
-        CloseButtonPosition.Default
+    get() = CloseButtonPosition.fromValue(
+        CustomTabsIntent.getCloseButtonPosition(this)
     )
