@@ -21,7 +21,6 @@ import io.github.edricchan03.androidx.common.enums.EnumFromValue
  * @see io.github.edricchan03.androidx.browser.ktx.setInitialActivityHeightPx
  * @see CustomTabsIntent.Builder.setInitialActivityHeightPx
  */
-@Suppress("unused")
 public enum class ActivityHeightResizeBehavior(public val value: Int) {
     /**
      * Applies the default height resize behavior for the Custom Tab Activity

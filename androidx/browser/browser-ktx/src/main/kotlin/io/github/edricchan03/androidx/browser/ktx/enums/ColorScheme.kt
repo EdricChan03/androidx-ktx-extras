@@ -21,7 +21,6 @@ import io.github.edricchan03.androidx.common.enums.EnumFromValue
  * @see io.github.edricchan03.androidx.browser.ktx.setColorScheme
  * @see CustomTabsIntent.Builder.setColorScheme
  */
-@Suppress("unused")
 public enum class ColorScheme(public val value: Int) {
     /**
      * Applies either a light or dark colour scheme to the user interface in
