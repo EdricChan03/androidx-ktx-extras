@@ -14,5 +14,6 @@ kotlin-reflect = { module = "org.jetbrains.kotlin:kotlin-reflect", version.ref =
 [plugins]
 kotlinx-bcv = "org.jetbrains.kotlinx.binary-compatibility-validator:0.13.1"
 android-gradle-library = { id = "com.android.library", version.ref = "android-gradle" }
+dokkatoo-javadoc = { id = "dev.adamko.dokkatoo-javadoc", version.ref = "dokkatoo" }
 dokkatoo-html = { id = "dev.adamko.dokkatoo-html", version.ref = "dokkatoo" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
