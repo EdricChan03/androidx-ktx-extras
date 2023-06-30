@@ -13,6 +13,7 @@ import io.github.edricchan03.androidx.browser.ktx.enums.ColorScheme
 /**
  * Creates a [CustomTabsIntent.Builder].
  * Optionally, an existing [session] may be specified.
+ * @since 0.0.1
  */
 public fun customTabsIntentBuilder(
     session: CustomTabsSession? = null
@@ -21,6 +22,7 @@ public fun customTabsIntentBuilder(
 /**
  * Creates a [Custom Tab Intent][CustomTabsIntent] using DSL syntax.
  * Optionally, an existing [session] may be specified.
+ * @since 0.0.1
  * @see CustomTabsIntent.Builder
  */
 public inline fun customTabsIntent(
@@ -35,6 +37,8 @@ public inline fun customTabsIntent(
  * tabs to use the browser UI at all times and avoid showing custom tab like UI.
  *
  * Calling this with an intent will override any custom tabs related customizations.
+ * @since 0.0.1
+ * @see CustomTabsIntent.setAlwaysUseBrowserUI
  */
 public fun Intent.setAlwaysUseBrowserUI(): Intent =
     CustomTabsIntent.setAlwaysUseBrowserUI(this)
@@ -49,6 +53,9 @@ private const val EXTRA_USER_OPT_OUT_FROM_CUSTOM_TABS =
  *
  * **Note:** The setter is a custom implementation and thus currently requires
  * an experimental warning until further notice.
+ * @since 0.0.1
+ * @see CustomTabsIntent.shouldAlwaysUseBrowserUI
+ * @see CustomTabsIntent.setAlwaysUseBrowserUI
  */
 @set:ExperimentalBrowserApi
 public var Intent.shouldAlwaysUseBrowserUI: Boolean
@@ -61,13 +68,21 @@ public var Intent.shouldAlwaysUseBrowserUI: Boolean
 
 /**
  * Retrieves the instance of [androidx.browser.customtabs.CustomTabColorSchemeParams]
- * from an [Intent] for a given color scheme. Uses values passed directly into [CustomTabsIntent.Builder]
- * (e.g. via [CustomTabsIntent.Builder.setToolbarColor]) as defaults.
+ * from an [Intent] for a given colour scheme. Uses values passed directly into
+ * [CustomTabsIntent.Builder] (e.g. via [CustomTabsIntent.Builder.setToolbarColor]) as
+ * defaults.
+ * @param colorScheme A colour scheme. Should not be [ColorScheme.System].
+ * @since 0.0.1
+ * @see CustomTabsIntent.getColorSchemeParams
  */
 public fun Intent.getColorSchemeParams(colorScheme: ColorScheme): CustomTabColorSchemeParams =
     CustomTabsIntent.getColorSchemeParams(this, colorScheme.value)
 
-/** Gets the Custom Tab Activity's resize behavior. */
+/**
+ * Gets the Custom Tab Activity's resize behavior.
+ * @since 0.0.1
+ * @see CustomTabsIntent.getActivityResizeBehavior
+ */
 public val Intent.activityResizeBehavior: ActivityHeightResizeBehavior
     get() = ActivityHeightResizeBehavior.fromValue(
         CustomTabsIntent.getActivityResizeBehavior(this)
@@ -75,7 +90,8 @@ public val Intent.activityResizeBehavior: ActivityHeightResizeBehavior
 
 /**
  * Gets the Custom Tab Activity's initial height, or `0` if it is not set.
- * @see CustomTabsIntent.EXTRA_INITIAL_ACTIVITY_HEIGHT_PX
+ * @since 0.0.1
+ * @see CustomTabsIntent.getInitialActivityHeightPx
  */
 @get:Dimension(unit = Dimension.PX)
 public val Intent.initialActivityHeightPx: Int
@@ -83,7 +99,8 @@ public val Intent.initialActivityHeightPx: Int
 
 /**
  * Gets the toolbar's top corner radii in dp.
- * @see CustomTabsIntent.EXTRA_TOOLBAR_CORNER_RADIUS_DP
+ * @since 0.0.1
+ * @see CustomTabsIntent.getToolbarCornerRadiusDp
  */
 @get:Dimension(unit = Dimension.DP)
 public val Intent.toolbarCornerRadiusDp: Int
@@ -92,10 +109,8 @@ public val Intent.toolbarCornerRadiusDp: Int
 /**
  * Gets the position of the close button as a [CloseButtonPosition],
  * or the [default position][CloseButtonPosition.Default] if the extra is not set.
- * @see CustomTabsIntent.EXTRA_CLOSE_BUTTON_POSITION
- * @see CustomTabsIntent.CLOSE_BUTTON_POSITION_DEFAULT
- * @see CustomTabsIntent.CLOSE_BUTTON_POSITION_START
- * @see CustomTabsIntent.CLOSE_BUTTON_POSITION_END
+ * @since 0.0.1
+ * @see CustomTabsIntent.getCloseButtonPosition
  */
 public val Intent.closeButtonPosition: CloseButtonPosition
     get() = CloseButtonPosition.fromValue(

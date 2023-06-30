@@ -18,24 +18,28 @@ import io.github.edricchan03.androidx.common.enums.EnumFromValue
  *
  * @property value The numerical representation.
  *
+ * @since 0.0.1
  * @see io.github.edricchan03.androidx.browser.ktx.setShareState
  * @see CustomTabsIntent.Builder.setShareState
  */
 public enum class ShareState(public val value: Int) {
     /**
      * Applies the default share settings depending on the browser.
+     * @since 0.0.1
      * @see CustomTabsIntent.SHARE_STATE_DEFAULT
      */
     Default(CustomTabsIntent.SHARE_STATE_DEFAULT),
 
     /**
      * Shows a share option in the tab.
+     * @since 0.0.1
      * @see CustomTabsIntent.SHARE_STATE_ON
      */
     On(CustomTabsIntent.SHARE_STATE_ON),
 
     /**
      * Explicitly does not show a share option in the tab.
+     * @since 0.0.1
      * @see CustomTabsIntent.SHARE_STATE_OFF
      */
     Off(CustomTabsIntent.SHARE_STATE_OFF);
@@ -43,6 +47,7 @@ public enum class ShareState(public val value: Int) {
     /**
      * Companion object exposing methods to retrieve a [ShareState]
      * given its numerical representation.
+     * @since 0.0.1
      */
     public companion object : EnumFromValue<Int, ShareState>(Default) {
         override fun fromValueOrNull(value: Int): ShareState? = when (value) {

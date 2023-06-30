@@ -13,6 +13,8 @@ import io.github.edricchan03.androidx.browser.ktx.enums.ShareState
  * Sets the share state that should be applied to the custom tab.
  * This method allows for an enum [ShareState] to be used.
  * @param state The [ShareState] to use.
+ * @since 0.0.1
+ * @see CustomTabsIntent.Builder.setShareState
  */
 public fun CustomTabsIntent.Builder.setShareState(
     state: ShareState
@@ -22,6 +24,8 @@ public fun CustomTabsIntent.Builder.setShareState(
  * Sets the colour scheme that should be applied to the user interface in the custom tab.
  * This method allows for an enum [ColorScheme] to be used.
  * @param scheme The desired colour scheme to use.
+ * @since 0.0.1
+ * @see CustomTabsIntent.Builder.setColorScheme
  */
 public fun CustomTabsIntent.Builder.setColorScheme(
     scheme: ColorScheme
@@ -44,6 +48,8 @@ public fun CustomTabsIntent.Builder.setColorScheme(
  * It should not be [ColorScheme.System], because that represents a behavior rather
  * than a particular color scheme.
  * @param params An instance of [CustomTabColorSchemeParams].
+ * @since 0.0.1
+ * @see CustomTabsIntent.Builder.setColorSchemeParams
  */
 public fun CustomTabsIntent.Builder.setColorSchemeParams(
     scheme: ColorScheme,
@@ -68,6 +74,9 @@ public fun CustomTabsIntent.Builder.setColorSchemeParams(
  * It should not be [ColorScheme.System], because that represents a behavior rather
  * than a particular color scheme.
  * @param paramsInit Block to be used to configure a [CustomTabColorSchemeParams].
+ * @since 0.0.1
+ * @see CustomTabsIntent.Builder.setColorSchemeParams
+ * @see colorSchemeParams
  */
 public fun CustomTabsIntent.Builder.setColorSchemeParams(
     scheme: ColorScheme,
@@ -97,6 +106,9 @@ public fun CustomTabsIntent.Builder.setColorSchemeParams(
  * @param secondaryToolbarColor See [CustomTabColorSchemeParams.secondaryToolbarColor].
  * @param navigationBarColor See [CustomTabColorSchemeParams.navigationBarColor].
  * @param navigationBarDividerColor See [CustomTabColorSchemeParams.navigationBarDividerColor].
+ * @since 0.0.1
+ * @see CustomTabsIntent.Builder.setColorSchemeParams
+ * @see colorSchemeParams
  */
 public fun CustomTabsIntent.Builder.setColorSchemeParams(
     scheme: ColorScheme,
@@ -122,6 +134,7 @@ public fun CustomTabsIntent.Builder.setColorSchemeParams(
  * for [activityHeightResizeBehavior].
  * @param initialHeightPx The Custom Tab Activity's initial height in pixels.
  * @param activityHeightResizeBehavior Desired height behavior.
+ * @since 0.0.1
  * @see CustomTabsIntent.Builder.setInitialActivityHeightPx
  */
 public fun CustomTabsIntent.Builder.setInitialActivityHeightPx(
@@ -134,6 +147,8 @@ public fun CustomTabsIntent.Builder.setInitialActivityHeightPx(
  * Sets the position of the close button.
  * This method allows for an enum [CloseButtonPosition] to be used.
  * @param position The desired position.
+ * @since 0.0.1
+ * @see CustomTabsIntent.Builder.setCloseButtonPosition
  */
 public fun CustomTabsIntent.Builder.setCloseButtonPosition(
     position: CloseButtonPosition

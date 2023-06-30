@@ -4,7 +4,11 @@ import androidx.annotation.ColorInt
 import androidx.browser.customtabs.CustomTabColorSchemeParams
 import androidx.browser.customtabs.CustomTabsIntent
 
-/** Creates a [CustomTabColorSchemeParams] using DSL syntax. */
+/**
+ * Creates a [CustomTabColorSchemeParams] using DSL syntax.
+ * @since 0.0.1
+ * @see CustomTabColorSchemeParams.Builder
+ */
 public inline fun colorSchemeParams(
     init: CustomTabColorSchemeParams.Builder.() -> Unit
 ): CustomTabColorSchemeParams = CustomTabColorSchemeParams.Builder().apply(init).build()
@@ -15,6 +19,9 @@ public inline fun colorSchemeParams(
  * @param secondaryToolbarColor See [CustomTabColorSchemeParams.secondaryToolbarColor].
  * @param navigationBarColor See [CustomTabColorSchemeParams.navigationBarColor].
  * @param navigationBarDividerColor See [CustomTabColorSchemeParams.navigationBarDividerColor].
+ * @since 0.0.1
+ * @see CustomTabColorSchemeParams.Builder
+ * @see colorSchemeParams
  */
 public fun colorSchemeParams(
     @ColorInt toolbarColor: Int? = null,
@@ -30,6 +37,9 @@ public fun colorSchemeParams(
 
 /**
  * Sets the default colour scheme to use using DSL syntax.
+ * @since 0.0.1
+ * @see CustomTabsIntent.Builder.setDefaultColorSchemeParams
+ * @see colorSchemeParams
  */
 public inline fun CustomTabsIntent.Builder.setDefaultColorSchemeParams(
     init: CustomTabColorSchemeParams.Builder.() -> Unit
@@ -41,6 +51,9 @@ public inline fun CustomTabsIntent.Builder.setDefaultColorSchemeParams(
  * @param secondaryToolbarColor See [CustomTabColorSchemeParams.secondaryToolbarColor].
  * @param navigationBarColor See [CustomTabColorSchemeParams.navigationBarColor].
  * @param navigationBarDividerColor See [CustomTabColorSchemeParams.navigationBarDividerColor].
+ * @since 0.0.1
+ * @see CustomTabsIntent.Builder.setDefaultColorSchemeParams
+ * @see colorSchemeParams
  */
 public fun CustomTabsIntent.Builder.setDefaultColorSchemeParams(
     @ColorInt toolbarColor: Int? = null,
