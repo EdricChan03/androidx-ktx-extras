@@ -9,17 +9,20 @@ package io.github.edricchan03.androidx.common.enums
  * @param InternalValue The internal value representation of the enum.
  * @param E The enum.
  * @param default The default value to be used for [fromValue].
+ * @since 0.0.1
  */
 public abstract class EnumFromValue<InternalValue, E : Enum<E>>(private val default: E) {
     /**
      * Gets the [E] representation of [value], or `null` if no such representation
      * exists.
+     * @since 0.0.1
      */
     public abstract fun fromValueOrNull(value: InternalValue): E?
 
     /**
      * Gets the [E] representation of [value], or [default] if no such representation
      * exists.
+     * @since 0.0.1
      */
     public fun fromValueOrElse(value: InternalValue, default: E): E =
         fromValueOrNull(value) ?: default
@@ -27,15 +30,20 @@ public abstract class EnumFromValue<InternalValue, E : Enum<E>>(private val defa
     /**
      * Gets the [E] representation of [value], or [default] if no such representation
      * exists.
+     * @since 0.0.1
      */
     public fun fromValue(value: InternalValue): E = fromValueOrElse(value, default)
 
     /**
      * Gets the [E] representation of [value], or throws an [IllegalArgumentException]
      * if no such representation exists.
+     * @since 0.0.1
      */
     public fun requireValue(value: InternalValue): E = requireNotNull(fromValueOrNull(value))
 
-    /** Checks if an enum entry with the given [value] exists. */
+    /**
+     * Checks if an enum entry with the given [value] exists.
+     * @since 0.0.1
+     */
     public fun hasValue(value: InternalValue): Boolean = fromValueOrNull(value) != null
 }
