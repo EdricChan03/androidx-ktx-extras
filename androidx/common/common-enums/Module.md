@@ -4,7 +4,7 @@ Common enums utilities for androidx-ktx-extras' modules.
 
 ## Usage
 
-<a href="https://central.sonatype.com/artifact/io.github.edricchan03.androidx.common/common-enums"><img src="https://flat.badgen.net/maven/v/maven-central/io.github.edricchan03.androidx.common/common-enums" alt="Common Enums on Maven Central"></a>
+<a href="https://central.sonatype.com/artifact/io.github.edricchan03.androidx.common/common-enums"><img src="https://img.shields.io/maven-central/v/io.github.edricchan03.androidx.common/common-enums?style=for-the-badge&logo=apachemaven&logoColor=%23C71A36&label=Maven%20Central" alt="Common Enums on Maven Central"></a>
 
 Common Enums is available on [Maven Central](https://central.sonatype.com) as the Maven coordinate [`io.github.edricchan03.androidx.common:common-enums`](https://central.sonatype.com/artifact/io.github.edricchan03.androidx.common/common-enums):
 
@@ -43,6 +43,8 @@ implementation(libs.androidxtra.common.enums)
 ```
 
 ### Snapshots
+
+<a href="https://s01.oss.sonatype.org/content/repositories/snapshots/io/github/edricchan03/androidx/common/common-enums/"><img src="https://img.shields.io/maven-metadata/v?metadataUrl=https%3A%2F%2Fs01.oss.sonatype.org%2Fcontent%2Frepositories%2Fsnapshots%2Fio%2Fgithub%2Fedricchan03%2Fandroidx%2Fcommon%2Fcommon-enums%2Fmaven-metadata.xml&style=for-the-badge&logo=apachemaven&logoColor=%23C71A36&label=Maven%20Central%20(snapshots)" alt="Common Enums on Maven Central (snapshot)"></a>
 
 Alternatively, you can grab the latest built snapshot from Maven Central's snapshots
 repository:
