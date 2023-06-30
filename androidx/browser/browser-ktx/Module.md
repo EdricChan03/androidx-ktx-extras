@@ -11,6 +11,17 @@ artifact.
 Browser KTX is available on [Maven Central](https://central.sonatype.com/) as the Maven
 coordinate [`io.github.edricchan03.androidx.browser:browser-ktx`](https://central.sonatype.com/artifact/io.github.edricchan03.androidx.browser/browser-ktx):
 
+`settings.gradle.kts`:
+
+```kotlin
+dependencyResolutionManagement {
+  // ...
+  repositories {
+    mavenCentral()
+  }
+}
+```
+
 ### Kotlin/Groovy
 
 ```kotlin
@@ -19,7 +30,7 @@ implementation("io.github.edricchan03.androidx.browser:browser-ktx:0.0.1")
 
 ### TOML
 
-`gradle/libs.version.toml`:
+`gradle/libs.versions.toml`:
 
 ```toml
 [libaries]
