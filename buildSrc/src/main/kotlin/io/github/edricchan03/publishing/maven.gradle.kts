@@ -25,7 +25,7 @@ tasks {
         description = "Dumps the publications for project ${project.name}"
         doLast {
             logger.lifecycle("Publications for project ${project.name}\n${"-".repeat(50)}")
-            publishing.publications.withType(MavenPublication::class.java) { ->
+            publishing.publications.withType<MavenPublication> {
                 logger.lifecycle("$name => $groupId:$artifactId:$version")
             }
         }
