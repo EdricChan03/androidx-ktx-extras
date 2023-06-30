@@ -10,8 +10,6 @@ val sonatypeSnapshotUrl = "https://s01.oss.sonatype.org/content/repositories/sna
 /** Whether to publish the artifacts to [sonatypeStagingUrl] instead of [sonatypeSnapshotUrl]. */
 val isRelease: Boolean by extra { !version.toString().endsWith("SNAPSHOT") }
 
-logger.lifecycle("Publishing ${if (isRelease) "release" else "snapshot"} build to OSSRH...")
-
 publishing {
     repositories {
         maven {
