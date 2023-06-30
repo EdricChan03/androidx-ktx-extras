@@ -1,8 +1,12 @@
+import io.github.edricchan03.publishing.computeJavadocTaskName
+
 plugins {
     io.github.edricchan03.library.android
-    io.github.edricchan03.publishing.maven
-    io.github.edricchan03.publishing.`maven-gh-packages`
     io.github.edricchan03.docs.`dokka-android`
+    io.github.edricchan03.publishing.maven
+    io.github.edricchan03.publishing.`dokkatoo-android`
+    io.github.edricchan03.publishing.`maven-gh-packages`
+    io.github.edricchan03.publishing.`maven-sonatype`
 }
 
 group = "io.github.edricchan03.androidx.common.enums"
@@ -75,6 +79,10 @@ publishing.publications {
 
         afterEvaluate {
             from(components["release"])
+
+            // Add Javadocs as an artifact
+            artifact(tasks[computeJavadocTaskName("release", isHtml = false)])
+            artifact(tasks[computeJavadocTaskName("release", isHtml = true)])
         }
     }
 }
