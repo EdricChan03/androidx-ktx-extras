@@ -10,7 +10,7 @@ plugins {
 }
 
 group = "io.github.edricchan03.androidx.browser"
-version = "0.0.1"
+version = "0.0.2-SNAPSHOT"
 
 @Suppress("UnstableApiUsage")
 android {
