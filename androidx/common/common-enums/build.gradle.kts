@@ -9,7 +9,7 @@ plugins {
     io.github.edricchan03.publishing.`maven-sonatype`
 }
 
-group = "io.github.edricchan03.androidx.common.enums"
+group = "io.github.edricchan03.androidx.common"
 version = "0.0.2-SNAPSHOT"
 
 @Suppress("UnstableApiUsage")
@@ -83,6 +83,22 @@ publishing.publications {
             // Add Javadocs as an artifact
             artifact(tasks[computeJavadocTaskName("release", isHtml = false)])
             artifact(tasks[computeJavadocTaskName("release", isHtml = true)])
+        }
+    }
+
+    // TODO: Remove in 0.1.0, see https://github.com/EdricChan03/androidx-ktx-extras/issues/6
+    val relocation by registering(MavenPublication::class) {
+        pom {
+            // Old artifact coordinates
+            groupId = "io.github.edricchan03.androidx.common.enums"
+
+            distributionManagement {
+                relocation {
+                    // New artifact coordinates
+                    groupId.set("io.github.edricchan03.androidx.common")
+                    message.set("groupId has moved")
+                }
+            }
         }
     }
 }
