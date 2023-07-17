@@ -16,6 +16,7 @@ enum class Example(val value: String) {
       else -> null
     }
   }
+}
 ```
 
 See the [Module docs](./Module.md) for more information on how to include this artifact in your
