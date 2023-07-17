@@ -11,6 +11,11 @@ kotest-property = { module = "io.kotest:kotest-property", version.ref = "kotest"
 kotest-runner-junit5 = { module = "io.kotest:kotest-runner-junit5", version.ref = "kotest" }
 kotlin-reflect = { module = "org.jetbrains.kotlin:kotlin-reflect", version.ref = "kotlin" }
 
+# Gradle plugins
+android-gradle-plugin = { module = "com.android.tools.build:gradle", version.ref = "android-gradle" }
+# See https://issuetracker.google.com/issues/176079157#comment14
+kotlin-gradle-plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
+
 [plugins]
 kotlinx-bcv = "org.jetbrains.kotlinx.binary-compatibility-validator:0.13.1"
 android-gradle-library = { id = "com.android.library", version.ref = "android-gradle" }
