@@ -1,4 +1,5 @@
 import io.github.edricchan03.plugin.library.extensions.LibraryType
+import io.github.edricchan03.plugin.library.setConventions
 
 plugins {
     `android-library`
@@ -38,6 +39,7 @@ dependencies {
 publishing.publications {
     // TODO: Remove in 0.1.0, see https://github.com/EdricChan03/androidx-ktx-extras/issues/6
     val relocation by registering(MavenPublication::class) {
+        pom.setConventions(project, androidxKtx)
         pom {
             // Old artifact coordinates
             groupId = "io.github.edricchan03.androidx.common.enums"
