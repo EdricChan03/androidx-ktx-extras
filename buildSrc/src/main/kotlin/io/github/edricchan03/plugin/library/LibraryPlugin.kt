@@ -1,6 +1,7 @@
 package io.github.edricchan03.plugin.library
 
 import com.android.build.api.variant.LibraryAndroidComponentsExtension
+import dev.adamko.dokkatoo.DokkatooExtension
 import dev.adamko.dokkatoo.dokka.parameters.DokkaSourceSetSpec
 import dev.adamko.dokkatoo.formats.DokkatooHtmlPlugin
 import dev.adamko.dokkatoo.formats.DokkatooJavadocPlugin
@@ -8,6 +9,7 @@ import dev.adamko.dokkatoo.tasks.DokkatooGenerateTask
 import io.github.edricchan03.plugin.explicit_api.ExplicitApiModePlugin
 import io.github.edricchan03.plugin.library.extensions.LibraryPluginExtension
 import io.github.edricchan03.plugin.library.extensions.docs.ExternalDocLinks
+import io.github.edricchan03.plugin.library.extensions.docs.LibraryDocsExtension
 import io.github.edricchan03.plugin.library.extensions.isReleaseVersion
 import io.github.edricchan03.plugin.library.extensions.publish.DefaultReleaseVersionSpec
 import io.github.edricchan03.plugin.library.extensions.publish.asReadOnlyProvider
@@ -248,54 +250,7 @@ class LibraryPlugin : Plugin<Project> {
             moduleDoc.convention(project.layout.projectDirectory.file("Module.md"))
             moduleDocs.from(moduleDoc)
 
-            dokkatoo.dokkatooSourceSets {
-                if (onlyMainSourceLink.getOrElse(true)) {
-                    maybeCreate("main").apply {
-                        configureSourceLink(project, dokkatoo.modulePath)
-                    }
-                } else {
-                    configureEach {
-                        configureSourceLink(project, dokkatoo.modulePath)
-                    }
-                }
-
-                if (suppressNonMain.getOrElse(true)) {
-                    configureEach {
-                        suppress.set(true)
-                    }
-                    named("main") {
-                        suppress.set(false)
-                    }
-                }
-
-                configureEach {
-                    externalDocumentationLinks {
-                        // Add common doc links
-                        register(ExternalDocLinks.Kotlinx.coroutines) {
-                            url("https://kotlinlang.org/api/kotlinx.coroutines")
-                        }
-
-                        register(ExternalDocLinks.Kotlinx.serialization) {
-                            url("https://kotlinlang.org/api/kotlinx.serialization")
-                            enabled.convention(false)
-                        }
-
-                        register(ExternalDocLinks.Kotlinx.dateTime) {
-                            url("https://kotlinlang.org/api/kotlinx-datetime")
-                            enabled.convention(false)
-                        }
-
-                        register(ExternalDocLinks.ktor) {
-                            url("https://api.ktor.io")
-                            enabled.convention(false)
-                        }
-                    }
-
-                    includes.from(moduleDocs)
-
-                    reportUndocumented.convention(true)
-                }
-            }
+            println("Module docs: ${moduleDocs.files}")
         }
 
         compose {
@@ -327,8 +282,12 @@ class LibraryPlugin : Plugin<Project> {
         // AGP library
         val kotlinAndroid = extensions.findByType<KotlinAndroidProjectExtension>()
         extensions.findByType<AGPLibraryExtension>()?.setConventions(
-            this, kotlinAndroid, extension
+            kotlinAndroid
         )
+
+        // Dokkatoo
+        val dokkatoo = project.extensions.getByType<DokkatooExtension>()
+        dokkatoo.setConventions(project, extension.docs)
     }
 
     private fun SigningExtension.setConventions(publishing: PublishingExtension) {
@@ -400,9 +359,7 @@ class LibraryPlugin : Plugin<Project> {
     }
 
     private fun AGPLibraryExtension.setConventions(
-        project: Project,
-        kotlinAndroid: KotlinAndroidProjectExtension?,
-        extension: LibraryPluginExtension
+        kotlinAndroid: KotlinAndroidProjectExtension?
     ) {
         logger.info("Setting conventions for AGP library extension")
         kotlinAndroid?.apply {
@@ -432,6 +389,62 @@ class LibraryPlugin : Plugin<Project> {
                 withSourcesJar()
                 // TODO: Uncomment when Dokkatoo is merged into Dokka
 //            withJavadocJar()
+            }
+        }
+    }
+
+    private fun DokkatooExtension.setConventions(
+        project: Project,
+        extension: LibraryDocsExtension
+    ) {
+        dokkatooSourceSets {
+            if (extension.onlyMainSourceLink.getOrElse(true)) {
+                maybeCreate("main").apply {
+                    configureSourceLink(project, modulePath)
+                }
+            } else {
+                configureEach {
+                    configureSourceLink(project, modulePath)
+                }
+            }
+
+            if (extension.suppressNonMain.getOrElse(true)) {
+                configureEach {
+                    suppress.set(true)
+                }
+                named("main") {
+                    suppress.set(false)
+                }
+            }
+
+            configureEach {
+                externalDocumentationLinks {
+                    // Add common doc links
+                    register(ExternalDocLinks.Kotlinx.coroutines) {
+                        url("https://kotlinlang.org/api/kotlinx.coroutines")
+                    }
+
+                    register(ExternalDocLinks.Kotlinx.serialization) {
+                        url("https://kotlinlang.org/api/kotlinx.serialization")
+                        enabled.convention(false)
+                    }
+
+                    register(ExternalDocLinks.Kotlinx.dateTime) {
+                        url("https://kotlinlang.org/api/kotlinx-datetime")
+                        enabled.convention(false)
+                    }
+
+                    register(ExternalDocLinks.ktor) {
+                        url("https://api.ktor.io")
+                        enabled.convention(false)
+                    }
+                }
+
+                includes.from(extension.moduleDocs)
+
+                println("Includes for $name: ${includes.files}")
+
+                reportUndocumented.convention(true)
             }
         }
     }

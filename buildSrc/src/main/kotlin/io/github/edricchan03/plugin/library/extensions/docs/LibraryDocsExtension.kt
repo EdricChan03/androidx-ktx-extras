@@ -1,16 +1,13 @@
 package io.github.edricchan03.plugin.library.extensions.docs
 
-import dev.adamko.dokkatoo.DokkatooExtension
 import dev.adamko.dokkatoo.dokka.parameters.DokkaExternalDocumentationLinkSpec
 import dev.adamko.dokkatoo.dokka.parameters.DokkaSourceSetSpec
 import dev.adamko.dokkatoo.formats.DokkatooHtmlPlugin
 import dev.adamko.dokkatoo.formats.DokkatooJavadocPlugin
-import org.gradle.api.Action
 import org.gradle.api.file.ConfigurableFileCollection
 import org.gradle.api.file.RegularFileProperty
 import org.gradle.api.provider.Property
 import org.gradle.api.provider.SetProperty
-import org.gradle.api.tasks.Nested
 
 abstract class LibraryDocsExtension {
     /**
@@ -58,13 +55,4 @@ abstract class LibraryDocsExtension {
      * @see moduleDocs
      */
     abstract val moduleDoc: RegularFileProperty
-
-    /** Configuration for Dokkatoo. */
-    @get:Nested
-    abstract val dokkatoo: DokkatooExtension
-
-    /** Configures Dokkatoo. */
-    fun dokkatoo(action: Action<in DokkatooExtension>) {
-        action.execute(dokkatoo)
-    }
 }

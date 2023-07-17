@@ -7,13 +7,14 @@ import io.github.edricchan03.plugin.library.extensions.publish.LibraryMavenCoord
 import io.github.edricchan03.plugin.library.extensions.publish.ReleaseVersionSpec
 import io.github.edricchan03.plugin.library.extensions.publish.maven.LibraryMavenPublishingExtension
 import org.gradle.api.Action
+import org.gradle.api.plugins.ExtensionAware
 import org.gradle.api.provider.Property
 import org.gradle.api.provider.Provider
 import org.gradle.api.publish.maven.MavenPom
 import org.gradle.api.tasks.Nested
 import org.gradle.kotlin.dsl.invoke
 
-abstract class LibraryPluginExtension {
+abstract class LibraryPluginExtension : ExtensionAware {
     /** The GAV coordinate for this library. */
     @get:Nested
     abstract val mavenCoordinates: LibraryMavenCoordinates
