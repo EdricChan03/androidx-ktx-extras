@@ -41,14 +41,16 @@ publishing.publications {
     val relocation by registering(MavenPublication::class) {
         pom.setConventions(project, androidxKtx)
         pom {
+            description = androidxKtx.description
+                .map { "[Notice: Moved to new group, see relocation for more info] $it" }
             // Old artifact coordinates
             groupId = "io.github.edricchan03.androidx.common.enums"
 
             distributionManagement {
                 relocation {
                     // New artifact coordinates
-                    groupId.set("io.github.edricchan03.androidx.common")
-                    message.set("groupId has moved")
+                    groupId = "io.github.edricchan03.androidx.common"
+                    message = "groupId has moved"
                 }
             }
         }
