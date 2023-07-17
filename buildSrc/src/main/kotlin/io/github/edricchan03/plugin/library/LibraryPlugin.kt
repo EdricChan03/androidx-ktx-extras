@@ -249,8 +249,6 @@ class LibraryPlugin : Plugin<Project> {
             publishJavadoc.convention(true)
             moduleDoc.convention(project.layout.projectDirectory.file("Module.md"))
             moduleDocs.from(moduleDoc)
-
-            println("Module docs: ${moduleDocs.files}")
         }
 
         compose {
@@ -441,8 +439,6 @@ class LibraryPlugin : Plugin<Project> {
                 }
 
                 includes.from(extension.moduleDocs)
-
-                println("Includes for $name: ${includes.files}")
 
                 reportUndocumented.convention(true)
             }
