@@ -1,5 +1,6 @@
 package io.github.edricchan03.plugin.library
 
+import com.android.build.api.variant.LibraryAndroidComponentsExtension
 import dev.adamko.dokkatoo.dokka.parameters.DokkaSourceSetSpec
 import dev.adamko.dokkatoo.formats.DokkatooHtmlPlugin
 import dev.adamko.dokkatoo.formats.DokkatooJavadocPlugin
@@ -296,6 +297,14 @@ class LibraryPlugin : Plugin<Project> {
                 }
             }
         }
+
+        compose {
+            enabled.convention(false)
+            kotlinCompilerExtensionVersion.convention(
+                androidLibs.findVersion("compose-compiler").map { it.requiredVersion }
+                    .orElse(DEFAULT_KOTLIN_COMPOSE_EXTENSION_VERSION)
+            )
+        }
     }
 
     private fun Project.applyLibraryExtension(extension: LibraryPluginExtension) {
@@ -311,6 +320,9 @@ class LibraryPlugin : Plugin<Project> {
         val publishing = extensions.getByType<PublishingExtension>()
         extensions.getByType<SigningExtension>().setConventions(publishing)
         publishing.setConventions(project, extension)
+
+        // androidComponents
+        extensions.findByType<LibraryAndroidComponentsExtension>()?.setConventions(extension)
 
         // AGP library
         val kotlinAndroid = extensions.findByType<KotlinAndroidProjectExtension>()
@@ -366,6 +378,24 @@ class LibraryPlugin : Plugin<Project> {
                         "skipping registration"
                 )
             }
+        }
+    }
+
+    private fun LibraryAndroidComponentsExtension.setConventions(
+        extension: LibraryPluginExtension
+    ) {
+        logger.info("Setting conventions for androidComponents extension")
+        finalizeDsl {
+            val composeEnabled = extension.compose.enabled.get()
+            val kotlinCompilerExtensionVersion =
+                extension.compose.kotlinCompilerExtensionVersion.get()
+            logger.info(
+                "Compose config:\nEnabled: $composeEnabled, " +
+                    "Kotlin compiler version: $kotlinCompilerExtensionVersion"
+            )
+            it.buildFeatures.compose = composeEnabled
+            it.composeOptions.kotlinCompilerExtensionVersion =
+                kotlinCompilerExtensionVersion
         }
     }
 

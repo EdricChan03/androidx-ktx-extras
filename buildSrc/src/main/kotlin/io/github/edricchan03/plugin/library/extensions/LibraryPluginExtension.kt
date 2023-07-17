@@ -1,6 +1,7 @@
 package io.github.edricchan03.plugin.library.extensions
 
 import com.android.build.api.dsl.ComposeOptions
+import io.github.edricchan03.plugin.library.extensions.compose.LibraryComposeExtension
 import io.github.edricchan03.plugin.library.extensions.docs.LibraryDocsExtension
 import io.github.edricchan03.plugin.library.extensions.publish.LibraryMavenCoordinates
 import io.github.edricchan03.plugin.library.extensions.publish.ReleaseVersionSpec
@@ -119,6 +120,44 @@ abstract class LibraryPluginExtension {
     /** Configures documentation for this library module. */
     fun docs(action: Action<in LibraryDocsExtension>) {
         action(docs)
+    }
+
+    /** Jetpack Compose options for this library module. */
+    @get:Nested
+    abstract val compose: LibraryComposeExtension
+
+    /** Configures the Jetpack Compose options for this library module. */
+    fun compose(action: Action<in LibraryComposeExtension>) {
+        action(compose)
+    }
+
+    /**
+     * Enables Jetpack Compose for this library module, and sets the
+     * [LibraryComposeExtension.kotlinCompilerExtensionVersion] value to [version].
+     * @param version The [ComposeOptions.kotlinCompilerExtensionVersion] to use as a
+     * [Provider].
+     * @see ComposeOptions
+     * @see compose
+     */
+    fun withCompose(version: Provider<String>) {
+        compose {
+            enabled.set(true)
+            kotlinCompilerExtensionVersion.set(version)
+        }
+    }
+
+    /**
+     * Enables Jetpack Compose for this library module, and sets the
+     * [LibraryComposeExtension.kotlinCompilerExtensionVersion] value to [version].
+     * @param version The [ComposeOptions.kotlinCompilerExtensionVersion] to use.
+     * @see ComposeOptions
+     * @see compose
+     */
+    fun withCompose(version: String) {
+        compose {
+            enabled.set(true)
+            kotlinCompilerExtensionVersion.set(version)
+        }
     }
 
     companion object {
