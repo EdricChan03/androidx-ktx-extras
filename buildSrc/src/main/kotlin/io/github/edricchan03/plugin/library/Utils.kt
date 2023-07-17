@@ -66,4 +66,4 @@ fun MavenPom.setConventions(project: Project, extension: LibraryPluginExtension)
 const val SOURCE_URL = "https://github.com/EdricChan03/androidx-ktx-extras"
 
 internal val Project.sourceUrl
-    get() = "$SOURCE_URL/tree/main/${pathAsFilePath.drop(1)}"
+    get() = "$SOURCE_URL/tree/main/$pathAsFilePath"
