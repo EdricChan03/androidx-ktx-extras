@@ -468,7 +468,7 @@ class LibraryPlugin : Plugin<Project> {
     }
 
     companion object {
-        const val DEFAULT_KOTLIN_COMPOSE_EXTENSION_VERSION = "1.4.8"
+        const val DEFAULT_KOTLIN_COMPOSE_EXTENSION_VERSION = "1.5.0"
         private val logger = Logging.getLogger(LibraryPlugin::class.java)
     }
 }
