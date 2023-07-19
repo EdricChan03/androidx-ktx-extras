@@ -5,15 +5,6 @@ plugins {
 
 gradlePlugin {
     plugins {
-        val workaroundExplicitApiModePlugin by creating {
-            id = "io.github.edricchan03.kotlin-explicit-api"
-            displayName = "Kotlin Explicit API mode workaround"
-            description =
-                "Plugin which works-around https://youtrack.jetbrains.com/issue/KT-37652," +
-                    "adding Explicit API support to Android source-sets"
-            implementationClass = "io.github.edricchan03.plugin.explicit_api.ExplicitApiModePlugin"
-        }
-
         val libraryPlugin by creating {
             id = "io.github.edricchan03.androidx.library"
             displayName = "Convention plugin for androidx-ktx-extras libraries"

@@ -6,7 +6,6 @@ import dev.adamko.dokkatoo.dokka.parameters.DokkaSourceSetSpec
 import dev.adamko.dokkatoo.formats.DokkatooHtmlPlugin
 import dev.adamko.dokkatoo.formats.DokkatooJavadocPlugin
 import dev.adamko.dokkatoo.tasks.DokkatooGenerateTask
-import io.github.edricchan03.plugin.explicit_api.ExplicitApiModePlugin
 import io.github.edricchan03.plugin.library.extensions.LibraryPluginExtension
 import io.github.edricchan03.plugin.library.extensions.docs.ExternalDocLinks
 import io.github.edricchan03.plugin.library.extensions.docs.LibraryDocsExtension
@@ -38,7 +37,6 @@ import org.gradle.kotlin.dsl.findByType
 import org.gradle.kotlin.dsl.get
 import org.gradle.kotlin.dsl.getByType
 import org.gradle.kotlin.dsl.getValue
-import org.gradle.kotlin.dsl.hasPlugin
 import org.gradle.kotlin.dsl.invoke
 import org.gradle.kotlin.dsl.provideDelegate
 import org.gradle.kotlin.dsl.register
@@ -50,7 +48,6 @@ import org.jetbrains.kotlin.gradle.dsl.KotlinAndroidProjectExtension
 import org.jetbrains.kotlin.gradle.dsl.KotlinJvmOptions
 import java.net.URI
 import com.android.build.gradle.LibraryExtension as AGPLibraryExtension
-import com.android.build.gradle.LibraryPlugin as AGPLibraryPlugin
 import io.github.edricchan03.plugin.library.extensions.publish.gitHubPackagesUrl as GitHubPackagesUrl
 import io.github.edricchan03.plugin.library.extensions.publish.sonatypeSnapshotUrl as SonatypeSnapshotUrl
 import io.github.edricchan03.plugin.library.extensions.publish.sonatypeStagingUrl as SonatypeStagingUrl
@@ -167,14 +164,6 @@ class LibraryPlugin : Plugin<Project> {
                 apply<DokkatooHtmlPlugin>()
             }
             apply<BinaryCompatibilityValidatorPlugin>()
-
-            if (hasPlugin(AGPLibraryPlugin::class)) {
-                // Apply the Explicit API workaround plugin
-                // TODO: Remove when the project is updated to Kotlin 1.9.0
-                //  (https://youtrack.jetbrains.com/issue/KT-37652)
-                apply<ExplicitApiModePlugin>()
-            }
-
         }
     }
 
@@ -196,12 +185,13 @@ class LibraryPlugin : Plugin<Project> {
     private fun LibraryPluginExtension.setConventions(project: Project) {
         val androidLibs =
             project.extensions.getByType<VersionCatalogsExtension>().named("androidLibs")
+
         mavenCoordinates {
             groupId.convention(project.getLibraryGroupFromProjectPath())
             artifactId.convention(project.name)
             version.convention("0.0.1-SNAPSHOT")
-            isReleaseVersion.convention(DefaultReleaseVersionSpec)
         }
+        isReleaseVersion.convention(DefaultReleaseVersionSpec)
         inceptionYear.convention("2023")
 
         mavenPublishing {
