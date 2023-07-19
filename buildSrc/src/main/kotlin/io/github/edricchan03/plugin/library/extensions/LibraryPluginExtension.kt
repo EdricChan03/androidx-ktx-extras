@@ -133,6 +133,27 @@ abstract class LibraryPluginExtension : ExtensionAware {
     }
 
     /**
+     * Enables Jetpack Compose for this library module based on the value of
+     * [enabled].
+     * @param enabled Whether to enable Jetpack Compose.
+     * @see LibraryComposeExtension.enabled
+     */
+    fun withCompose(enabled: Boolean = true) {
+        compose.enabled.set(enabled)
+    }
+
+    /**
+     * Enables Jetpack Compose for this library module based on the value of
+     * [enabled].
+     * @param enabled Whether to enable Jetpack Compose as a [Provider].
+     * @see LibraryComposeExtension.enabled
+     */
+    @JvmName("withComposeEnabledProvider")
+    fun withCompose(enabled: Provider<Boolean>) {
+        compose.enabled.set(enabled)
+    }
+
+    /**
      * Enables Jetpack Compose for this library module, and sets the
      * [LibraryComposeExtension.kotlinCompilerExtensionVersion] value to [version].
      * @param version The [ComposeOptions.kotlinCompilerExtensionVersion] to use as a
