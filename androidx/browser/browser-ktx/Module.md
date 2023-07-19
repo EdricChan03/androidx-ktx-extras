@@ -25,7 +25,7 @@ dependencyResolutionManagement {
 ### Kotlin/Groovy
 
 ```kotlin
-implementation("io.github.edricchan03.androidx.browser:browser-ktx:0.0.1")
+implementation("io.github.edricchan03.androidx.browser:browser-ktx:0.0.2")
 ```
 
 ### TOML
@@ -34,7 +34,7 @@ implementation("io.github.edricchan03.androidx.browser:browser-ktx:0.0.1")
 
 ```toml
 [libaries]
-androidxtra-browser-ktx = "io.github.edricchan03.androidx.browser:browser-ktx:0.0.1"
+androidxtra-browser-ktx = "io.github.edricchan03.androidx.browser:browser-ktx:0.0.2"
 ```
 
 `build.gradle.kts`:
@@ -71,7 +71,7 @@ dependencyResolutionManagement {
 `build.gradle.kts`:
 
 ```kotlin
-implementation("io.github.edricchan03.androidx.browser:browser-ktx:0.0.1-SNAPSHOT")
+implementation("io.github.edricchan03.androidx.browser:browser-ktx:0.0.3-SNAPSHOT")
 ```
 
 #### TOML
@@ -80,7 +80,7 @@ implementation("io.github.edricchan03.androidx.browser:browser-ktx:0.0.1-SNAPSHO
 
 ```toml
 [libaries]
-androidxtra-browser-ktx = "io.github.edricchan03.androidx.browser:browser-ktx:0.0.1-SNAPSHOT"
+androidxtra-browser-ktx = "io.github.edricchan03.androidx.browser:browser-ktx:0.0.3-SNAPSHOT"
 ```
 
 `build.gradle.kts`:
