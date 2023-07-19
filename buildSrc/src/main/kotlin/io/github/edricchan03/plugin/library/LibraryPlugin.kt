@@ -238,7 +238,12 @@ class LibraryPlugin : Plugin<Project> {
             publishHtmlDoc.convention(true)
             publishJavadoc.convention(true)
             moduleDoc.convention(project.layout.projectDirectory.file("Module.md"))
-            moduleDocs.from(moduleDoc)
+
+            val moduleFile = moduleDoc.asFile.orNull
+            // Only add the Module.md file if it exists
+            if (moduleFile?.exists() == true) {
+                moduleDocs.from(moduleDoc)
+            } else logger.warn("The expected Module.md file at ${moduleDoc.asFile.get()} doesn't exist!")
         }
 
         compose {
