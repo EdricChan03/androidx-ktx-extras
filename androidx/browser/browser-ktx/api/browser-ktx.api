@@ -41,6 +41,7 @@ public final class io/github/edricchan03/androidx/browser/ktx/enums/ActivityHeig
 	public static final field Companion Lio/github/edricchan03/androidx/browser/ktx/enums/ActivityHeightResizeBehavior$Companion;
 	public static final field Default Lio/github/edricchan03/androidx/browser/ktx/enums/ActivityHeightResizeBehavior;
 	public static final field Fixed Lio/github/edricchan03/androidx/browser/ktx/enums/ActivityHeightResizeBehavior;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public final fun getValue ()I
 	public static fun valueOf (Ljava/lang/String;)Lio/github/edricchan03/androidx/browser/ktx/enums/ActivityHeightResizeBehavior;
 	public static fun values ()[Lio/github/edricchan03/androidx/browser/ktx/enums/ActivityHeightResizeBehavior;
@@ -56,6 +57,7 @@ public final class io/github/edricchan03/androidx/browser/ktx/enums/CloseButtonP
 	public static final field Default Lio/github/edricchan03/androidx/browser/ktx/enums/CloseButtonPosition;
 	public static final field End Lio/github/edricchan03/androidx/browser/ktx/enums/CloseButtonPosition;
 	public static final field Start Lio/github/edricchan03/androidx/browser/ktx/enums/CloseButtonPosition;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public final fun getValue ()I
 	public static fun valueOf (Ljava/lang/String;)Lio/github/edricchan03/androidx/browser/ktx/enums/CloseButtonPosition;
 	public static fun values ()[Lio/github/edricchan03/androidx/browser/ktx/enums/CloseButtonPosition;
@@ -71,6 +73,7 @@ public final class io/github/edricchan03/androidx/browser/ktx/enums/ColorScheme 
 	public static final field Dark Lio/github/edricchan03/androidx/browser/ktx/enums/ColorScheme;
 	public static final field Light Lio/github/edricchan03/androidx/browser/ktx/enums/ColorScheme;
 	public static final field System Lio/github/edricchan03/androidx/browser/ktx/enums/ColorScheme;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public final fun getValue ()I
 	public static fun valueOf (Ljava/lang/String;)Lio/github/edricchan03/androidx/browser/ktx/enums/ColorScheme;
 	public static fun values ()[Lio/github/edricchan03/androidx/browser/ktx/enums/ColorScheme;
@@ -86,6 +89,7 @@ public final class io/github/edricchan03/androidx/browser/ktx/enums/ShareState :
 	public static final field Default Lio/github/edricchan03/androidx/browser/ktx/enums/ShareState;
 	public static final field Off Lio/github/edricchan03/androidx/browser/ktx/enums/ShareState;
 	public static final field On Lio/github/edricchan03/androidx/browser/ktx/enums/ShareState;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public final fun getValue ()I
 	public static fun valueOf (Ljava/lang/String;)Lio/github/edricchan03/androidx/browser/ktx/enums/ShareState;
 	public static fun values ()[Lio/github/edricchan03/androidx/browser/ktx/enums/ShareState;
