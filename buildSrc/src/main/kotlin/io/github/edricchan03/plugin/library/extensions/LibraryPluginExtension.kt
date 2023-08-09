@@ -14,6 +14,7 @@ import org.gradle.api.publish.maven.MavenPom
 import org.gradle.api.tasks.Nested
 import org.gradle.kotlin.dsl.invoke
 
+/** Gradle extension for the [io.github.edricchan03.plugin.library.LibraryPlugin]. */
 abstract class LibraryPluginExtension : ExtensionAware {
     /** The GAV coordinate for this library. */
     @get:Nested
@@ -29,6 +30,8 @@ abstract class LibraryPluginExtension : ExtensionAware {
      *
      * This method allows for Kotlin's named arguments to be used, and accepts [Provider]s
      * of [String]s.
+     * @see mavenCoordinates
+     * @see LibraryMavenCoordinates
      */
     fun coordinates(
         groupId: Provider<String>,
@@ -46,8 +49,17 @@ abstract class LibraryPluginExtension : ExtensionAware {
      * Configures the Maven GAV coordinate for this library.
      *
      * This method allows for Kotlin's named arguments to be used, and accepts [String]s.
+     *
+     * The default convention values are used if `null` is specified:
+     * - `groupId`: `project.getLibraryGroupFromProjectPath()`
+     * - `artifactId`: `project.name`
+     * - `version`: `"0.0.1-SNAPSHOT"`
      */
-    fun coordinates(groupId: String, artifactId: String, version: String) {
+    fun coordinates(
+        groupId: String? = null,
+        artifactId: String? = null,
+        version: String? = null
+    ) {
         mavenCoordinates {
             this.groupId.set(groupId)
             this.artifactId.set(artifactId)
