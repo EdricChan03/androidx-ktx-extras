@@ -4,3 +4,4 @@ compose-compiler = "1.5.1"
 [libraries]
 androidx-annotation = "androidx.annotation:annotation:1.6.0"
 androidx-browser = "androidx.browser:browser:1.6.0"
+androidx-core-ktx = "androidx.core:core-ktx:1.10.1"

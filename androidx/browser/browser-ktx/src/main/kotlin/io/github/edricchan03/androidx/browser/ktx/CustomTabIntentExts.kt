@@ -1,14 +1,17 @@
 package io.github.edricchan03.androidx.browser.ktx
 
 import android.content.Intent
+import android.graphics.Bitmap
 import androidx.annotation.Dimension
 import androidx.browser.customtabs.CustomTabColorSchemeParams
 import androidx.browser.customtabs.CustomTabsIntent
 import androidx.browser.customtabs.CustomTabsSession
+import androidx.core.content.IntentCompat
 import io.github.edricchan03.androidx.browser.ktx.annotations.ExperimentalBrowserApi
 import io.github.edricchan03.androidx.browser.ktx.enums.ActivityHeightResizeBehavior
 import io.github.edricchan03.androidx.browser.ktx.enums.CloseButtonPosition
 import io.github.edricchan03.androidx.browser.ktx.enums.ColorScheme
+import io.github.edricchan03.androidx.browser.ktx.enums.ShareState
 
 /**
  * Creates a [CustomTabsIntent.Builder].
@@ -79,40 +82,177 @@ public fun Intent.getColorSchemeParams(colorScheme: ColorScheme): CustomTabColor
     CustomTabsIntent.getColorSchemeParams(this, colorScheme.value)
 
 /**
- * Gets the Custom Tab Activity's resize behavior.
- * @since 0.0.1
- * @see CustomTabsIntent.getActivityResizeBehavior
+ * Specifies which color scheme should be applied to the custom tab.
+ * @since 0.1.0
+ * @see CustomTabsIntent.EXTRA_COLOR_SCHEME
+ * @see CustomTabsIntent.Builder.setColorScheme
  */
-public val Intent.activityResizeBehavior: ActivityHeightResizeBehavior
+@ExperimentalBrowserApi
+public var Intent.colorScheme: ColorScheme
+    get() = ColorScheme.fromValue(
+        getIntExtra(
+            CustomTabsIntent.EXTRA_COLOR_SCHEME,
+            CustomTabsIntent.COLOR_SCHEME_SYSTEM
+        )
+    )
+    set(scheme) {
+        putExtra(CustomTabsIntent.EXTRA_COLOR_SCHEME, scheme.value)
+    }
+
+/**
+ * Specifies whether the URL bar should be hidden as the user scrolls down the page.
+ * @since 0.1.0
+ * @see CustomTabsIntent.Builder.setUrlBarHidingEnabled
+ * @see CustomTabsIntent.EXTRA_ENABLE_URLBAR_HIDING
+ */
+@ExperimentalBrowserApi
+public var Intent.urlBarHidingEnabled: Boolean
+    get() = getBooleanExtra(CustomTabsIntent.EXTRA_ENABLE_URLBAR_HIDING, false)
+    set(enabled) {
+        putExtra(CustomTabsIntent.EXTRA_ENABLE_URLBAR_HIDING, enabled)
+    }
+
+/**
+ * Specifies the icon bitmap of the back button on the toolbar.
+ *
+ * If the client chooses not to customize it, a default close button will be used.
+ *
+ * Setter implementation: If `null` is specified, the extra is **removed**, and no further
+ * actions are taken.
+ * @since 0.1.0
+ * @see CustomTabsIntent.EXTRA_CLOSE_BUTTON_ICON
+ * @see CustomTabsIntent.Builder.setCloseButtonIcon
+ */
+@ExperimentalBrowserApi
+public var Intent.closeButtonIcon: Bitmap?
+    get() = IntentCompat.getParcelableExtra(
+        this,
+        CustomTabsIntent.EXTRA_CLOSE_BUTTON_ICON,
+        Bitmap::class.java
+    )
+    set(value) {
+        if (value == null) removeExtra(CustomTabsIntent.EXTRA_CLOSE_BUTTON_ICON)
+        else putExtra(CustomTabsIntent.EXTRA_CLOSE_BUTTON_ICON, value)
+    }
+
+/**
+ * Whether the title should be shown in the custom tab.
+ * @since 0.1.0
+ * @see CustomTabsIntent.EXTRA_TITLE_VISIBILITY_STATE
+ * @see CustomTabsIntent.SHOW_PAGE_TITLE
+ * @see CustomTabsIntent.NO_TITLE
+ * @see CustomTabsIntent.Builder.setShowTitle
+ */
+@ExperimentalBrowserApi
+public var Intent.showTitle: Boolean
+    get() = when (
+        getIntExtra(
+            CustomTabsIntent.EXTRA_TITLE_VISIBILITY_STATE, CustomTabsIntent.SHOW_PAGE_TITLE
+        )
+    ) {
+        CustomTabsIntent.SHOW_PAGE_TITLE -> true
+        else -> false
+    }
+    set(value) {
+        putExtra(
+            CustomTabsIntent.EXTRA_TITLE_VISIBILITY_STATE,
+            if (value) CustomTabsIntent.SHOW_PAGE_TITLE else CustomTabsIntent.NO_TITLE
+        )
+    }
+
+/**
+ * The Custom Tab Activity's resize behavior.
+ * @since - Getter: 0.0.1
+ * - Setter: 0.1.0
+ * @see CustomTabsIntent.getActivityResizeBehavior
+ * @see CustomTabsIntent.EXTRA_ACTIVITY_HEIGHT_RESIZE_BEHAVIOR
+ */
+@set:ExperimentalBrowserApi
+public var Intent.activityResizeBehavior: ActivityHeightResizeBehavior
     get() = ActivityHeightResizeBehavior.fromValue(
         CustomTabsIntent.getActivityResizeBehavior(this)
     )
+    set(behavior) {
+        putExtra(CustomTabsIntent.EXTRA_ACTIVITY_HEIGHT_RESIZE_BEHAVIOR, behavior.value)
+    }
 
 /**
- * Gets the Custom Tab Activity's initial height, or `0` if it is not set.
- * @since 0.0.1
+ * The Custom Tab Activity's initial height, or `0` if it is not set.
+ * @since - Getter: 0.0.1
+ * - Setter: 0.1.0
  * @see CustomTabsIntent.getInitialActivityHeightPx
+ * @see CustomTabsIntent.EXTRA_INITIAL_ACTIVITY_HEIGHT_PX
  */
 @get:Dimension(unit = Dimension.PX)
-public val Intent.initialActivityHeightPx: Int
+@setparam:Dimension(unit = Dimension.PX)
+@set:ExperimentalBrowserApi
+public var Intent.initialActivityHeightPx: Int
     get() = CustomTabsIntent.getInitialActivityHeightPx(this)
+    set(value) {
+        putExtra(CustomTabsIntent.EXTRA_INITIAL_ACTIVITY_HEIGHT_PX, value)
+    }
 
 /**
- * Gets the toolbar's top corner radii in dp.
- * @since 0.0.1
+ * The toolbar's top corner radii in dp.
+ * @since - Getter: 0.0.1
+ * - Setter: 0.1.0
  * @see CustomTabsIntent.getToolbarCornerRadiusDp
+ * @see CustomTabsIntent.EXTRA_TOOLBAR_CORNER_RADIUS_DP
  */
 @get:Dimension(unit = Dimension.DP)
-public val Intent.toolbarCornerRadiusDp: Int
+@setparam:Dimension(unit = Dimension.DP)
+@set:ExperimentalBrowserApi
+public var Intent.toolbarCornerRadiusDp: Int
     get() = CustomTabsIntent.getToolbarCornerRadiusDp(this)
+    set(value) {
+        putExtra(CustomTabsIntent.EXTRA_TOOLBAR_CORNER_RADIUS_DP, value)
+    }
 
 /**
- * Gets the position of the close button as a [CloseButtonPosition],
+ * The position of the close button as a [CloseButtonPosition],
  * or the [default position][CloseButtonPosition.Default] if the extra is not set.
- * @since 0.0.1
+ * @since - Getter: 0.0.1
+ * - Setter: 0.1.0
  * @see CustomTabsIntent.getCloseButtonPosition
+ * @see CustomTabsIntent.EXTRA_CLOSE_BUTTON_POSITION
  */
-public val Intent.closeButtonPosition: CloseButtonPosition
+@set:ExperimentalBrowserApi
+public var Intent.closeButtonPosition: CloseButtonPosition
     get() = CloseButtonPosition.fromValue(
         CustomTabsIntent.getCloseButtonPosition(this)
     )
+    set(position) {
+        putExtra(CustomTabsIntent.EXTRA_CLOSE_BUTTON_POSITION, position.value)
+    }
+
+/**
+ * The [ShareState] of this intent, or the [default share state][ShareState.Default]
+ * if the extra is not set.
+ * @since 0.1.0
+ * @see CustomTabsIntent.EXTRA_SHARE_STATE
+ * @see CustomTabsIntent.Builder.setShareState
+ */
+@ExperimentalBrowserApi
+public var Intent.shareState: ShareState
+    get() = ShareState.fromValue(
+        getIntExtra(
+            CustomTabsIntent.EXTRA_SHARE_STATE,
+            ShareState.Default.value
+        )
+    )
+    set(state) {
+        putExtra(CustomTabsIntent.EXTRA_SHARE_STATE, state.value)
+    }
+
+/**
+ * Whether Instant Apps is enabled for this intent.
+ * @since 0.1.0
+ * @see CustomTabsIntent.EXTRA_ENABLE_INSTANT_APPS
+ * @see CustomTabsIntent.Builder.setInstantAppsEnabled
+ */
+@ExperimentalBrowserApi
+public var Intent.instantAppsEnabled: Boolean
+    get() = getBooleanExtra(CustomTabsIntent.EXTRA_ENABLE_INSTANT_APPS, true)
+    set(value) {
+        putExtra(CustomTabsIntent.EXTRA_ENABLE_INSTANT_APPS, value)
+    }
