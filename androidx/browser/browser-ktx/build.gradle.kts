@@ -9,7 +9,7 @@ plugins {
 @Suppress("UnstableApiUsage") // Kotlin DSL assignment
 androidxKtx {
     mavenCoordinates {
-        version = "0.0.3-SNAPSHOT"
+        version = "0.1.0-SNAPSHOT"
     }
 
     libraryType = LibraryType.Android
