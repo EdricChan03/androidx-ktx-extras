@@ -1,6 +1,6 @@
 [versions]
-compose-compiler = "1.5.0"
+compose-compiler = "1.5.1"
 
 [libraries]
 androidx-annotation = "androidx.annotation:annotation:1.6.0"
-androidx-browser = "androidx.browser:browser:1.5.0"
+androidx-browser = "androidx.browser:browser:1.6.0"
