@@ -34,7 +34,6 @@ dependencies {
 
     api(androidLibs.androidx.annotation)
     api(androidLibs.androidx.browser)
-    implementation(androidLibs.androidx.core.ktx)
 
     testImplementation(libs.kotest.runner.junit5)
     testImplementation(libs.kotest.assertions.core)

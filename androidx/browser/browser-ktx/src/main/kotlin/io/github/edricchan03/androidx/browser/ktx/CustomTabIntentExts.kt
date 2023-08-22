@@ -6,7 +6,6 @@ import androidx.annotation.Dimension
 import androidx.browser.customtabs.CustomTabColorSchemeParams
 import androidx.browser.customtabs.CustomTabsIntent
 import androidx.browser.customtabs.CustomTabsSession
-import androidx.core.content.IntentCompat
 import io.github.edricchan03.androidx.browser.ktx.annotations.ExperimentalBrowserApi
 import io.github.edricchan03.androidx.browser.ktx.enums.ActivityHeightResizeBehavior
 import io.github.edricchan03.androidx.browser.ktx.enums.CloseButtonPosition
@@ -125,10 +124,8 @@ public var Intent.urlBarHidingEnabled: Boolean
  */
 @ExperimentalBrowserApi
 public var Intent.closeButtonIcon: Bitmap?
-    get() = IntentCompat.getParcelableExtra(
-        this,
-        CustomTabsIntent.EXTRA_CLOSE_BUTTON_ICON,
-        Bitmap::class.java
+    get() = getParcelableExtraCompat<Bitmap>(
+        CustomTabsIntent.EXTRA_CLOSE_BUTTON_ICON
     )
     set(value) {
         if (value == null) removeExtra(CustomTabsIntent.EXTRA_CLOSE_BUTTON_ICON)
