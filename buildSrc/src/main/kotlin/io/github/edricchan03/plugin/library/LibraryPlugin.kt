@@ -14,14 +14,12 @@ import io.github.edricchan03.plugin.library.extensions.publish.DefaultReleaseVer
 import io.github.edricchan03.plugin.library.extensions.publish.asReadOnlyProvider
 import io.github.edricchan03.publishing.computeJavadocTaskName
 import kotlinx.validation.BinaryCompatibilityValidatorPlugin
-import org.gradle.api.JavaVersion
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.artifacts.VersionCatalogsExtension
 import org.gradle.api.artifacts.repositories.MavenArtifactRepository
 import org.gradle.api.attributes.DocsType
 import org.gradle.api.logging.Logging
-import org.gradle.api.plugins.ExtensionAware
 import org.gradle.api.provider.Provider
 import org.gradle.api.publish.PublicationContainer
 import org.gradle.api.publish.PublishingExtension
@@ -30,7 +28,6 @@ import org.gradle.api.publish.maven.plugins.MavenPublishPlugin
 import org.gradle.api.publish.plugins.PublishingPlugin
 import org.gradle.api.tasks.bundling.Jar
 import org.gradle.kotlin.dsl.apply
-import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.create
 import org.gradle.kotlin.dsl.existing
 import org.gradle.kotlin.dsl.findByType
@@ -45,7 +42,6 @@ import org.gradle.kotlin.dsl.withType
 import org.gradle.plugins.signing.SigningExtension
 import org.gradle.plugins.signing.SigningPlugin
 import org.jetbrains.kotlin.gradle.dsl.KotlinAndroidProjectExtension
-import org.jetbrains.kotlin.gradle.dsl.KotlinJvmOptions
 import java.net.URI
 import com.android.build.gradle.LibraryExtension as AGPLibraryExtension
 import io.github.edricchan03.plugin.library.extensions.publish.gitHubPackagesUrl as GitHubPackagesUrl
@@ -365,16 +361,6 @@ class LibraryPlugin : Plugin<Project> {
         defaultConfig {
             minSdk = 21
             testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        }
-
-        // TODO: Remove compileOptions and kotlinOptions when AGP 8.1.0 is out: see
-        //  https://kotlinlang.org/docs/gradle-configure-project.html#gradle-java-toolchains-support
-        compileOptions {
-            sourceCompatibility = JavaVersion.VERSION_11
-            targetCompatibility = JavaVersion.VERSION_11
-        }
-        (this as ExtensionAware).configure<KotlinJvmOptions> {
-            jvmTarget = "11"
         }
 
         publishing {
