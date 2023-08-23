@@ -7,6 +7,7 @@ import dev.adamko.dokkatoo.formats.DokkatooHtmlPlugin
 import dev.adamko.dokkatoo.formats.DokkatooJavadocPlugin
 import dev.adamko.dokkatoo.tasks.DokkatooGenerateTask
 import io.github.edricchan03.plugin.library.extensions.LibraryPluginExtension
+import io.github.edricchan03.plugin.library.extensions.LibraryType
 import io.github.edricchan03.plugin.library.extensions.docs.ExternalDocLinks
 import io.github.edricchan03.plugin.library.extensions.docs.LibraryDocsExtension
 import io.github.edricchan03.plugin.library.extensions.isReleaseVersion
@@ -20,6 +21,7 @@ import org.gradle.api.artifacts.VersionCatalogsExtension
 import org.gradle.api.artifacts.repositories.MavenArtifactRepository
 import org.gradle.api.attributes.DocsType
 import org.gradle.api.logging.Logging
+import org.gradle.api.provider.Property
 import org.gradle.api.provider.Provider
 import org.gradle.api.publish.PublicationContainer
 import org.gradle.api.publish.PublishingExtension
@@ -34,6 +36,7 @@ import org.gradle.kotlin.dsl.findByType
 import org.gradle.kotlin.dsl.get
 import org.gradle.kotlin.dsl.getByType
 import org.gradle.kotlin.dsl.getValue
+import org.gradle.kotlin.dsl.hasPlugin
 import org.gradle.kotlin.dsl.invoke
 import org.gradle.kotlin.dsl.provideDelegate
 import org.gradle.kotlin.dsl.register
@@ -42,9 +45,13 @@ import org.gradle.kotlin.dsl.withType
 import org.gradle.plugins.signing.SigningExtension
 import org.gradle.plugins.signing.SigningPlugin
 import org.jetbrains.kotlin.gradle.dsl.KotlinAndroidProjectExtension
+import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 import org.jetbrains.kotlin.gradle.dsl.KotlinTopLevelExtension
+import org.jetbrains.kotlin.gradle.plugin.KotlinMultiplatformPluginWrapper
+import org.jetbrains.kotlin.gradle.plugin.KotlinPlatformJvmPlugin
 import java.net.URI
 import com.android.build.gradle.LibraryExtension as AGPLibraryExtension
+import com.android.build.gradle.LibraryPlugin as AGPLibraryPlugin
 import io.github.edricchan03.plugin.library.extensions.publish.gitHubPackagesUrl as GitHubPackagesUrl
 import io.github.edricchan03.plugin.library.extensions.publish.sonatypeSnapshotUrl as SonatypeSnapshotUrl
 import io.github.edricchan03.plugin.library.extensions.publish.sonatypeStagingUrl as SonatypeStagingUrl
@@ -179,10 +186,25 @@ class LibraryPlugin : Plugin<Project> {
         }
     }
 
+    private fun Property<LibraryType>.setConventions(project: Project) {
+        with(project.plugins) {
+            convention(
+                when {
+                    hasPlugin(AGPLibraryPlugin::class) -> LibraryType.Android
+                    hasPlugin(KotlinMultiplatformPluginWrapper::class) -> LibraryType.Multiplatform
+                    hasPlugin(KotlinPlatformJvmPlugin::class) -> LibraryType.Jvm
+                    else -> null
+                }
+            )
+        }
+        logger.info("Current library type for ${project.name}: $orNull")
+    }
+
     private fun LibraryPluginExtension.setConventions(project: Project) {
         val androidLibs =
             project.extensions.getByType<VersionCatalogsExtension>().named("androidLibs")
 
+        libraryType.setConventions(project)
         mavenCoordinates {
             groupId.convention(project.getLibraryGroupFromProjectPath())
             artifactId.convention(project.name)
@@ -273,6 +295,9 @@ class LibraryPlugin : Plugin<Project> {
         extensions.findByType<KotlinAndroidProjectExtension>()?.setConventions()
         extensions.findByType<AGPLibraryExtension>()?.setConventions()
 
+        // Kotlin Multiplatform
+        extensions.findByType<KotlinMultiplatformExtension>()?.setConventions()
+
         // Dokkatoo
         val dokkatoo = extensions.getByType<DokkatooExtension>()
         dokkatoo.setConventions(project, extension.docs)
@@ -314,16 +339,20 @@ class LibraryPlugin : Plugin<Project> {
                     }
                 }
             }
-        }
 
-        publications {
-            try {
-                registerVariantPublication("release", project, extension)
-            } catch (e: Exception) {
-                logger.lifecycle(
-                    "Release publication container already exists, " +
-                        "skipping registration"
-                )
+            // Skip on other platforms
+            // TODO: Revisit code - is this needed?
+            if (extension.libraryType.get() == LibraryType.Android) {
+                publications {
+                    try {
+                        registerVariantPublication("release", project, extension)
+                    } catch (e: Exception) {
+                        logger.lifecycle(
+                            "Release publication container already exists, " +
+                                "skipping registration"
+                        )
+                    }
+                }
             }
         }
     }

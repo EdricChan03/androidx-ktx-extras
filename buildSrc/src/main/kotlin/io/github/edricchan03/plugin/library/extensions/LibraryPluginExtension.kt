@@ -85,10 +85,21 @@ abstract class LibraryPluginExtension : ExtensionAware {
      * @param isRelease Whether the version is a release version.
      */
     fun setReleaseVersion(isRelease: Boolean) {
-        getIsReleaseVersion().set(ReleaseVersionSpec { isRelease })
+        getIsReleaseVersion().set { isRelease }
     }
 
-    /** The library type. */
+    /**
+     * The library type.
+     *
+     * If not specified, the value is automatically determined based on the following
+     * conditions:
+     *
+     * Enum | Condition
+     * ---|---
+     * [LibraryType.Android] | Whether the [Android Gradle library Plugin][com.android.build.gradle.LibraryPlugin] is applied
+     * [LibraryType.Jvm] | Whether the [Kotlin JVM plugin][org.jetbrains.kotlin.gradle.plugin.KotlinPlatformJvmPlugin] is applied
+     * [LibraryType.Multiplatform] | Whether the [Kotlin Multiplatform Plugin][org.jetbrains.kotlin.gradle.plugin.KotlinMultiplatformPluginWrapper] is applied
+     */
     abstract val libraryType: Property<LibraryType>
 
     /**
