@@ -133,6 +133,26 @@ abstract class LibraryPluginExtension : ExtensionAware {
     }
 
     /**
+     * The year the library was created. This method allows for a [Provider] (of
+     * type [Int]) to be passed.
+     * @see MavenPom.getInceptionYear
+     */
+    @JvmName("inceptionYearIntProvider")
+    fun inceptionYear(yearProvider: Provider<Int>) {
+        inceptionYear.set(yearProvider.map(Int::toString))
+    }
+
+    /**
+     * The year the library was created. This method allows for a [Provider] (of
+     * type [java.time Year][Year]) to be passed.
+     * @see MavenPom.getInceptionYear
+     */
+    @JvmName("inceptionYearJTimeProvider")
+    fun inceptionYear(yearProvider: Provider<Year>) {
+        inceptionYear(yearProvider.map(Year::getValue))
+    }
+
+    /**
      * A short, human-readable description for the library.
      * @see MavenPom.getDescription
      */
