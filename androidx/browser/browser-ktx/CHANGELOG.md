@@ -55,7 +55,9 @@ Property | Docs
 Artifact | Old version | New version
 ---|---|---
 [Kotlin](https://kotlinlang.org) | [`1.8.22`](https://github.com/JetBrains/kotlin/releases/tag/v1.8.22) | [`1.9.0`](https://github.com/JetBrains/kotlin/releases/tag/v1.9.0)
+[`androidx.browser:browser`](https://developer.android.com/jetpack/androidx/releases/browser) | [`1.5.0`](https://developer.android.com/jetpack/androidx/releases/browser#1.5.0) | [`1.6.0`](https://developer.android.com/jetpack/androidx/releases/browser#1.6.0)
 [`io.github.edricchan03.androidx.common:common-enums`](https://central.sonatype.com/artifact/io.github.edricchan03.androidx.common.enums/common-enums) | [`0.0.2`](https://central.sonatype.com/artifact/io.github.edricchan03.androidx.common.enums/common-enums/0.0.2) | [`0.1.0`](https://central.sonatype.com/artifact/io.github.edricchan03.androidx.common/common-enums/0.1.0)
+
 <a name="0.0.2"></a>
 
 ## 0.0.2 (17 Jul 2023)
