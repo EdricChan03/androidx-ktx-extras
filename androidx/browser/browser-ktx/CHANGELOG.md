@@ -14,6 +14,7 @@ for API usage.
 
 ## 0.1.0 (23 Aug 2023)
 
+* [Maven Central](https://central.sonatype.com/artifact/io.github.edricchan03.androidx.browser/browser-ktx/0.1.0)
 * [GitHub release](https://github.com/EdricChan03/androidx-ktx-extras/releases/tag/browser-ktx@0.1.0)
 * [Full changelog](https://github.com/EdricChan03/androidx-ktx-extras/compare/browser-ktx@0.0.2...browser-ktx@0.1.0)
 
@@ -59,6 +60,7 @@ Artifact | Old version | New version
 
 ## 0.0.2 (17 Jul 2023)
 
+* [Maven Central](https://central.sonatype.com/artifact/io.github.edricchan03.androidx.browser/browser-ktx/0.0.2)
 * [GitHub release](https://github.com/EdricChan03/androidx-ktx-extras/releases/tag/browser-ktx@0.0.2)
 * [Full changelog](https://github.com/EdricChan03/androidx-ktx-extras/compare/browser-ktx@0.0.1...browser-ktx@0.0.2)
 
@@ -94,6 +96,7 @@ Old artifact | New artifact
 
 ## 0.0.1 (29 Jun 2023)
 
+* [Maven Central](https://central.sonatype.com/artifact/io.github.edricchan03.androidx.browser/browser-ktx/0.0.1)
 * [GitHub release](https://github.com/EdricChan03/androidx-ktx-extras/releases/tag/browser-ktx@0.0.1)
 * [Full changelog](https://github.com/EdricChan03/androidx-ktx-extras/commits/browser-ktx@0.0.1)
 

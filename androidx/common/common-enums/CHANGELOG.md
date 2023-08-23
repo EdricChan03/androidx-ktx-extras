@@ -30,6 +30,7 @@ for API usage.
 
 ## 0.1.0 (23 Aug 2023)
 
+* [Maven Central](https://central.sonatype.com/artifact/io.github.edricchan03.androidx.common/common-enums/0.1.0)
 * [GitHub release](https://github.com/EdricChan03/androidx-ktx-extras/releases/tag/common-enums@0.1.0)
 * [Full changelog](https://github.com/EdricChan03/androidx-ktx-extras/compare/common-enums@0.0.2...common-enums@0.1.0)
 
@@ -61,6 +62,7 @@ Artifact | Old version | New version
 
 ## 0.0.2 (17 Jul 2023)
 
+* [Maven Central](https://central.sonatype.com/artifact/io.github.edricchan03.androidx.common/common-enums/0.0.2)
 * [GitHub release](https://github.com/EdricChan03/androidx-ktx-extras/releases/tag/common-enums@0.0.2)
 * [Full changelog](https://github.com/EdricChan03/androidx-ktx-extras/compare/common-enums@0.0.1...common-enums@0.0.2)
 
@@ -108,6 +110,7 @@ minor [SemVer](https://semver.org) release, 0.1.0.
 
 ## 0.0.1 (29 Jun 2023)
 
+* [Maven Central](https://central.sonatype.com/artifact/io.github.edricchan03.androidx.common/common-enums/0.0.1)
 * [GitHub release](https://github.com/EdricChan03/androidx-ktx-extras/releases/tag/common-enums@0.0.1)
 * [Full changelog](https://github.com/EdricChan03/androidx-ktx-extras/commits/common-enums@0.0.1)
 
