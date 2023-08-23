@@ -256,6 +256,11 @@ class LibraryPlugin : Plugin<Project> {
         docs {
             publishHtmlDoc.convention(true)
             publishJavadoc.convention(true)
+
+            val isNotMultiplatform = libraryType.map { it != LibraryType.Multiplatform }
+            onlyMainSourceLink.convention(isNotMultiplatform)
+            suppressNonMain.convention(isNotMultiplatform)
+
             moduleDoc.convention(project.layout.projectDirectory.file("Module.md"))
 
             val moduleFile = moduleDoc.asFile.orNull
@@ -438,6 +443,7 @@ class LibraryPlugin : Plugin<Project> {
 
                     register(ExternalDocLinks.Kotlinx.dateTime) {
                         url("https://kotlinlang.org/api/kotlinx-datetime")
+                        packageListUrl("https://kotlinlang.org/api/kotlinx-datetime/kotlinx-datetime/package-list")
                         enabled.convention(false)
                     }
 
