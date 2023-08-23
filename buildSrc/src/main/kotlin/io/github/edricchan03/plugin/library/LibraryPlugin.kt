@@ -21,6 +21,7 @@ import org.gradle.api.artifacts.VersionCatalogsExtension
 import org.gradle.api.artifacts.repositories.MavenArtifactRepository
 import org.gradle.api.attributes.DocsType
 import org.gradle.api.logging.Logging
+import org.gradle.api.plugins.BasePlugin
 import org.gradle.api.provider.Property
 import org.gradle.api.provider.Provider
 import org.gradle.api.publish.PublicationContainer
@@ -71,6 +72,7 @@ class LibraryPlugin : Plugin<Project> {
             applyExtensions(extension)
             registerTasks()
             registerVariantTasks()
+            registerKmpTasks()
         }
     }
 
@@ -147,6 +149,38 @@ class LibraryPlugin : Plugin<Project> {
                 register<Jar>(computeJavadocTaskName(name, isHtml = true)) {
                     description =
                         "Generates Dokka HTML docs for the ${this@configureEach.name} library " +
+                            "variant"
+                    dependsOn(dokkatooGenerateModuleHtml)
+                    from(dokkatooGenerateModuleHtml.map { it.outputs })
+                    archiveClassifier.set("html-docs")
+                }
+            }
+        }
+    }
+
+    private fun Project.registerKmpTasks() {
+        val kmp = extensions.findByType<KotlinMultiplatformExtension>()
+
+        if (kmp == null) return // Skip creation if the KMP plugin is not applied
+
+        // Add Javadoc Jar tasks
+        tasks {
+            val dokkatooGenerateModuleJavadoc by existing(DokkatooGenerateTask::class)
+            val dokkatooGenerateModuleHtml by existing(DokkatooGenerateTask::class)
+
+            kmp.testableTargets.configureEach {
+                register<Jar>(computeJavadocTaskName(name, isHtml = false)) {
+                    group = BasePlugin.BUILD_GROUP
+                    description =
+                        "Assembles a jar archive containing the Javadocs for the ${this@configureEach.name} library variant"
+                    dependsOn(dokkatooGenerateModuleJavadoc)
+                    from(dokkatooGenerateModuleJavadoc.map { it.outputs })
+                    archiveClassifier.set(DocsType.JAVADOC)
+                }
+                register<Jar>(computeJavadocTaskName(name, isHtml = true)) {
+                    group = BasePlugin.BUILD_GROUP
+                    description =
+                        "Assembles a jar archive containing the Dokka HTML docs for the ${this@configureEach.name} library " +
                             "variant"
                     dependsOn(dokkatooGenerateModuleHtml)
                     from(dokkatooGenerateModuleHtml.map { it.outputs })
@@ -301,11 +335,13 @@ class LibraryPlugin : Plugin<Project> {
         extensions.findByType<AGPLibraryExtension>()?.setConventions()
 
         // Kotlin Multiplatform
-        extensions.findByType<KotlinMultiplatformExtension>()?.setConventions()
+        extensions.findByType<KotlinMultiplatformExtension>()?.apply {
+            setConventions()
+            configureKmpPublications(project)
+        }
 
         // Dokkatoo
-        val dokkatoo = extensions.getByType<DokkatooExtension>()
-        dokkatoo.setConventions(project, extension.docs)
+        extensions.findByType<DokkatooExtension>()?.setConventions(project, extension.docs)
     }
 
     private fun SigningExtension.setConventions(publishing: PublishingExtension) {
@@ -347,8 +383,9 @@ class LibraryPlugin : Plugin<Project> {
 
             // Skip on other platforms
             // TODO: Revisit code - is this needed?
-            if (extension.libraryType.get() == LibraryType.Android) {
-                publications {
+            publications {
+                val type = extension.libraryType.get()
+                if (type == LibraryType.Android) {
                     try {
                         registerVariantPublication("release", project, extension)
                     } catch (e: Exception) {
@@ -357,7 +394,37 @@ class LibraryPlugin : Plugin<Project> {
                                 "skipping registration"
                         )
                     }
+                } else if (type == LibraryType.Multiplatform) {
+                    logger.info("Adding POM metadata to all KMP publications")
+                    setKmpConventions(project, extension)
                 }
+            }
+        }
+    }
+
+    private fun KotlinMultiplatformExtension.configureKmpPublications(
+        project: Project
+    ) {
+        project.afterEvaluate {
+            testableTargets.configureEach {
+                mavenPublication {
+                    // Add Javadocs as an artifact
+                    artifact(tasks[computeJavadocTaskName(this@configureEach.name, isHtml = false)])
+                    artifact(tasks[computeJavadocTaskName(this@configureEach.name, isHtml = true)])
+                }
+            }
+        }
+    }
+
+    private fun PublishingExtension.setKmpConventions(
+        project: Project,
+        extension: LibraryPluginExtension
+    ) {
+        logger.info("Adding POM metadata to all KMP publications")
+        publications {
+            // Add POM metadata to all KMP publications
+            withType<MavenPublication>().configureEach {
+                pom.setConventions(project, extension)
             }
         }
     }
