@@ -22,7 +22,9 @@ import io.github.edricchan03.androidx.common.enums.EnumFromValue
  * @see io.github.edricchan03.androidx.browser.ktx.setCloseButtonPosition
  * @see CustomTabsIntent.Builder.setCloseButtonPosition
  */
-public enum class CloseButtonPosition(public val value: Int) {
+public enum class CloseButtonPosition(
+    @CustomTabsIntent.CloseButtonPosition public val value: Int
+) {
     /**
      * Same as [CloseButtonPosition.Start].
      * @since 0.0.1

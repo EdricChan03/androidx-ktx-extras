@@ -22,7 +22,9 @@ import io.github.edricchan03.androidx.common.enums.EnumFromValue
  * @see io.github.edricchan03.androidx.browser.ktx.setShareState
  * @see CustomTabsIntent.Builder.setShareState
  */
-public enum class ShareState(public val value: Int) {
+public enum class ShareState(
+    @CustomTabsIntent.ShareState public val value: Int
+) {
     /**
      * Applies the default share settings depending on the browser.
      * @since 0.0.1

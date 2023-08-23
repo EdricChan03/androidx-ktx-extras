@@ -22,7 +22,9 @@ import io.github.edricchan03.androidx.common.enums.EnumFromValue
  * @see io.github.edricchan03.androidx.browser.ktx.setColorScheme
  * @see CustomTabsIntent.Builder.setColorScheme
  */
-public enum class ColorScheme(public val value: Int) {
+public enum class ColorScheme(
+    @CustomTabsIntent.ColorScheme public val value: Int
+) {
     /**
      * Applies either a light or dark colour scheme to the user interface in
      * the custom tab depending on the user's system settings.
