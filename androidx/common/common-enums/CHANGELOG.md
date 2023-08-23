@@ -26,6 +26,37 @@ for API usage.
 
 ---
 
+<a name="0.1.0"></a>
+
+## 0.1.0 (23 Aug 2023)
+
+* [GitHub release](https://github.com/EdricChan03/androidx-ktx-extras/releases/tag/common-enums@0.1.0)
+* [Full changelog](https://github.com/EdricChan03/androidx-ktx-extras/compare/common-enums@0.0.2...common-enums@0.1.0)
+
+### Breaking changes
+
+The relocation POM will no longer be published starting this version. If you are still using the old Maven coordinates, please
+consider migrating:
+
+```diff
+-io.github.edricchan03.androidx.common.enums:common-enums:<version>
++io.github.edricchan03.androidx.common:common-enums:<version>
+```
+
+### Notable changes
+
+* This artifact has moved to [Kotlin Multiplatform](https://kotlinlang.org/lp/multiplatform/), allowing for use in non-Android modules.
+  ([`f070235`](https://github.com/EdricChan03/androidx-ktx-extras/commit/f070235f88fd422c575be924e91c3b05c26b7974),
+  [#14](https://github.com/EdricChan03/androidx-ktx-extras/issues/14))
+* Kotlin has been bumped to [Kotlin 1.9.0](https://kotlinlang.org/docs/whatsnew19.html). For more info, consult the
+  [corresponding JetBrains blog post](https://blog.jetbrains.com/kotlin/2023/07/kotlin-1-9-0-released/). ([`69efc43`](https://github.com/EdricChan03/androidx-ktx-extras/commit/69efc435b43b027083ec92c67ed4a43d2dee8f77))
+
+### Dependency updates
+
+Artifact | Old version | New version
+---|---|---
+[Kotlin](https://kotlinlang.org) | [`1.8.22`](https://github.com/JetBrains/kotlin/releases/tag/v1.8.22) | [`1.9.0`](https://github.com/JetBrains/kotlin/releases/tag/v1.9.0)
+
 <a name="0.0.2"></a>
 
 ## 0.0.2 (17 Jul 2023)
