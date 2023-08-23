@@ -42,6 +42,7 @@ import org.gradle.kotlin.dsl.withType
 import org.gradle.plugins.signing.SigningExtension
 import org.gradle.plugins.signing.SigningPlugin
 import org.jetbrains.kotlin.gradle.dsl.KotlinAndroidProjectExtension
+import org.jetbrains.kotlin.gradle.dsl.KotlinTopLevelExtension
 import java.net.URI
 import com.android.build.gradle.LibraryExtension as AGPLibraryExtension
 import io.github.edricchan03.plugin.library.extensions.publish.gitHubPackagesUrl as GitHubPackagesUrl
@@ -269,13 +270,11 @@ class LibraryPlugin : Plugin<Project> {
         extensions.findByType<LibraryAndroidComponentsExtension>()?.setConventions(extension)
 
         // AGP library
-        val kotlinAndroid = extensions.findByType<KotlinAndroidProjectExtension>()
-        extensions.findByType<AGPLibraryExtension>()?.setConventions(
-            kotlinAndroid
-        )
+        extensions.findByType<KotlinAndroidProjectExtension>()?.setConventions()
+        extensions.findByType<AGPLibraryExtension>()?.setConventions()
 
         // Dokkatoo
-        val dokkatoo = project.extensions.getByType<DokkatooExtension>()
+        val dokkatoo = extensions.getByType<DokkatooExtension>()
         dokkatoo.setConventions(project, extension.docs)
     }
 
@@ -347,14 +346,9 @@ class LibraryPlugin : Plugin<Project> {
         }
     }
 
-    private fun AGPLibraryExtension.setConventions(
-        kotlinAndroid: KotlinAndroidProjectExtension?
-    ) {
+    private fun AGPLibraryExtension.setConventions() {
         logger.info("Setting conventions for AGP library extension")
-        kotlinAndroid?.apply {
-            jvmToolchain(11)
-            explicitApi()
-        }
+
 
         compileSdk = 33
 
@@ -370,6 +364,11 @@ class LibraryPlugin : Plugin<Project> {
 //            withJavadocJar()
             }
         }
+    }
+
+    private fun KotlinTopLevelExtension.setConventions() {
+        jvmToolchain(11)
+        explicitApi()
     }
 
     private fun DokkatooExtension.setConventions(
