@@ -35,7 +35,7 @@ for API usage.
 
 ### Breaking changes
 
-The relocation POM will no longer be published starting this version. If you are still using the old Maven coordinates, please
+The relocation POM is no longer published starting from this version. If you are still using the old Maven coordinates, please
 consider migrating:
 
 ```diff
