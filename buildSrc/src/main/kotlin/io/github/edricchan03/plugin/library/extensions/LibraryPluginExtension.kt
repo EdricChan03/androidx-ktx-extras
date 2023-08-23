@@ -13,6 +13,7 @@ import org.gradle.api.provider.Provider
 import org.gradle.api.publish.maven.MavenPom
 import org.gradle.api.tasks.Nested
 import org.gradle.kotlin.dsl.invoke
+import java.time.Year
 
 /** Gradle extension for the [io.github.edricchan03.plugin.library.LibraryPlugin]. */
 abstract class LibraryPluginExtension : ExtensionAware {
@@ -112,6 +113,15 @@ abstract class LibraryPluginExtension : ExtensionAware {
     }
 
     /**
+     * The year the library was created. This method allows for a [java.time Year][Year] to
+     * be passed.
+     * @see MavenPom.getInceptionYear
+     */
+    fun inceptionYear(year: Year) {
+        inceptionYear(year.value)
+    }
+
+    /**
      * A short, human-readable description for the library.
      * @see MavenPom.getDescription
      */
@@ -195,7 +205,16 @@ abstract class LibraryPluginExtension : ExtensionAware {
     }
 
     companion object {
+        /** The current year, for use for [LibraryPluginExtension.inceptionYear]. */
+        val CURRENT_YEAR = Year.now()
+
+        /** The current year, for use for [LibraryPluginExtension.inceptionYear], as a [String]. */
+        val CURRENT_YEAR_STRING = CURRENT_YEAR.value.toString()
+
+        /** The name to apply this extension class to. */
         const val EXTENSION_NAME = "androidxKtx"
+
+        /** The default groupId prefix for Maven GAV coordinates. */
         const val MAVEN_GROUP_ID_PREFIX = "io.github.edricchan03"
     }
 }

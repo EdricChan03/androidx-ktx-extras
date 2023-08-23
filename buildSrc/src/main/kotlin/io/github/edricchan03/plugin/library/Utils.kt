@@ -20,7 +20,9 @@ fun MavenPom.setConventions(project: Project, extension: LibraryPluginExtension)
     name.convention(extension.name)
     description.convention(extension.description)
     url.convention(project.sourceUrl)
-    inceptionYear.convention(extension.inceptionYear.orElse("2023"))
+    inceptionYear.convention(
+        extension.inceptionYear.orElse(LibraryPluginExtension.CURRENT_YEAR_STRING)
+    )
 
     licenses {
         license {

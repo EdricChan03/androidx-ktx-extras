@@ -188,7 +188,7 @@ class LibraryPlugin : Plugin<Project> {
             version.convention("0.0.1-SNAPSHOT")
         }
         isReleaseVersion.convention(DefaultReleaseVersionSpec)
-        inceptionYear.convention("2023")
+        inceptionYear.convention(LibraryPluginExtension.CURRENT_YEAR_STRING)
 
         mavenPublishing {
             val usernameEnv = project.providers.environmentVariable("USERNAME")
