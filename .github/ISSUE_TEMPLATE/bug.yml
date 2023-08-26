@@ -1,0 +1,61 @@
+name: Bug report
+description: File a bug report
+title: "[Bug] "
+labels: ["bug", "to triage"]
+body:
+  - type: checkboxes
+    attributes:
+      label: Is there an existing issue for this?
+      description: Please search to see if an issue already exists for the bug you encountered.
+      options:
+      - label: I have searched the existing issues
+        required: true
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to file a bug report!
+  - type: input
+    id: library-name
+    attributes:
+      label: Library name
+      description: What library are you experiencing the problem with?
+  - type: input
+    id: library-version
+    attributes:
+      label: Library version
+      description: What library version are you seeing the problem on?
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: Provide a brief summary of the bug you experienced.
+    validations:
+      required: true
+  - type: textarea
+    id: expected-behaviour
+    attributes:
+      label: Expected behaviour
+      description: Provide a brief summary of what you expected to happen.
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Reproduction steps
+      description: Provide a brief summary of the reproduction steps needed to reproduce the bug.
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Relevant log output
+      description: Please copy and paste any relevant logcat output, if any. (Backticks are not needed as it will be automatically formatted)
+      render: shell
+  - type: textarea
+    id: solution
+    attributes:
+      label: Possible solution
+      description: You may provide suggestions on potential fixes for the bug.
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional context
+      description: Provide any additional information about the problem here if necessary. You may also attach screenshots.
