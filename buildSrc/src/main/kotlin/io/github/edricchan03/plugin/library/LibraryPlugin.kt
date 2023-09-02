@@ -61,11 +61,13 @@ import io.github.edricchan03.plugin.library.extensions.publish.sonatypeStagingUr
 // TODO: Add Android convention support
 // TODO: Add Kotlin/JVM + Kotlin Multiplatform convention support
 class LibraryPlugin : Plugin<Project> {
+    private lateinit var libs: VersionCatalog
     private lateinit var androidLibs: VersionCatalog
 
     override fun apply(project: Project) {
         // Set version catalogs
         with(project.extensions.getByType<VersionCatalogsExtension>()) {
+            libs = named("libs")
             androidLibs = named("androidLibs")
         }
 
@@ -81,13 +83,21 @@ class LibraryPlugin : Plugin<Project> {
             registerTasks()
             registerVariantTasks()
             registerKmpTasks()
+
+            // Workaround for https://github.com/adamko-dev/dokkatoo/issues/117
+            // TODO: Remove
+            dokka19Dependencies(project.provider { dokkaVersion })
         }
     }
 
     // Versions
-    private val compilerVersion by lazy {
+    private val compilerVersion: String by lazy {
         androidLibs.findVersion("compose-compiler").map { it.requiredVersion }
             .orElse(DEFAULT_KOTLIN_COMPOSE_EXTENSION_VERSION)
+    }
+    private val dokkaVersion: String by lazy {
+        libs.findVersion("dokka").map { it.requiredVersion }
+            .orElse(DEFAULT_DOKKA_VERSION)
     }
 
     private fun Project.registerTasks() {
@@ -486,6 +496,7 @@ class LibraryPlugin : Plugin<Project> {
         project: Project,
         extension: LibraryDocsExtension
     ) {
+        versions.jetbrainsDokka.set(dokkaVersion)
         dokkatooSourceSets {
             if (extension.onlyMainSourceLink.getOrElse(true)) {
                 maybeCreate("main").apply {
@@ -560,6 +571,7 @@ class LibraryPlugin : Plugin<Project> {
     }
 
     companion object {
+        const val DEFAULT_DOKKA_VERSION = "1.9.0"
         const val DEFAULT_KOTLIN_COMPOSE_EXTENSION_VERSION = "1.5.3"
         private val logger = Logging.getLogger(LibraryPlugin::class.java)
     }

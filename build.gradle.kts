@@ -1,8 +1,16 @@
+import io.github.edricchan03.plugin.library.dokka19Dependencies
+
 plugins {
     dev.adamko.`dokkatoo-html`
 }
 
 group = "io.github.edricchan03.androidx"
+
+// Workaround for https://github.com/adamko-dev/dokkatoo/issues/117
+libs.versions.dokka.let {
+    dokka19Dependencies(it)
+    dokkatoo.versions.jetbrainsDokka = it
+}
 
 dependencies {
     dokkatoo(projects.androidx.common.commonEnums)
@@ -21,10 +29,10 @@ dokkatoo {
         customAssets.from(rootDir.toPath().resolve("docs/assets/logo-icon.svg"))
         footerMessage.set(
             "&copy; 2023 Edric Chan. androidx-ktx-extras is licensed under the " +
-                "<a href=\"https://github.com/EdricChan03/androidx-ktx-extras/blob/main/LICENSE\">" +
-                "GNU GPL 3.0</a>. AndroidX is licensed under the " +
-                "<a href=\"https://github.com/androidx/androidx/blob/androidx-main/LICENSE.txt\">" +
-                "Apache License 2.0</a>."
+                    "<a href=\"https://github.com/EdricChan03/androidx-ktx-extras/blob/main/LICENSE\">" +
+                    "GNU GPL 3.0</a>. AndroidX is licensed under the " +
+                    "<a href=\"https://github.com/androidx/androidx/blob/androidx-main/LICENSE.txt\">" +
+                    "Apache License 2.0</a>."
         )
     }
 }
