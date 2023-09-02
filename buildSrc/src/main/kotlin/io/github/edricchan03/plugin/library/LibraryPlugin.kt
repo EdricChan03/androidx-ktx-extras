@@ -17,6 +17,7 @@ import io.github.edricchan03.publishing.computeJavadocTaskName
 import kotlinx.validation.BinaryCompatibilityValidatorPlugin
 import org.gradle.api.Plugin
 import org.gradle.api.Project
+import org.gradle.api.artifacts.VersionCatalog
 import org.gradle.api.artifacts.VersionCatalogsExtension
 import org.gradle.api.artifacts.repositories.MavenArtifactRepository
 import org.gradle.api.attributes.DocsType
@@ -60,7 +61,14 @@ import io.github.edricchan03.plugin.library.extensions.publish.sonatypeStagingUr
 // TODO: Add Android convention support
 // TODO: Add Kotlin/JVM + Kotlin Multiplatform convention support
 class LibraryPlugin : Plugin<Project> {
+    private lateinit var androidLibs: VersionCatalog
+
     override fun apply(project: Project) {
+        // Set version catalogs
+        with(project.extensions.getByType<VersionCatalogsExtension>()) {
+            androidLibs = named("androidLibs")
+        }
+
         val extension = project.extensions
             .create<LibraryPluginExtension>(LibraryPluginExtension.EXTENSION_NAME)
 
@@ -74,6 +82,12 @@ class LibraryPlugin : Plugin<Project> {
             registerVariantTasks()
             registerKmpTasks()
         }
+    }
+
+    // Versions
+    private val compilerVersion by lazy {
+        androidLibs.findVersion("compose-compiler").map { it.requiredVersion }
+            .orElse(DEFAULT_KOTLIN_COMPOSE_EXTENSION_VERSION)
     }
 
     private fun Project.registerTasks() {
@@ -99,7 +113,7 @@ class LibraryPlugin : Plugin<Project> {
                     logger.let {
                         it.lifecycle(
                             "Publication artifacts for project ${project.name}\n" +
-                                "-".repeat(50)
+                                    "-".repeat(50)
                         )
                         publishing.publications.withType<MavenPublication> {
                             it.lifecycle("$name => $groupId:$artifactId:$version")
@@ -118,7 +132,7 @@ class LibraryPlugin : Plugin<Project> {
                 doLast {
                     logger.lifecycle(
                         "Publishing Maven repositories for project ${project.name}\n" +
-                            "-".repeat(50)
+                                "-".repeat(50)
                     )
                     publishing.repositories.withType<MavenArtifactRepository> {
                         logger.lifecycle("$name => $url")
@@ -149,7 +163,7 @@ class LibraryPlugin : Plugin<Project> {
                 register<Jar>(computeJavadocTaskName(name, isHtml = true)) {
                     description =
                         "Generates Dokka HTML docs for the ${this@configureEach.name} library " +
-                            "variant"
+                                "variant"
                     dependsOn(dokkatooGenerateModuleHtml)
                     from(dokkatooGenerateModuleHtml.map { it.outputs })
                     archiveClassifier.set("html-docs")
@@ -181,7 +195,7 @@ class LibraryPlugin : Plugin<Project> {
                     group = BasePlugin.BUILD_GROUP
                     description =
                         "Assembles a jar archive containing the Dokka HTML docs for the ${this@configureEach.name} library " +
-                            "variant"
+                                "variant"
                     dependsOn(dokkatooGenerateModuleHtml)
                     from(dokkatooGenerateModuleHtml.map { it.outputs })
                     archiveClassifier.set("html-docs")
@@ -235,9 +249,6 @@ class LibraryPlugin : Plugin<Project> {
     }
 
     private fun LibraryPluginExtension.setConventions(project: Project) {
-        val androidLibs =
-            project.extensions.getByType<VersionCatalogsExtension>().named("androidLibs")
-
         libraryType.setConventions(project)
         mavenCoordinates {
             groupId.convention(project.getLibraryGroupFromProjectPath())
@@ -307,8 +318,7 @@ class LibraryPlugin : Plugin<Project> {
         compose {
             enabled.convention(false)
             kotlinCompilerExtensionVersion.convention(
-                androidLibs.findVersion("compose-compiler").map { it.requiredVersion }
-                    .orElse(DEFAULT_KOTLIN_COMPOSE_EXTENSION_VERSION)
+                compilerVersion
             )
         }
     }
@@ -391,7 +401,7 @@ class LibraryPlugin : Plugin<Project> {
                     } catch (e: Exception) {
                         logger.lifecycle(
                             "Release publication container already exists, " +
-                                "skipping registration"
+                                    "skipping registration"
                         )
                     }
                 } else if (type == LibraryType.Multiplatform) {
@@ -439,7 +449,7 @@ class LibraryPlugin : Plugin<Project> {
                 extension.compose.kotlinCompilerExtensionVersion.get()
             logger.info(
                 "Compose config:\nEnabled: $composeEnabled, " +
-                    "Kotlin compiler version: $kotlinCompilerExtensionVersion"
+                        "Kotlin compiler version: $kotlinCompilerExtensionVersion"
             )
             it.buildFeatures.compose = composeEnabled
             it.composeOptions.kotlinCompilerExtensionVersion =
@@ -550,7 +560,7 @@ class LibraryPlugin : Plugin<Project> {
     }
 
     companion object {
-        const val DEFAULT_KOTLIN_COMPOSE_EXTENSION_VERSION = "1.5.1"
+        const val DEFAULT_KOTLIN_COMPOSE_EXTENSION_VERSION = "1.5.3"
         private val logger = Logging.getLogger(LibraryPlugin::class.java)
     }
 }
