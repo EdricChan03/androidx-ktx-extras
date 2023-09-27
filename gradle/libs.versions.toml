@@ -1,7 +1,6 @@
 [versions]
 android-gradle = "8.1.1"
-dokka = "1.9.0"
-dokkatoo = "1.6.0"
+dokkatoo = "2.0.0"
 kotest = "5.6.2"
 kotlin = "1.9.10"
 

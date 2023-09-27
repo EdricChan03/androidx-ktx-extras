@@ -83,10 +83,6 @@ class LibraryPlugin : Plugin<Project> {
             registerTasks()
             registerVariantTasks()
             registerKmpTasks()
-
-            // Workaround for https://github.com/adamko-dev/dokkatoo/issues/117
-            // TODO: Remove
-            dokka19Dependencies(project.provider { dokkaVersion })
         }
     }
 
@@ -94,10 +90,6 @@ class LibraryPlugin : Plugin<Project> {
     private val compilerVersion: String by lazy {
         androidLibs.findVersion("compose-compiler").map { it.requiredVersion }
             .orElse(DEFAULT_KOTLIN_COMPOSE_EXTENSION_VERSION)
-    }
-    private val dokkaVersion: String by lazy {
-        libs.findVersion("dokka").map { it.requiredVersion }
-            .orElse(DEFAULT_DOKKA_VERSION)
     }
 
     private fun Project.registerTasks() {
@@ -123,7 +115,7 @@ class LibraryPlugin : Plugin<Project> {
                     logger.let {
                         it.lifecycle(
                             "Publication artifacts for project ${project.name}\n" +
-                                    "-".repeat(50)
+                                "-".repeat(50)
                         )
                         publishing.publications.withType<MavenPublication> {
                             it.lifecycle("$name => $groupId:$artifactId:$version")
@@ -142,7 +134,7 @@ class LibraryPlugin : Plugin<Project> {
                 doLast {
                     logger.lifecycle(
                         "Publishing Maven repositories for project ${project.name}\n" +
-                                "-".repeat(50)
+                            "-".repeat(50)
                     )
                     publishing.repositories.withType<MavenArtifactRepository> {
                         logger.lifecycle("$name => $url")
@@ -173,7 +165,7 @@ class LibraryPlugin : Plugin<Project> {
                 register<Jar>(computeJavadocTaskName(name, isHtml = true)) {
                     description =
                         "Generates Dokka HTML docs for the ${this@configureEach.name} library " +
-                                "variant"
+                            "variant"
                     dependsOn(dokkatooGenerateModuleHtml)
                     from(dokkatooGenerateModuleHtml.map { it.outputs })
                     archiveClassifier.set("html-docs")
@@ -205,7 +197,7 @@ class LibraryPlugin : Plugin<Project> {
                     group = BasePlugin.BUILD_GROUP
                     description =
                         "Assembles a jar archive containing the Dokka HTML docs for the ${this@configureEach.name} library " +
-                                "variant"
+                            "variant"
                     dependsOn(dokkatooGenerateModuleHtml)
                     from(dokkatooGenerateModuleHtml.map { it.outputs })
                     archiveClassifier.set("html-docs")
@@ -411,7 +403,7 @@ class LibraryPlugin : Plugin<Project> {
                     } catch (e: Exception) {
                         logger.lifecycle(
                             "Release publication container already exists, " +
-                                    "skipping registration"
+                                "skipping registration"
                         )
                     }
                 } else if (type == LibraryType.Multiplatform) {
@@ -459,7 +451,7 @@ class LibraryPlugin : Plugin<Project> {
                 extension.compose.kotlinCompilerExtensionVersion.get()
             logger.info(
                 "Compose config:\nEnabled: $composeEnabled, " +
-                        "Kotlin compiler version: $kotlinCompilerExtensionVersion"
+                    "Kotlin compiler version: $kotlinCompilerExtensionVersion"
             )
             it.buildFeatures.compose = composeEnabled
             it.composeOptions.kotlinCompilerExtensionVersion =
@@ -496,7 +488,6 @@ class LibraryPlugin : Plugin<Project> {
         project: Project,
         extension: LibraryDocsExtension
     ) {
-        versions.jetbrainsDokka.set(dokkaVersion)
         dokkatooSourceSets {
             if (extension.onlyMainSourceLink.getOrElse(true)) {
                 maybeCreate("main").apply {
@@ -571,7 +562,6 @@ class LibraryPlugin : Plugin<Project> {
     }
 
     companion object {
-        const val DEFAULT_DOKKA_VERSION = "1.9.0"
         const val DEFAULT_KOTLIN_COMPOSE_EXTENSION_VERSION = "1.5.3"
         private val logger = Logging.getLogger(LibraryPlugin::class.java)
     }
