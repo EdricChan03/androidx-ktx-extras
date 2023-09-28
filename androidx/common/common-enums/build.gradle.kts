@@ -15,7 +15,7 @@ androidxKtx {
 
 kotlin {
     jvm {
-        testRuns["test"].executionTask.configure {
+        testRuns["test"].executionTask {
             useJUnitPlatform()
         }
     }
