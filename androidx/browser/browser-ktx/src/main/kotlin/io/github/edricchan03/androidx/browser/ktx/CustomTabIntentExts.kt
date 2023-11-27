@@ -1,7 +1,9 @@
 package io.github.edricchan03.androidx.browser.ktx
 
+import android.app.PendingIntent
 import android.content.Intent
 import android.graphics.Bitmap
+import android.os.Build
 import androidx.annotation.Dimension
 import androidx.browser.customtabs.CustomTabColorSchemeParams
 import androidx.browser.customtabs.CustomTabsIntent
@@ -11,6 +13,7 @@ import io.github.edricchan03.androidx.browser.ktx.enums.ActivityHeightResizeBeha
 import io.github.edricchan03.androidx.browser.ktx.enums.CloseButtonPosition
 import io.github.edricchan03.androidx.browser.ktx.enums.ColorScheme
 import io.github.edricchan03.androidx.browser.ktx.enums.ShareState
+import java.util.Locale
 
 /**
  * Creates a [CustomTabsIntent.Builder].
@@ -253,3 +256,97 @@ public var Intent.instantAppsEnabled: Boolean
     set(value) {
         putExtra(CustomTabsIntent.EXTRA_ENABLE_INSTANT_APPS, value)
     }
+
+//#region Browser 1.7.0 APIs
+/**
+ * Whether the bookmarks button is enabled. This value is set to `true` by default.
+ * @receiver The [Intent] to check.
+ * @since 0.2.0
+ * @see CustomTabsIntent.EXTRA_DISABLE_BOOKMARKS_BUTTON
+ * @see CustomTabsIntent.isBookmarksButtonEnabled
+ */
+@set:ExperimentalBrowserApi
+public var Intent.isBookmarksButtonEnabled: Boolean
+    get() = CustomTabsIntent.isBookmarksButtonEnabled(this)
+    set(value) {
+        putExtra(CustomTabsIntent.EXTRA_DISABLE_BOOKMARKS_BUTTON, !value)
+    }
+
+/**
+ * Whether the download button is enabled. This value is set to `true` by default.
+ * @receiver The [Intent] to check.
+ * @since 0.2.0
+ * @see CustomTabsIntent.isDownloadButtonEnabled
+ * @see CustomTabsIntent.EXTRA_DISABLE_DOWNLOAD_BUTTON
+ */
+@set:ExperimentalBrowserApi
+public var Intent.isDownloadButtonEnabled: Boolean
+    get() = CustomTabsIntent.isDownloadButtonEnabled(this)
+    set(value) {
+        putExtra(CustomTabsIntent.EXTRA_DISABLE_DOWNLOAD_BUTTON, !value)
+    }
+
+/**
+ * Whether initial URLs are to be sent to external handler apps.
+ * @receiver The [Intent] to check.
+ * @since 0.2.0
+ * @see CustomTabsIntent.isSendToExternalDefaultHandlerEnabled
+ * @see CustomTabsIntent.EXTRA_SEND_TO_EXTERNAL_DEFAULT_HANDLER
+ */
+@set:ExperimentalBrowserApi
+public var Intent.isSendToExternalDefaultHandlerEnabled: Boolean
+    get() = CustomTabsIntent.isSendToExternalDefaultHandlerEnabled(this)
+    set(value) {
+        putExtra(CustomTabsIntent.EXTRA_SEND_TO_EXTERNAL_DEFAULT_HANDLER, value)
+    }
+
+/**
+ * Gets the target locale for the Translate UI.
+ *
+ * **Setter note:** If `null` is used as the value when setting the extra, the extra
+ * will be **cleared** (i.e. [Intent.removeExtra] will be called).
+ * @receiver The [Intent] to check.
+ * @since 0.2.0
+ * @see CustomTabsIntent.getTranslateLocale
+ * @see CustomTabsIntent.EXTRA_TRANSLATE_LANGUAGE_TAG
+ * @see Locale.toLanguageTag
+ */
+@set:ExperimentalBrowserApi
+public var Intent.translateLocale: Locale?
+    get() = CustomTabsIntent.getTranslateLocale(this)
+    set(value) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N && value != null) {
+            putExtra(CustomTabsIntent.EXTRA_TRANSLATE_LANGUAGE_TAG, value.toLanguageTag())
+        } else {
+            removeExtra(CustomTabsIntent.EXTRA_TRANSLATE_LANGUAGE_TAG)
+        }
+    }
+
+/**
+ * Whether the background interaction is enabled.
+ * @receiver The [Intent] to check/set the extra on.
+ * @since 0.2.0
+ * @see CustomTabsIntent.isBackgroundInteractionEnabled
+ * @see CustomTabsIntent.EXTRA_DISABLE_BACKGROUND_INTERACTION
+ */
+@set:ExperimentalBrowserApi
+public var Intent.isBackgroundInteractionEnabled: Boolean
+    get() = CustomTabsIntent.isBackgroundInteractionEnabled(this)
+    set(value) {
+        putExtra(CustomTabsIntent.EXTRA_DISABLE_BACKGROUND_INTERACTION, !value)
+    }
+
+/**
+ * The [PendingIntent] that will be sent when the user swipes up from the secondary toolbar.
+ * @receiver The [Intent] to check/set the extra on.
+ * @since 0.2.0
+ * @see CustomTabsIntent.getSecondaryToolbarSwipeUpGesture
+ * @see CustomTabsIntent.EXTRA_SECONDARY_TOOLBAR_SWIPE_UP_GESTURE
+ */
+@set:ExperimentalBrowserApi
+public var Intent.secondaryToolbarSwipeUpGesture: PendingIntent?
+    get() = CustomTabsIntent.getSecondaryToolbarSwipeUpGesture(this)
+    set(value) {
+        putExtra(CustomTabsIntent.EXTRA_SECONDARY_TOOLBAR_SWIPE_UP_GESTURE, value)
+    }
+//#endregion

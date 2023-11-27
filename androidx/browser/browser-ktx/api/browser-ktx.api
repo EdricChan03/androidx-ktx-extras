@@ -30,22 +30,34 @@ public final class io/github/edricchan03/androidx/browser/ktx/CustomTabIntentExt
 	public static final fun getColorSchemeParams (Landroid/content/Intent;Lio/github/edricchan03/androidx/browser/ktx/enums/ColorScheme;)Landroidx/browser/customtabs/CustomTabColorSchemeParams;
 	public static final fun getInitialActivityHeightPx (Landroid/content/Intent;)I
 	public static final fun getInstantAppsEnabled (Landroid/content/Intent;)Z
+	public static final fun getSecondaryToolbarSwipeUpGesture (Landroid/content/Intent;)Landroid/app/PendingIntent;
 	public static final fun getShareState (Landroid/content/Intent;)Lio/github/edricchan03/androidx/browser/ktx/enums/ShareState;
 	public static final fun getShouldAlwaysUseBrowserUI (Landroid/content/Intent;)Z
 	public static final fun getShowTitle (Landroid/content/Intent;)Z
 	public static final fun getToolbarCornerRadiusDp (Landroid/content/Intent;)I
+	public static final fun getTranslateLocale (Landroid/content/Intent;)Ljava/util/Locale;
 	public static final fun getUrlBarHidingEnabled (Landroid/content/Intent;)Z
+	public static final fun isBackgroundInteractionEnabled (Landroid/content/Intent;)Z
+	public static final fun isBookmarksButtonEnabled (Landroid/content/Intent;)Z
+	public static final fun isDownloadButtonEnabled (Landroid/content/Intent;)Z
+	public static final fun isSendToExternalDefaultHandlerEnabled (Landroid/content/Intent;)Z
 	public static final fun setActivityResizeBehavior (Landroid/content/Intent;Lio/github/edricchan03/androidx/browser/ktx/enums/ActivityHeightResizeBehavior;)V
 	public static final fun setAlwaysUseBrowserUI (Landroid/content/Intent;)Landroid/content/Intent;
+	public static final fun setBackgroundInteractionEnabled (Landroid/content/Intent;Z)V
+	public static final fun setBookmarksButtonEnabled (Landroid/content/Intent;Z)V
 	public static final fun setCloseButtonIcon (Landroid/content/Intent;Landroid/graphics/Bitmap;)V
 	public static final fun setCloseButtonPosition (Landroid/content/Intent;Lio/github/edricchan03/androidx/browser/ktx/enums/CloseButtonPosition;)V
 	public static final fun setColorScheme (Landroid/content/Intent;Lio/github/edricchan03/androidx/browser/ktx/enums/ColorScheme;)V
+	public static final fun setDownloadButtonEnabled (Landroid/content/Intent;Z)V
 	public static final fun setInitialActivityHeightPx (Landroid/content/Intent;I)V
 	public static final fun setInstantAppsEnabled (Landroid/content/Intent;Z)V
+	public static final fun setSecondaryToolbarSwipeUpGesture (Landroid/content/Intent;Landroid/app/PendingIntent;)V
+	public static final fun setSendToExternalDefaultHandlerEnabled (Landroid/content/Intent;Z)V
 	public static final fun setShareState (Landroid/content/Intent;Lio/github/edricchan03/androidx/browser/ktx/enums/ShareState;)V
 	public static final fun setShouldAlwaysUseBrowserUI (Landroid/content/Intent;Z)V
 	public static final fun setShowTitle (Landroid/content/Intent;Z)V
 	public static final fun setToolbarCornerRadiusDp (Landroid/content/Intent;I)V
+	public static final fun setTranslateLocale (Landroid/content/Intent;Ljava/util/Locale;)V
 	public static final fun setUrlBarHidingEnabled (Landroid/content/Intent;Z)V
 }
 
