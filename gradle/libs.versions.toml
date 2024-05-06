@@ -1,8 +1,8 @@
 [versions]
-android-gradle = "8.1.4"
+android-gradle = "8.4.0"
 dokkatoo = "2.0.0"
-kotest = "5.8.0"
-kotlin = "1.9.20"
+kotest = "5.8.1"
+kotlin = "1.9.23"
 
 [libraries]
 kotest-assertions-core = { module = "io.kotest:kotest-assertions-core", version.ref = "kotest" }
