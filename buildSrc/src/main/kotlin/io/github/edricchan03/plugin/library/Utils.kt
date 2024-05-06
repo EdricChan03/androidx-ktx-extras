@@ -2,7 +2,9 @@ package io.github.edricchan03.plugin.library
 
 import io.github.edricchan03.plugin.library.extensions.LibraryPluginExtension
 import org.gradle.api.Project
+import org.gradle.api.plugins.ExtensionContainer
 import org.gradle.api.publish.maven.MavenPom
+import org.gradle.kotlin.dsl.findByType
 import org.gradle.util.Path as GradleProjectPath
 
 internal val Project.pathAsFilePath
@@ -63,6 +65,8 @@ fun MavenPom.setConventions(project: Project, extension: LibraryPluginExtension)
         url.set("$SOURCE_URL/actions")
     }
 }
+
+internal inline fun <reified T : Any> ExtensionContainer.hasType() = findByType<T>() != null
 
 /** The GitHub repository for the project. */
 const val SOURCE_URL = "https://github.com/EdricChan03/androidx-ktx-extras"
