@@ -47,10 +47,11 @@ import org.gradle.kotlin.dsl.withType
 import org.gradle.plugins.signing.SigningExtension
 import org.gradle.plugins.signing.SigningPlugin
 import org.jetbrains.kotlin.gradle.dsl.KotlinAndroidProjectExtension
+import org.jetbrains.kotlin.gradle.dsl.KotlinJvmProjectExtension
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 import org.jetbrains.kotlin.gradle.dsl.KotlinTopLevelExtension
 import org.jetbrains.kotlin.gradle.plugin.KotlinMultiplatformPluginWrapper
-import org.jetbrains.kotlin.gradle.plugin.KotlinPlatformJvmPlugin
+import org.jetbrains.kotlin.gradle.plugin.KotlinPluginWrapper
 import java.net.URI
 import com.android.build.gradle.LibraryExtension as AGPLibraryExtension
 import com.android.build.gradle.LibraryPlugin as AGPLibraryPlugin
@@ -237,13 +238,25 @@ class LibraryPlugin : Plugin<Project> {
     }
 
     private fun Property<LibraryType>.setConventions(project: Project) {
-        with(project.plugins) {
+        with(project) {
             convention(
                 when {
-                    hasPlugin(AGPLibraryPlugin::class) -> LibraryType.Android
-                    hasPlugin(KotlinMultiplatformPluginWrapper::class) -> LibraryType.Multiplatform
-                    hasPlugin(KotlinPlatformJvmPlugin::class) -> LibraryType.Jvm
-                    else -> null
+                    plugins.hasPlugin(AGPLibraryPlugin::class) ||
+                        extensions.hasType<AGPLibraryExtension>() -> LibraryType.Android
+
+                    plugins.hasPlugin(KotlinMultiplatformPluginWrapper::class) ||
+                        extensions.hasType<KotlinMultiplatformExtension>() -> LibraryType.Multiplatform
+
+                    plugins.hasPlugin(KotlinPluginWrapper::class) ||
+                        extensions.hasType<KotlinJvmProjectExtension>() -> LibraryType.Jvm
+
+                    else -> {
+                        logger.warn(
+                            "No supported plugin for ${project.name} was found, " +
+                                "assuming JVM project as the library type"
+                        )
+                        LibraryType.Jvm
+                    }
                 }
             )
         }
@@ -350,6 +363,10 @@ class LibraryPlugin : Plugin<Project> {
         extensions.findByType<KotlinMultiplatformExtension>()?.apply {
             setConventions()
             configureKmpPublications(project)
+        }
+        // Kotlin/JVM
+        extensions.findByType<KotlinJvmProjectExtension>()?.apply {
+            setConventions()
         }
 
         // Dokkatoo
