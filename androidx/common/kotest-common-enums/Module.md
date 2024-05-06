@@ -130,3 +130,9 @@ class ExampleEnumTest : DescribeSpec({
   )
 })
 ```
+
+The following methods are provided:
+
+* [`enumTests`][io.github.edricchan03.androidx.common.enums.fixtures.enumTests]
+* [`enumKPropertyTests`][io.github.edricchan03.androidx.common.enums.fixtures.enumKPropertyTests]
+* [`intEnumTests`][io.github.edricchan03.androidx.common.enums.fixtures.intEnumTests]
