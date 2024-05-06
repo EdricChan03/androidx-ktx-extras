@@ -6,6 +6,7 @@ group = "io.github.edricchan03.androidx"
 
 dependencies {
     dokkatoo(projects.androidx.common.commonEnums)
+    dokkatoo(projects.androidx.common.kotestCommonEnums)
     dokkatoo(projects.androidx.browser.browserKtx)
 }
 
