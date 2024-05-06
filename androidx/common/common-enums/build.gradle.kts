@@ -3,7 +3,6 @@ plugins {
     io.github.edricchan03.androidx.library
 }
 
-@Suppress("UnstableApiUsage") // Kotlin DSL assignment
 androidxKtx {
     mavenCoordinates {
         version = "0.1.1-SNAPSHOT"
