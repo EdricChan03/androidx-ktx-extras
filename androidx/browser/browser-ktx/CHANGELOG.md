@@ -10,6 +10,43 @@ for API usage.
 
 ---
 
+<a name="0.2.0"></a>
+
+## 0.2.0 (6 May 2024)
+
+* [Maven Central](https://central.sonatype.com/artifact/io.github.edricchan03.androidx.browser/browser-ktx/0.2.0)
+* [GitHub release](https://github.com/EdricChan03/androidx-ktx-extras/releases/tag/browser-ktx@0.2.0)
+* [Full changelog](https://github.com/EdricChan03/androidx-ktx-extras/compare/browser-ktx@0.1.0...browser-ktx@0.2.0)
+
+### Notable changes
+
+* The API surface has been brought up-to-date
+  with [Jetpack Browser 1.7.0](https://developer.android.com/jetpack/androidx/releases/browser#1.7.0)
+  ([`e52fb42`](https://github.com/EdricChan03/androidx-ktx-extras/commit/e52fb427d8b3dbcfd89620b58c1e5eb8419f5574)).
+
+### API updates
+
+#### New extension properties
+
+Property | Docs
+---|---
+`Intent.isBookmarksButtonEnabled` | [Documentation](https://edricchan03.github.io/androidx-ktx-extras/androidx/browser/browser-ktx/io.github.edricchan03.androidx.browser.ktx/is-bookmarks-button-enabled.html)
+`Intent.isDownloadButtonEnabled` | [Documentation](https://edricchan03.github.io/androidx-ktx-extras/androidx/browser/browser-ktx/io.github.edricchan03.androidx.browser.ktx/is-download-button-enabled.html)
+`Intent.isSendToExternalDefaultHandlerEnabled` | [Documentation](https://edricchan03.github.io/androidx-ktx-extras/androidx/browser/browser-ktx/io.github.edricchan03.androidx.browser.ktx/is-send-to-external-default-handler-enabled.html)
+`Intent.translateLocale` | [Documentation](https://edricchan03.github.io/androidx-ktx-extras/androidx/browser/browser-ktx/io.github.edricchan03.androidx.browser.ktx/translate-locale.html)
+`Intent.isBackgroundInteractionEnabled` | [Documentation](https://edricchan03.github.io/androidx-ktx-extras/androidx/browser/browser-ktx/io.github.edricchan03.androidx.browser.ktx/is-background-interaction-enabled.html)
+`Intent.secondaryToolbarSwipeUpGesture` | [Documentation](https://edricchan03.github.io/androidx-ktx-extras/androidx/browser/browser-ktx/io.github.edricchan03.androidx.browser.ktx/secondary-toolbar-swipe-up-gesture.html)
+
+### Dependency updates
+
+Artifact | Old version | New version
+---|---|---
+[Kotlin](https://kotlinlang.org) | [`1.9.0`](https://github.com/JetBrains/kotlin/releases/tag/v1.9.0) | [`1.9.23`](https://github.com/JetBrains/kotlin/releases/tag/v1.9.23)
+[Android Gradle Plugin](https://developer.android.com/build/releases/gradle-plugin) |
+[`8.1.1`](https://developer.android.com/build/releases/past-releases/agp-8-1-0-release-notes) |
+[`8.4.0`](https://developer.android.com/build/releases/gradle-plugin)
+[`androidx.browser:browser`](https://developer.android.com/jetpack/androidx/releases/browser) | [`1.6.0`](https://developer.android.com/jetpack/androidx/releases/browser#1.6.0) | [`1.7.0`](https://developer.android.com/jetpack/androidx/releases/browser#1.7.0)
+
 <a name="0.1.0"></a>
 
 ## 0.1.0 (23 Aug 2023)
@@ -20,13 +57,17 @@ for API usage.
 
 ### Notable changes
 
-* Kotlin has been bumped to [Kotlin 1.9.0](https://kotlinlang.org/docs/whatsnew19.html). For more info, consult the
+* Kotlin has been bumped to [Kotlin 1.9.0](https://kotlinlang.org/docs/whatsnew19.html). For more
+  info, consult the
   [corresponding JetBrains blog post](https://blog.jetbrains.com/kotlin/2023/07/kotlin-1-9-0-released/). ([`69efc43`](https://github.com/EdricChan03/androidx-ktx-extras/commit/69efc435b43b027083ec92c67ed4a43d2dee8f77))
 * Setters for Jetpack Browser's `Intent` extras
-  ([`407ce70`](https://github.com/EdricChan03/androidx-ktx-extras/commit/407ce701e7ac4073b7b98c2ecaf126367d3e5bca)) were added.
+  ([`407ce70`](https://github.com/EdricChan03/androidx-ktx-extras/commit/407ce701e7ac4073b7b98c2ecaf126367d3e5bca))
+  were added.
   See the [API updates section](#api-updates) for a list.
-* Annotations used in the Jetpack Browser library for representing a list of integer enums were added to the internal `value` property
-  for the corresponding enums. ([`e1cdeb7`](https://github.com/EdricChan03/androidx-ktx-extras/commit/e1cdeb7d37698a55f914461b7f96296e7ddeb48c))
+* Annotations used in the Jetpack Browser library for representing a list of integer enums were
+  added to the internal `value` property
+  for the corresponding
+  enums. ([`e1cdeb7`](https://github.com/EdricChan03/androidx-ktx-extras/commit/e1cdeb7d37698a55f914461b7f96296e7ddeb48c))
 
 ### API updates
 
