@@ -34,6 +34,7 @@ dependencies {
     api(androidLibs.androidx.annotation)
     api(androidLibs.androidx.browser)
 
+    testImplementation(projects.androidx.common.kotestCommonEnums)
     testImplementation(libs.kotest.runner.junit5)
     testImplementation(libs.kotest.assertions.core)
     testImplementation(libs.kotest.property)

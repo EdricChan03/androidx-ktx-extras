@@ -32,5 +32,6 @@ rootProject.name = "androidx-ktx-extras"
 
 include(
     ":androidx:common:common-enums",
+    ":androidx:common:kotest-common-enums",
     ":androidx:browser:browser-ktx"
 )
