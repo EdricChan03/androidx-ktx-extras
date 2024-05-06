@@ -13,7 +13,7 @@ dokkatoo {
     pluginsConfiguration.html {
         customAssets.from(rootDir.toPath().resolve("docs/assets/logo-icon.svg"))
         footerMessage.set(
-            "&copy; 2023 Edric Chan. androidx-ktx-extras is licensed under the " +
+            "&copy; 2023-2024 Edric Chan. androidx-ktx-extras is licensed under the " +
                 "<a href=\"https://github.com/EdricChan03/androidx-ktx-extras/blob/main/LICENSE\">" +
                 "GNU GPL 3.0</a>. AndroidX is licensed under the " +
                 "<a href=\"https://github.com/androidx/androidx/blob/androidx-main/LICENSE.txt\">" +
