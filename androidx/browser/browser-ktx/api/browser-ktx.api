@@ -18,6 +18,30 @@ public final class io/github/edricchan03/androidx/browser/ktx/CustomTabIntentBui
 	public static final fun setShareState (Landroidx/browser/customtabs/CustomTabsIntent$Builder;Lio/github/edricchan03/androidx/browser/ktx/enums/ShareState;)Landroidx/browser/customtabs/CustomTabsIntent$Builder;
 }
 
+public final class io/github/edricchan03/androidx/browser/ktx/CustomTabIntentExts1_8Kt {
+	public static final fun getActivitySideSheetBreakpointDp (Landroid/content/Intent;)I
+	public static final fun getActivitySideSheetDecorationType (Landroid/content/Intent;)Lio/github/edricchan03/androidx/browser/ktx/enums/ActivitySideSheetDecorationType;
+	public static final fun getActivitySideSheetEnableMaximization (Landroid/content/Intent;)Z
+	public static final fun getActivitySideSheetPosition (Landroid/content/Intent;)Lio/github/edricchan03/androidx/browser/ktx/enums/ActivitySideSheetPosition;
+	public static final fun getActivitySideSheetRoundedCornersPosition (Landroid/content/Intent;)Lio/github/edricchan03/androidx/browser/ktx/enums/ActivitySideSheetRoundedCornersPosition;
+	public static final fun getInitialActivityWidthPx (Landroid/content/Intent;)I
+	public static final fun setActivitySideSheetBreakpointDp (Landroid/content/Intent;I)V
+	public static final fun setActivitySideSheetDecorationType (Landroid/content/Intent;Lio/github/edricchan03/androidx/browser/ktx/enums/ActivitySideSheetDecorationType;)V
+	public static final fun setActivitySideSheetDecorationType (Landroidx/browser/customtabs/CustomTabsIntent$Builder;Lio/github/edricchan03/androidx/browser/ktx/enums/ActivitySideSheetDecorationType;)Landroidx/browser/customtabs/CustomTabsIntent$Builder;
+	public static final fun setActivitySideSheetEnableMaximization (Landroid/content/Intent;Z)V
+	public static final fun setActivitySideSheetPosition (Landroid/content/Intent;Lio/github/edricchan03/androidx/browser/ktx/enums/ActivitySideSheetPosition;)V
+	public static final fun setActivitySideSheetPosition (Landroidx/browser/customtabs/CustomTabsIntent$Builder;Lio/github/edricchan03/androidx/browser/ktx/enums/ActivitySideSheetPosition;)Landroidx/browser/customtabs/CustomTabsIntent$Builder;
+	public static final fun setActivitySideSheetRoundedCornersPosition (Landroid/content/Intent;Lio/github/edricchan03/androidx/browser/ktx/enums/ActivitySideSheetRoundedCornersPosition;)V
+	public static final fun setActivitySideSheetRoundedCornersPosition (Landroidx/browser/customtabs/CustomTabsIntent$Builder;Lio/github/edricchan03/androidx/browser/ktx/enums/ActivitySideSheetRoundedCornersPosition;)Landroidx/browser/customtabs/CustomTabsIntent$Builder;
+	public static final fun setInitialActivitySizePx (Landroidx/browser/customtabs/CustomTabsIntent$Builder;IILio/github/edricchan03/androidx/browser/ktx/enums/ActivityHeightResizeBehavior;)Landroidx/browser/customtabs/CustomTabsIntent$Builder;
+	public static final fun setInitialActivitySizePx (Landroidx/browser/customtabs/CustomTabsIntent$Builder;Landroid/util/Size;Lio/github/edricchan03/androidx/browser/ktx/enums/ActivityHeightResizeBehavior;)Landroidx/browser/customtabs/CustomTabsIntent$Builder;
+	public static final fun setInitialActivitySizePx (Landroidx/browser/customtabs/CustomTabsIntent$Builder;Lkotlin/Pair;Lio/github/edricchan03/androidx/browser/ktx/enums/ActivityHeightResizeBehavior;)Landroidx/browser/customtabs/CustomTabsIntent$Builder;
+	public static synthetic fun setInitialActivitySizePx$default (Landroidx/browser/customtabs/CustomTabsIntent$Builder;IILio/github/edricchan03/androidx/browser/ktx/enums/ActivityHeightResizeBehavior;ILjava/lang/Object;)Landroidx/browser/customtabs/CustomTabsIntent$Builder;
+	public static synthetic fun setInitialActivitySizePx$default (Landroidx/browser/customtabs/CustomTabsIntent$Builder;Landroid/util/Size;Lio/github/edricchan03/androidx/browser/ktx/enums/ActivityHeightResizeBehavior;ILjava/lang/Object;)Landroidx/browser/customtabs/CustomTabsIntent$Builder;
+	public static synthetic fun setInitialActivitySizePx$default (Landroidx/browser/customtabs/CustomTabsIntent$Builder;Lkotlin/Pair;Lio/github/edricchan03/androidx/browser/ktx/enums/ActivityHeightResizeBehavior;ILjava/lang/Object;)Landroidx/browser/customtabs/CustomTabsIntent$Builder;
+	public static final fun setInitialActivityWidthPx (Landroid/content/Intent;I)V
+}
+
 public final class io/github/edricchan03/androidx/browser/ktx/CustomTabIntentExtsKt {
 	public static final fun customTabsIntent (Landroidx/browser/customtabs/CustomTabsSession;Lkotlin/jvm/functions/Function1;)Landroidx/browser/customtabs/CustomTabsIntent;
 	public static synthetic fun customTabsIntent$default (Landroidx/browser/customtabs/CustomTabsSession;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Landroidx/browser/customtabs/CustomTabsIntent;
@@ -77,6 +101,55 @@ public final class io/github/edricchan03/androidx/browser/ktx/enums/ActivityHeig
 
 public final class io/github/edricchan03/androidx/browser/ktx/enums/ActivityHeightResizeBehavior$Companion : io/github/edricchan03/androidx/common/enums/EnumFromValue {
 	public fun fromValueOrNull (I)Lio/github/edricchan03/androidx/browser/ktx/enums/ActivityHeightResizeBehavior;
+	public synthetic fun fromValueOrNull (Ljava/lang/Object;)Ljava/lang/Enum;
+}
+
+public final class io/github/edricchan03/androidx/browser/ktx/enums/ActivitySideSheetDecorationType : java/lang/Enum {
+	public static final field Companion Lio/github/edricchan03/androidx/browser/ktx/enums/ActivitySideSheetDecorationType$Companion;
+	public static final field Default Lio/github/edricchan03/androidx/browser/ktx/enums/ActivitySideSheetDecorationType;
+	public static final field Divider Lio/github/edricchan03/androidx/browser/ktx/enums/ActivitySideSheetDecorationType;
+	public static final field None Lio/github/edricchan03/androidx/browser/ktx/enums/ActivitySideSheetDecorationType;
+	public static final field Shadow Lio/github/edricchan03/androidx/browser/ktx/enums/ActivitySideSheetDecorationType;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public final fun getValue ()I
+	public static fun valueOf (Ljava/lang/String;)Lio/github/edricchan03/androidx/browser/ktx/enums/ActivitySideSheetDecorationType;
+	public static fun values ()[Lio/github/edricchan03/androidx/browser/ktx/enums/ActivitySideSheetDecorationType;
+}
+
+public final class io/github/edricchan03/androidx/browser/ktx/enums/ActivitySideSheetDecorationType$Companion : io/github/edricchan03/androidx/common/enums/EnumFromValue {
+	public fun fromValueOrNull (I)Lio/github/edricchan03/androidx/browser/ktx/enums/ActivitySideSheetDecorationType;
+	public synthetic fun fromValueOrNull (Ljava/lang/Object;)Ljava/lang/Enum;
+}
+
+public final class io/github/edricchan03/androidx/browser/ktx/enums/ActivitySideSheetPosition : java/lang/Enum {
+	public static final field Companion Lio/github/edricchan03/androidx/browser/ktx/enums/ActivitySideSheetPosition$Companion;
+	public static final field Default Lio/github/edricchan03/androidx/browser/ktx/enums/ActivitySideSheetPosition;
+	public static final field End Lio/github/edricchan03/androidx/browser/ktx/enums/ActivitySideSheetPosition;
+	public static final field Start Lio/github/edricchan03/androidx/browser/ktx/enums/ActivitySideSheetPosition;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public final fun getValue ()I
+	public static fun valueOf (Ljava/lang/String;)Lio/github/edricchan03/androidx/browser/ktx/enums/ActivitySideSheetPosition;
+	public static fun values ()[Lio/github/edricchan03/androidx/browser/ktx/enums/ActivitySideSheetPosition;
+}
+
+public final class io/github/edricchan03/androidx/browser/ktx/enums/ActivitySideSheetPosition$Companion : io/github/edricchan03/androidx/common/enums/EnumFromValue {
+	public fun fromValueOrNull (I)Lio/github/edricchan03/androidx/browser/ktx/enums/ActivitySideSheetPosition;
+	public synthetic fun fromValueOrNull (Ljava/lang/Object;)Ljava/lang/Enum;
+}
+
+public final class io/github/edricchan03/androidx/browser/ktx/enums/ActivitySideSheetRoundedCornersPosition : java/lang/Enum {
+	public static final field Companion Lio/github/edricchan03/androidx/browser/ktx/enums/ActivitySideSheetRoundedCornersPosition$Companion;
+	public static final field Default Lio/github/edricchan03/androidx/browser/ktx/enums/ActivitySideSheetRoundedCornersPosition;
+	public static final field None Lio/github/edricchan03/androidx/browser/ktx/enums/ActivitySideSheetRoundedCornersPosition;
+	public static final field Top Lio/github/edricchan03/androidx/browser/ktx/enums/ActivitySideSheetRoundedCornersPosition;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public final fun getValue ()I
+	public static fun valueOf (Ljava/lang/String;)Lio/github/edricchan03/androidx/browser/ktx/enums/ActivitySideSheetRoundedCornersPosition;
+	public static fun values ()[Lio/github/edricchan03/androidx/browser/ktx/enums/ActivitySideSheetRoundedCornersPosition;
+}
+
+public final class io/github/edricchan03/androidx/browser/ktx/enums/ActivitySideSheetRoundedCornersPosition$Companion : io/github/edricchan03/androidx/common/enums/EnumFromValue {
+	public fun fromValueOrNull (I)Lio/github/edricchan03/androidx/browser/ktx/enums/ActivitySideSheetRoundedCornersPosition;
 	public synthetic fun fromValueOrNull (Ljava/lang/Object;)Ljava/lang/Enum;
 }
 
