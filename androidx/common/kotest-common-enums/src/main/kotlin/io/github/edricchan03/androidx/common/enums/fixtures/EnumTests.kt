@@ -53,6 +53,37 @@ public fun <InternalValue, E : Enum<E>> enumTests(
 }
 
 /**
+ * Test factory to create tests for the given [enum][E].
+ * @param InternalValue The internal value representation.
+ * @param E The enum.
+ * @param describeName Descriptive name to be passed to the top-level `describe()`
+ * function.
+ * @param dataNameFn Function to be used for [withData]'s `nameFn`.
+ * @param enumValuesMap The map of internal values to their enum representation.
+ * @param fromValueOrNullFn Function used to convert the internal value to its enum
+ * representation.
+ * @param invalidArb Arbitrary used to output invalid internal values. This is used
+ * to test that the invalid values from this arbitrary returns `null` from
+ * [fromValueOrNullFn].
+ * @since 0.1.0
+ */
+@ExperimentalEnumKotestApi
+public fun <InternalValue, E : Enum<E>> enumKPropertyTests(
+    describeName: String = "fromValueOrNull",
+    dataNameFn: (Map.Entry<EnumMapEntry<InternalValue>, E>) -> String =
+        { "${it.key.propertyName}: ${it.value}" },
+    enumValuesMap: Map<KProperty0<InternalValue>, E>,
+    fromValueOrNullFn: (InternalValue) -> E?,
+    invalidArb: Arb<InternalValue>
+): TestFactory = enumTests(
+    describeName = describeName,
+    dataNameFn = dataNameFn,
+    enumValuesMap = enumValuesMap.mapKeys { it.key.toEnumEntry() },
+    fromValueOrNullFn = fromValueOrNullFn,
+    invalidArb = invalidArb
+)
+
+/**
  * Test factory to create tests for the given [enum][E] that is represented by an
  * [Int] for its internal value.
  *
@@ -80,7 +111,13 @@ public fun <E : Enum<E>> intEnumTests(
     fromValueOrNullFn: (Int) -> E?,
     invalidArb: Arb<Int> = Arb.int()
         .filterNot { output -> output in enumValuesMap.map { it.key.value } }
-): TestFactory = enumTests(describeName, dataNameFn, enumValuesMap, fromValueOrNullFn, invalidArb)
+): TestFactory = enumTests(
+    describeName = describeName,
+    dataNameFn = dataNameFn,
+    enumValuesMap = enumValuesMap,
+    fromValueOrNullFn = fromValueOrNullFn,
+    invalidArb = invalidArb
+)
 
 /**
  * Test factory to create tests for the given [enum][E] that is represented by an
@@ -112,10 +149,10 @@ public fun <E : Enum<E>> intEnumTests(
     fromValueOrNullFn: (Int) -> E?,
     invalidArb: Arb<Int> = Arb.int()
         .filterNot { output -> output in enumValuesMap.map { it.key.get() } }
-): TestFactory = enumTests(
-    describeName,
-    dataNameFn,
-    enumValuesMap.mapKeys { it.key.toEnumEntry() },
-    fromValueOrNullFn,
-    invalidArb
+): TestFactory = enumKPropertyTests(
+    describeName = describeName,
+    dataNameFn = dataNameFn,
+    enumValuesMap = enumValuesMap,
+    fromValueOrNullFn = fromValueOrNullFn,
+    invalidArb = invalidArb
 )
