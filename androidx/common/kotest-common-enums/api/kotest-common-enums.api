@@ -17,6 +17,8 @@ public final class io/github/edricchan03/androidx/common/enums/fixtures/EnumMapE
 }
 
 public final class io/github/edricchan03/androidx/common/enums/fixtures/EnumTestsKt {
+	public static final fun enumKPropertyTests (Ljava/lang/String;Lkotlin/jvm/functions/Function1;Ljava/util/Map;Lkotlin/jvm/functions/Function1;Lio/kotest/property/Arb;)Lio/kotest/core/factory/TestFactory;
+	public static synthetic fun enumKPropertyTests$default (Ljava/lang/String;Lkotlin/jvm/functions/Function1;Ljava/util/Map;Lkotlin/jvm/functions/Function1;Lio/kotest/property/Arb;ILjava/lang/Object;)Lio/kotest/core/factory/TestFactory;
 	public static final fun enumTests (Ljava/lang/String;Lkotlin/jvm/functions/Function1;Ljava/util/Map;Lkotlin/jvm/functions/Function1;Lio/kotest/property/Arb;)Lio/kotest/core/factory/TestFactory;
 	public static synthetic fun enumTests$default (Ljava/lang/String;Lkotlin/jvm/functions/Function1;Ljava/util/Map;Lkotlin/jvm/functions/Function1;Lio/kotest/property/Arb;ILjava/lang/Object;)Lio/kotest/core/factory/TestFactory;
 	public static final fun intEnumTests (Ljava/lang/String;Lkotlin/jvm/functions/Function1;Ljava/util/Map;Lkotlin/jvm/functions/Function1;Lio/kotest/property/Arb;)Lio/kotest/core/factory/TestFactory;
