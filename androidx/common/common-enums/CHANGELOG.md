@@ -25,6 +25,29 @@ the [generated Dokka documentation](https://edricchan03.github.io/androidx-ktx-e
 for API usage.
 
 ---
+<a name="0.2.0"></a>
+
+## 0.2.0 (11 May 2024)
+
+* [Maven Central](https://central.sonatype.com/artifact/io.github.edricchan03.androidx.common/common-enums/0.2.0)
+* [GitHub release](https://github.com/EdricChan03/androidx-ktx-extras/releases/tag/common-enums@0.2.0)
+* [Full changelog](https://github.com/EdricChan03/androidx-ktx-extras/compare/common-enums@0.1.0...common-enums@0.2.0)
+
+### Notable changes
+
+* A new interface
+  ([`ValueEnum`](https://edricchan03.github.io/androidx-ktx-extras/androidx/common/common-enums/io.github.edricchan03.androidx.common.enums/-value-enum/index.html)) has been added which enums can implement to provide an
+  abstraction over enums which provide an internal value representation. This allows for operations
+  to be done on generic value-based enums. [`5973982`](https://github.com/EdricChan03/androidx-ktx-extras/commit/5973982202ea33a1a322e04888e963c3cb85547e)
+* [`ValueEnumFromValue`](https://edricchan03.github.io/androidx-ktx-extras/androidx/common/common-enums/io.github.edricchan03.androidx.common.enums.impl/-value-enum-from-value/index.html) (currently experimental!) has been added which provides a [`ValueEnum`](https://edricchan03.github.io/androidx-ktx-extras/androidx/common/common-enums/io.github.edricchan03.androidx.common.enums/-value-enum/index.html)
+  implementation of the
+  [`EnumFromValue`](https://edricchan03.github.io/androidx-ktx-extras/androidx/common/common-enums/io.github.edricchan03.androidx.common.enums/-enum-from-value/index.html) abstract class. [`0abf688`](https://github.com/EdricChan03/androidx-ktx-extras/commit/0abf688467133819674d204bd193b776291a7fe4)
+
+### Dependency updates
+
+Artifact | Old version | New version
+---|---|---
+[Kotlin](https://kotlinlang.org) | [`1.9.0`](https://github.com/JetBrains/kotlin/releases/tag/v1.9.0) | [`1.9.23`](https://github.com/JetBrains/kotlin/releases/tag/v1.9.23)
 
 <a name="0.1.0"></a>
 

@@ -1,12 +1,10 @@
 plugins {
-    `kotlin-multiplatform`
+    org.jetbrains.kotlin.multiplatform
     io.github.edricchan03.androidx.library
 }
 
 androidxKtx {
-    mavenCoordinates {
-        version = "0.1.1-SNAPSHOT"
-    }
+    mavenCoordinates.version = "0.2.0"
 
     name = "androidx-ktx-extras-common-enums"
     description = "Common enum utilities for androidx-ktx-extras"

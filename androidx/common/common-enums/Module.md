@@ -24,7 +24,7 @@ dependencyResolutionManagement {
 `build.gradle.kts`
 
 ```kotlin
-implementation("io.github.edricchan03.androidx.common:common-enums:0.1.0")
+implementation("io.github.edricchan03.androidx.common:common-enums:0.2.0")
 ```
 
 ### TOML
@@ -33,7 +33,7 @@ implementation("io.github.edricchan03.androidx.common:common-enums:0.1.0")
 
 ```toml
 [libraries]
-androidxtra-common-enums = "io.github.edricchan03.androidx.common:common-enums:0.1.0"
+androidxtra-common-enums = "io.github.edricchan03.androidx.common:common-enums:0.2.0"
 ```
 
 `build.gradle.kts`:
@@ -70,7 +70,7 @@ dependencyResolutionManagement {
 `build.gradle.kts`:
 
 ```kotlin
-implementation("io.github.edricchan03.androidx.common:common-enums:0.1.1-SNAPSHOT")
+implementation("io.github.edricchan03.androidx.common:common-enums:0.2.1-SNAPSHOT")
 ```
 
 #### TOML
@@ -79,7 +79,7 @@ implementation("io.github.edricchan03.androidx.common:common-enums:0.1.1-SNAPSHO
 
 ```toml
 [libaries]
-androidxtra-common-enums = "io.github.edricchan03.androidx.common:common-enums:0.1.1-SNAPSHOT"
+androidxtra-common-enums = "io.github.edricchan03.androidx.common:common-enums:0.2.1-SNAPSHOT"
 ```
 
 `build.gradle.kts`:
