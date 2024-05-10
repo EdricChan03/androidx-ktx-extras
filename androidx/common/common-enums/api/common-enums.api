@@ -7,3 +7,6 @@ public abstract class io/github/edricchan03/androidx/common/enums/EnumFromValue 
 	public final fun requireValue (Ljava/lang/Object;)Ljava/lang/Enum;
 }
 
+public abstract interface class io/github/edricchan03/androidx/common/enums/ValueEnum {
+	public abstract fun getValue ()Ljava/lang/Object;
+}
