@@ -7,6 +7,15 @@ public abstract class io/github/edricchan03/androidx/common/enums/EnumFromValue 
 	public final fun requireValue (Ljava/lang/Object;)Ljava/lang/Enum;
 }
 
+public abstract interface annotation class io/github/edricchan03/androidx/common/enums/ExperimentalEnumsApi : java/lang/annotation/Annotation {
+}
+
 public abstract interface class io/github/edricchan03/androidx/common/enums/ValueEnum {
 	public abstract fun getValue ()Ljava/lang/Object;
 }
+
+public class io/github/edricchan03/androidx/common/enums/impl/ValueEnumFromValue : io/github/edricchan03/androidx/common/enums/EnumFromValue {
+	public fun <init> (Ljava/lang/Enum;Lkotlin/enums/EnumEntries;)V
+	public fun fromValueOrNull (Ljava/lang/Object;)Ljava/lang/Enum;
+}
+
