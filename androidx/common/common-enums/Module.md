@@ -107,3 +107,21 @@ enum class Example(val value: String) {
   }
 }
 ```
+
+# Package io.github.edricchan03.androidx.common.enums.impl
+
+Implementations of utilities from the parent package, such as
+[`ValueEnumFromValue`][io.github.edricchan03.androidx.common.enums.impl.ValueEnumFromValue]:
+
+```kotlin
+enum class ExampleValue(override val value: String): ValueEnum<String> {
+  One("one"),
+  Two("two"),
+  Three("three");
+
+  companion object : ValueEnumFromValue<String, ExampleValue>(default = One, entries)
+}
+
+println(ExampleValue.fromValueOrNull("four")) // null
+println(ExampleValue.fromValueOrNull("one")) // One
+```
