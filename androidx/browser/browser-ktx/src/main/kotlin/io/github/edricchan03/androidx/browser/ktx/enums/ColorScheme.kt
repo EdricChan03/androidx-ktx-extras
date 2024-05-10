@@ -2,6 +2,7 @@ package io.github.edricchan03.androidx.browser.ktx.enums
 
 import androidx.browser.customtabs.CustomTabsIntent
 import io.github.edricchan03.androidx.common.enums.EnumFromValue
+import io.github.edricchan03.androidx.common.enums.ValueEnum
 
 /**
  * The colour scheme to use.
@@ -18,13 +19,15 @@ import io.github.edricchan03.androidx.common.enums.EnumFromValue
  *
  * @property value The numerical representation.
  *
+ * From version 0.3.0, this enum class implements the [ValueEnum] interface, which
+ * contains the [ValueEnum.value] property.
  * @since 0.0.1
  * @see io.github.edricchan03.androidx.browser.ktx.setColorScheme
  * @see CustomTabsIntent.Builder.setColorScheme
  */
 public enum class ColorScheme(
-    @CustomTabsIntent.ColorScheme public val value: Int
-) {
+    @CustomTabsIntent.ColorScheme public override val value: Int
+) : ValueEnum<Int> {
     /**
      * Applies either a light or dark colour scheme to the user interface in
      * the custom tab depending on the user's system settings.

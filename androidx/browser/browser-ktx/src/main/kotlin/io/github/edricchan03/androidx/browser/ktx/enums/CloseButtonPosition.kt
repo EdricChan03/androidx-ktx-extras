@@ -2,6 +2,7 @@ package io.github.edricchan03.androidx.browser.ktx.enums
 
 import androidx.browser.customtabs.CustomTabsIntent
 import io.github.edricchan03.androidx.common.enums.EnumFromValue
+import io.github.edricchan03.androidx.common.enums.ValueEnum
 
 /**
  * The position of the close button.
@@ -18,13 +19,15 @@ import io.github.edricchan03.androidx.common.enums.EnumFromValue
  *
  * @property value The numerical representation.
  *
+ * From version 0.3.0, this enum class implements the [ValueEnum] interface, which
+ * contains the [ValueEnum.value] property.
  * @since 0.0.1
  * @see io.github.edricchan03.androidx.browser.ktx.setCloseButtonPosition
  * @see CustomTabsIntent.Builder.setCloseButtonPosition
  */
 public enum class CloseButtonPosition(
-    @CustomTabsIntent.CloseButtonPosition public val value: Int
-) {
+    @CustomTabsIntent.CloseButtonPosition public override val value: Int
+) : ValueEnum<Int> {
     /**
      * Same as [CloseButtonPosition.Start].
      * @since 0.0.1

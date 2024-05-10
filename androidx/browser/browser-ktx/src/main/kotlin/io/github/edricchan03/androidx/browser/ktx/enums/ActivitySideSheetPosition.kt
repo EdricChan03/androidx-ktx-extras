@@ -2,6 +2,7 @@ package io.github.edricchan03.androidx.browser.ktx.enums
 
 import androidx.browser.customtabs.CustomTabsIntent
 import io.github.edricchan03.androidx.common.enums.EnumFromValue
+import io.github.edricchan03.androidx.common.enums.ValueEnum
 
 /**
  * Specifies the position of the side sheet.
@@ -18,6 +19,8 @@ import io.github.edricchan03.androidx.common.enums.EnumFromValue
  *
  * @property value The numerical representation.
  *
+ * From version 0.3.0, this enum class implements the [ValueEnum] interface, which
+ * contains the [ValueEnum.value] property.
  * @since 0.3.0
  * @see CustomTabsIntent.EXTRA_ACTIVITY_SIDE_SHEET_POSITION
  * @see CustomTabsIntent.Builder.setActivitySideSheetPosition
@@ -25,8 +28,8 @@ import io.github.edricchan03.androidx.common.enums.EnumFromValue
  * @see io.github.edricchan03.androidx.browser.ktx.activitySideSheetPosition
  */
 public enum class ActivitySideSheetPosition(
-    @CustomTabsIntent.ActivitySideSheetPosition public val value: Int
-) {
+    @CustomTabsIntent.ActivitySideSheetPosition public override val value: Int
+) : ValueEnum<Int> {
     /**
      * Applies the default position for the Custom Tab Activity when it behaves as a side sheet.
      * Same as [End].

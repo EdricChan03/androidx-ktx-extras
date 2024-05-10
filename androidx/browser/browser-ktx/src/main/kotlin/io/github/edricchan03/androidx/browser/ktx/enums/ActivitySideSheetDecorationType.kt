@@ -2,6 +2,7 @@ package io.github.edricchan03.androidx.browser.ktx.enums
 
 import androidx.browser.customtabs.CustomTabsIntent
 import io.github.edricchan03.androidx.common.enums.EnumFromValue
+import io.github.edricchan03.androidx.common.enums.ValueEnum
 
 /**
  * The type of the decoration that will be used to separate the side sheet from the
@@ -20,6 +21,8 @@ import io.github.edricchan03.androidx.common.enums.EnumFromValue
  *
  * @property value The numerical representation.
  *
+ * From version 0.3.0, this enum class implements the [ValueEnum] interface, which
+ * contains the [ValueEnum.value] property.
  * @since 0.3.0
  * @see CustomTabsIntent.EXTRA_ACTIVITY_SIDE_SHEET_DECORATION_TYPE
  * @see CustomTabsIntent.Builder.setActivitySideSheetDecorationType
@@ -27,8 +30,8 @@ import io.github.edricchan03.androidx.common.enums.EnumFromValue
  * @see io.github.edricchan03.androidx.browser.ktx.activitySideSheetDecorationType
  */
 public enum class ActivitySideSheetDecorationType(
-    @CustomTabsIntent.ActivitySideSheetDecorationType public val value: Int
-) {
+    @CustomTabsIntent.ActivitySideSheetDecorationType public override val value: Int
+) : ValueEnum<Int> {
     /**
      * Side sheet's default decoration type.
      * Same as [Shadow].

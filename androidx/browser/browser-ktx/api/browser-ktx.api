@@ -88,13 +88,14 @@ public final class io/github/edricchan03/androidx/browser/ktx/CustomTabIntentExt
 public abstract interface annotation class io/github/edricchan03/androidx/browser/ktx/annotations/ExperimentalBrowserApi : java/lang/annotation/Annotation {
 }
 
-public final class io/github/edricchan03/androidx/browser/ktx/enums/ActivityHeightResizeBehavior : java/lang/Enum {
+public final class io/github/edricchan03/androidx/browser/ktx/enums/ActivityHeightResizeBehavior : java/lang/Enum, io/github/edricchan03/androidx/common/enums/ValueEnum {
 	public static final field Adjustable Lio/github/edricchan03/androidx/browser/ktx/enums/ActivityHeightResizeBehavior;
 	public static final field Companion Lio/github/edricchan03/androidx/browser/ktx/enums/ActivityHeightResizeBehavior$Companion;
 	public static final field Default Lio/github/edricchan03/androidx/browser/ktx/enums/ActivityHeightResizeBehavior;
 	public static final field Fixed Lio/github/edricchan03/androidx/browser/ktx/enums/ActivityHeightResizeBehavior;
 	public static fun getEntries ()Lkotlin/enums/EnumEntries;
-	public final fun getValue ()I
+	public fun getValue ()Ljava/lang/Integer;
+	public synthetic fun getValue ()Ljava/lang/Object;
 	public static fun valueOf (Ljava/lang/String;)Lio/github/edricchan03/androidx/browser/ktx/enums/ActivityHeightResizeBehavior;
 	public static fun values ()[Lio/github/edricchan03/androidx/browser/ktx/enums/ActivityHeightResizeBehavior;
 }
@@ -104,14 +105,15 @@ public final class io/github/edricchan03/androidx/browser/ktx/enums/ActivityHeig
 	public synthetic fun fromValueOrNull (Ljava/lang/Object;)Ljava/lang/Enum;
 }
 
-public final class io/github/edricchan03/androidx/browser/ktx/enums/ActivitySideSheetDecorationType : java/lang/Enum {
+public final class io/github/edricchan03/androidx/browser/ktx/enums/ActivitySideSheetDecorationType : java/lang/Enum, io/github/edricchan03/androidx/common/enums/ValueEnum {
 	public static final field Companion Lio/github/edricchan03/androidx/browser/ktx/enums/ActivitySideSheetDecorationType$Companion;
 	public static final field Default Lio/github/edricchan03/androidx/browser/ktx/enums/ActivitySideSheetDecorationType;
 	public static final field Divider Lio/github/edricchan03/androidx/browser/ktx/enums/ActivitySideSheetDecorationType;
 	public static final field None Lio/github/edricchan03/androidx/browser/ktx/enums/ActivitySideSheetDecorationType;
 	public static final field Shadow Lio/github/edricchan03/androidx/browser/ktx/enums/ActivitySideSheetDecorationType;
 	public static fun getEntries ()Lkotlin/enums/EnumEntries;
-	public final fun getValue ()I
+	public fun getValue ()Ljava/lang/Integer;
+	public synthetic fun getValue ()Ljava/lang/Object;
 	public static fun valueOf (Ljava/lang/String;)Lio/github/edricchan03/androidx/browser/ktx/enums/ActivitySideSheetDecorationType;
 	public static fun values ()[Lio/github/edricchan03/androidx/browser/ktx/enums/ActivitySideSheetDecorationType;
 }
@@ -121,13 +123,14 @@ public final class io/github/edricchan03/androidx/browser/ktx/enums/ActivitySide
 	public synthetic fun fromValueOrNull (Ljava/lang/Object;)Ljava/lang/Enum;
 }
 
-public final class io/github/edricchan03/androidx/browser/ktx/enums/ActivitySideSheetPosition : java/lang/Enum {
+public final class io/github/edricchan03/androidx/browser/ktx/enums/ActivitySideSheetPosition : java/lang/Enum, io/github/edricchan03/androidx/common/enums/ValueEnum {
 	public static final field Companion Lio/github/edricchan03/androidx/browser/ktx/enums/ActivitySideSheetPosition$Companion;
 	public static final field Default Lio/github/edricchan03/androidx/browser/ktx/enums/ActivitySideSheetPosition;
 	public static final field End Lio/github/edricchan03/androidx/browser/ktx/enums/ActivitySideSheetPosition;
 	public static final field Start Lio/github/edricchan03/androidx/browser/ktx/enums/ActivitySideSheetPosition;
 	public static fun getEntries ()Lkotlin/enums/EnumEntries;
-	public final fun getValue ()I
+	public fun getValue ()Ljava/lang/Integer;
+	public synthetic fun getValue ()Ljava/lang/Object;
 	public static fun valueOf (Ljava/lang/String;)Lio/github/edricchan03/androidx/browser/ktx/enums/ActivitySideSheetPosition;
 	public static fun values ()[Lio/github/edricchan03/androidx/browser/ktx/enums/ActivitySideSheetPosition;
 }
@@ -137,13 +140,14 @@ public final class io/github/edricchan03/androidx/browser/ktx/enums/ActivitySide
 	public synthetic fun fromValueOrNull (Ljava/lang/Object;)Ljava/lang/Enum;
 }
 
-public final class io/github/edricchan03/androidx/browser/ktx/enums/ActivitySideSheetRoundedCornersPosition : java/lang/Enum {
+public final class io/github/edricchan03/androidx/browser/ktx/enums/ActivitySideSheetRoundedCornersPosition : java/lang/Enum, io/github/edricchan03/androidx/common/enums/ValueEnum {
 	public static final field Companion Lio/github/edricchan03/androidx/browser/ktx/enums/ActivitySideSheetRoundedCornersPosition$Companion;
 	public static final field Default Lio/github/edricchan03/androidx/browser/ktx/enums/ActivitySideSheetRoundedCornersPosition;
 	public static final field None Lio/github/edricchan03/androidx/browser/ktx/enums/ActivitySideSheetRoundedCornersPosition;
 	public static final field Top Lio/github/edricchan03/androidx/browser/ktx/enums/ActivitySideSheetRoundedCornersPosition;
 	public static fun getEntries ()Lkotlin/enums/EnumEntries;
-	public final fun getValue ()I
+	public fun getValue ()Ljava/lang/Integer;
+	public synthetic fun getValue ()Ljava/lang/Object;
 	public static fun valueOf (Ljava/lang/String;)Lio/github/edricchan03/androidx/browser/ktx/enums/ActivitySideSheetRoundedCornersPosition;
 	public static fun values ()[Lio/github/edricchan03/androidx/browser/ktx/enums/ActivitySideSheetRoundedCornersPosition;
 }
@@ -153,13 +157,14 @@ public final class io/github/edricchan03/androidx/browser/ktx/enums/ActivitySide
 	public synthetic fun fromValueOrNull (Ljava/lang/Object;)Ljava/lang/Enum;
 }
 
-public final class io/github/edricchan03/androidx/browser/ktx/enums/CloseButtonPosition : java/lang/Enum {
+public final class io/github/edricchan03/androidx/browser/ktx/enums/CloseButtonPosition : java/lang/Enum, io/github/edricchan03/androidx/common/enums/ValueEnum {
 	public static final field Companion Lio/github/edricchan03/androidx/browser/ktx/enums/CloseButtonPosition$Companion;
 	public static final field Default Lio/github/edricchan03/androidx/browser/ktx/enums/CloseButtonPosition;
 	public static final field End Lio/github/edricchan03/androidx/browser/ktx/enums/CloseButtonPosition;
 	public static final field Start Lio/github/edricchan03/androidx/browser/ktx/enums/CloseButtonPosition;
 	public static fun getEntries ()Lkotlin/enums/EnumEntries;
-	public final fun getValue ()I
+	public fun getValue ()Ljava/lang/Integer;
+	public synthetic fun getValue ()Ljava/lang/Object;
 	public static fun valueOf (Ljava/lang/String;)Lio/github/edricchan03/androidx/browser/ktx/enums/CloseButtonPosition;
 	public static fun values ()[Lio/github/edricchan03/androidx/browser/ktx/enums/CloseButtonPosition;
 }
@@ -169,13 +174,14 @@ public final class io/github/edricchan03/androidx/browser/ktx/enums/CloseButtonP
 	public synthetic fun fromValueOrNull (Ljava/lang/Object;)Ljava/lang/Enum;
 }
 
-public final class io/github/edricchan03/androidx/browser/ktx/enums/ColorScheme : java/lang/Enum {
+public final class io/github/edricchan03/androidx/browser/ktx/enums/ColorScheme : java/lang/Enum, io/github/edricchan03/androidx/common/enums/ValueEnum {
 	public static final field Companion Lio/github/edricchan03/androidx/browser/ktx/enums/ColorScheme$Companion;
 	public static final field Dark Lio/github/edricchan03/androidx/browser/ktx/enums/ColorScheme;
 	public static final field Light Lio/github/edricchan03/androidx/browser/ktx/enums/ColorScheme;
 	public static final field System Lio/github/edricchan03/androidx/browser/ktx/enums/ColorScheme;
 	public static fun getEntries ()Lkotlin/enums/EnumEntries;
-	public final fun getValue ()I
+	public fun getValue ()Ljava/lang/Integer;
+	public synthetic fun getValue ()Ljava/lang/Object;
 	public static fun valueOf (Ljava/lang/String;)Lio/github/edricchan03/androidx/browser/ktx/enums/ColorScheme;
 	public static fun values ()[Lio/github/edricchan03/androidx/browser/ktx/enums/ColorScheme;
 }
@@ -185,13 +191,14 @@ public final class io/github/edricchan03/androidx/browser/ktx/enums/ColorScheme$
 	public synthetic fun fromValueOrNull (Ljava/lang/Object;)Ljava/lang/Enum;
 }
 
-public final class io/github/edricchan03/androidx/browser/ktx/enums/ShareState : java/lang/Enum {
+public final class io/github/edricchan03/androidx/browser/ktx/enums/ShareState : java/lang/Enum, io/github/edricchan03/androidx/common/enums/ValueEnum {
 	public static final field Companion Lio/github/edricchan03/androidx/browser/ktx/enums/ShareState$Companion;
 	public static final field Default Lio/github/edricchan03/androidx/browser/ktx/enums/ShareState;
 	public static final field Off Lio/github/edricchan03/androidx/browser/ktx/enums/ShareState;
 	public static final field On Lio/github/edricchan03/androidx/browser/ktx/enums/ShareState;
 	public static fun getEntries ()Lkotlin/enums/EnumEntries;
-	public final fun getValue ()I
+	public fun getValue ()Ljava/lang/Integer;
+	public synthetic fun getValue ()Ljava/lang/Object;
 	public static fun valueOf (Ljava/lang/String;)Lio/github/edricchan03/androidx/browser/ktx/enums/ShareState;
 	public static fun values ()[Lio/github/edricchan03/androidx/browser/ktx/enums/ShareState;
 }

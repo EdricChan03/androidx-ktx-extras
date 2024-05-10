@@ -2,6 +2,7 @@ package io.github.edricchan03.androidx.browser.ktx.enums
 
 import androidx.browser.customtabs.CustomTabsIntent
 import io.github.edricchan03.androidx.common.enums.EnumFromValue
+import io.github.edricchan03.androidx.common.enums.ValueEnum
 
 /**
  * Sets the resize behaviour for the custom tab activity.
@@ -18,13 +19,15 @@ import io.github.edricchan03.androidx.common.enums.EnumFromValue
  *
  * @property value The numerical representation.
  *
+ * From version 0.3.0, this enum class implements the [ValueEnum] interface, which
+ * contains the [ValueEnum.value] property.
  * @since 0.0.1
  * @see io.github.edricchan03.androidx.browser.ktx.setInitialActivityHeightPx
  * @see CustomTabsIntent.Builder.setInitialActivityHeightPx
  */
 public enum class ActivityHeightResizeBehavior(
-    @CustomTabsIntent.ActivityHeightResizeBehavior public val value: Int
-) {
+    @CustomTabsIntent.ActivityHeightResizeBehavior public override val value: Int
+) : ValueEnum<Int> {
     /**
      * Applies the default height resize behavior for the Custom Tab Activity
      * when it behaves as a bottom sheet.
