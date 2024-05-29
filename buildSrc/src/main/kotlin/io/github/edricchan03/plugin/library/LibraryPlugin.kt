@@ -84,6 +84,7 @@ class LibraryPlugin : Plugin<Project> {
             registerTasks()
             registerVariantTasks()
             registerKmpTasks()
+            registerJvmTasks()
         }
     }
 
@@ -207,6 +208,35 @@ class LibraryPlugin : Plugin<Project> {
         }
     }
 
+    private fun Project.registerJvmTasks() {
+        val jvm = extensions.findByType<KotlinJvmProjectExtension>()
+
+        if (jvm == null) return // Skip creation if the Kotlin/JVM plugin is not applied
+
+        // Add Javadoc Jar tasks
+        tasks {
+            val dokkatooGenerateModuleJavadoc by existing(DokkatooGenerateTask::class)
+            val dokkatooGenerateModuleHtml by existing(DokkatooGenerateTask::class)
+
+            register<Jar>(computeJavadocTaskName(isHtml = false)) {
+                group = BasePlugin.BUILD_GROUP
+                description =
+                    "Assembles a jar archive containing the Javadocs for this library"
+                dependsOn(dokkatooGenerateModuleJavadoc)
+                from(dokkatooGenerateModuleJavadoc.map { it.outputs })
+                archiveClassifier.set(DocsType.JAVADOC)
+            }
+            register<Jar>(computeJavadocTaskName(isHtml = true)) {
+                group = BasePlugin.BUILD_GROUP
+                description =
+                    "Assembles a jar archive containing the Dokka HTML docs for this library"
+                dependsOn(dokkatooGenerateModuleHtml)
+                from(dokkatooGenerateModuleHtml.map { it.outputs })
+                archiveClassifier.set("html-docs")
+            }
+        }
+    }
+
     private fun Project.applyPlugins(extension: LibraryPluginExtension) {
         plugins.apply {
             apply<SigningPlugin>()
@@ -280,6 +310,8 @@ class LibraryPlugin : Plugin<Project> {
             sonatypeStagingUrl.convention(URI(SonatypeStagingUrl))
             sonatypeSnapshotUrl.convention(URI(SonatypeSnapshotUrl))
             gitHubPackagesUrl.convention(URI(GitHubPackagesUrl))
+            jvmPublicationName.convention(LibraryMavenPublishingExtension.DEFAULT_JVM_PUBLICATION_NAME)
+            skipJvmPublication.convention(LibraryMavenPublishingExtension.DEFAULT_SKIP_JVM_PUBLICATION)
             repositories {
                 register("sonatype") {
                     snapshotUrl.set(sonatypeSnapshotUrl)
@@ -410,22 +442,28 @@ class LibraryPlugin : Plugin<Project> {
                 }
             }
 
-            // Skip on other platforms
-            // TODO: Revisit code - is this needed?
-            publications {
-                val type = extension.libraryType.get()
-                if (type == LibraryType.Android) {
+            val type = extension.libraryType.getOrElse(LibraryType.Jvm)
+            @Suppress("WHEN_ENUM_CAN_BE_NULL_IN_JAVA")
+            when (type) {
+                LibraryType.Android -> {
                     try {
-                        registerVariantPublication("release", project, extension)
+                        publications.registerVariantPublication("release", project, extension)
                     } catch (e: Exception) {
                         logger.lifecycle(
                             "Release publication container already exists, " +
                                 "skipping registration"
                         )
                     }
-                } else if (type == LibraryType.Multiplatform) {
+                }
+
+                LibraryType.Multiplatform -> {
                     logger.info("Adding POM metadata to all KMP publications")
                     setKmpConventions(project, extension)
+                }
+
+                LibraryType.Jvm -> {
+                    logger.info("Setting up POM conventions for JVM library")
+                    setJvmConventions(project, extension)
                 }
             }
         }
@@ -454,6 +492,38 @@ class LibraryPlugin : Plugin<Project> {
             // Add POM metadata to all KMP publications
             withType<MavenPublication>().configureEach {
                 pom.setConventions(project, extension)
+            }
+        }
+    }
+
+    private fun PublishingExtension.setJvmConventions(
+        project: Project,
+        extension: LibraryPluginExtension
+    ) {
+        if (extension.mavenPublishing.skipJvmPublication.getOrElse(false)) {
+            logger.info("Skipping JVM publication setup for ${project.name}")
+            return
+        }
+
+        project.afterEvaluate {
+            logger.info("Setting up default publication")
+
+            publications {
+                maybeCreate(
+                    extension.mavenPublishing.jvmPublicationName.get(),
+                    MavenPublication::class
+                ).apply {
+                    pom.setConventions(project, extension)
+
+                    extension.mavenPublishing.jvmPublicationComponent.ifPresentOrElse(
+                        ifPresent = { from(it) },
+                        ifNotPresent = { from(components["java"]) }
+                    )
+
+                    // Add Javadocs as an artifact
+                    artifact(tasks[computeJavadocTaskName(isHtml = false)])
+                    artifact(tasks[computeJavadocTaskName(isHtml = true)])
+                }
             }
         }
     }

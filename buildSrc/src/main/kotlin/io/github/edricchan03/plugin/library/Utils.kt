@@ -3,6 +3,7 @@ package io.github.edricchan03.plugin.library
 import io.github.edricchan03.plugin.library.extensions.LibraryPluginExtension
 import org.gradle.api.Project
 import org.gradle.api.plugins.ExtensionContainer
+import org.gradle.api.provider.Provider
 import org.gradle.api.publish.maven.MavenPom
 import org.gradle.kotlin.dsl.findByType
 import org.gradle.util.Path as GradleProjectPath
@@ -73,3 +74,15 @@ const val SOURCE_URL = "https://github.com/EdricChan03/androidx-ktx-extras"
 
 internal val Project.sourceUrl
     get() = "$SOURCE_URL/tree/main/$pathAsFilePath"
+
+internal inline fun <T> Provider<T>.ifPresent(ifPresent: (value: T) -> Unit) {
+    if (isPresent) ifPresent(get())
+}
+
+internal inline fun <T> Provider<T>.ifPresentOrElse(
+    ifPresent: (value: T) -> Unit,
+    ifNotPresent: () -> Unit
+) {
+    if (isPresent) ifPresent(get())
+    else ifNotPresent()
+}
