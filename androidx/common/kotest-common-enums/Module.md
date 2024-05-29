@@ -2,6 +2,9 @@
 
 Common [Kotest](https://kotest.io) factory utilities for androidx-ktx-extras' modules.
 
+**Note:** This module is currently a JVM-only module, and there are currently no plans to
+add Kotlin Multiplatform support.
+
 ## Usage
 
 <a href="https://central.sonatype.com/artifact/io.github.edricchan03.androidx.common/kotest-common-enums"><img src="https://img.shields.io/maven-central/v/io.github.edricchan03.androidx.common/kotest-common-enums?style=for-the-badge&logo=apachemaven&logoColor=%23C71A36&label=Maven%20Central" alt="Kotest Common Enums on Maven Central"></a>
@@ -25,7 +28,7 @@ dependencyResolutionManagement {
 `build.gradle.kts`
 
 ```kotlin
-implementation("io.github.edricchan03.androidx.common:kotest-common-enums:0.1.0")
+testImplementation("io.github.edricchan03.androidx.common:kotest-common-enums:0.1.0")
 ```
 
 ### TOML
@@ -40,7 +43,7 @@ androidxtra-common-enums-kotest = "io.github.edricchan03.androidx.common:kotest-
 `build.gradle.kts`:
 
 ```kotlin
-implementation(libs.androidxtra.common.enums.kotest)
+testImplementation(libs.androidxtra.common.enums.kotest)
 ```
 
 ### Snapshots
