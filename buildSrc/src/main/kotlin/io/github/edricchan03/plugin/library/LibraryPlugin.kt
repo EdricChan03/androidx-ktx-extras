@@ -13,6 +13,7 @@ import io.github.edricchan03.plugin.library.extensions.docs.LibraryDocsExtension
 import io.github.edricchan03.plugin.library.extensions.isReleaseVersion
 import io.github.edricchan03.plugin.library.extensions.publish.DefaultReleaseVersionSpec
 import io.github.edricchan03.plugin.library.extensions.publish.asReadOnlyProvider
+import io.github.edricchan03.plugin.library.extensions.publish.maven.LibraryMavenPublishingExtension
 import io.github.edricchan03.publishing.computeJavadocTaskName
 import kotlinx.validation.BinaryCompatibilityValidatorPlugin
 import org.gradle.api.Plugin
@@ -40,6 +41,7 @@ import org.gradle.kotlin.dsl.getByType
 import org.gradle.kotlin.dsl.getValue
 import org.gradle.kotlin.dsl.hasPlugin
 import org.gradle.kotlin.dsl.invoke
+import org.gradle.kotlin.dsl.maybeCreate
 import org.gradle.kotlin.dsl.provideDelegate
 import org.gradle.kotlin.dsl.register
 import org.gradle.kotlin.dsl.registering
