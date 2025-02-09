@@ -1,8 +1,8 @@
 [versions]
-android-gradle = "8.4.0"
+android-gradle = "8.8.0"
 dokka = "2.0.0"
-kotest = "5.9.0"
-kotlin = "1.9.23"
+kotest = "5.9.1"
+kotlin = "2.1.0"
 
 [libraries]
 kotest-assertions-core = { module = "io.kotest:kotest-assertions-core", version.ref = "kotest" }
@@ -23,3 +23,5 @@ dokka-gradle-plugin = { module = "org.jetbrains.dokka:dokka-gradle-plugin", vers
 kotlinx-bcv = "org.jetbrains.kotlinx.binary-compatibility-validator:0.13.1"
 android-gradle-library = { id = "com.android.library", version.ref = "android-gradle" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+
+kotlin-composeCompiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }

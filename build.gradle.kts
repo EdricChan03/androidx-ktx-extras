@@ -1,5 +1,6 @@
 plugins {
     org.jetbrains.dokka
+    alias(libs.plugins.kotlin.composeCompiler) apply false
 }
 
 group = "io.github.edricchan03.androidx"
