@@ -1,11 +1,6 @@
 package io.github.edricchan03.plugin.library
 
 import com.android.build.api.variant.LibraryAndroidComponentsExtension
-import dev.adamko.dokkatoo.DokkatooExtension
-import dev.adamko.dokkatoo.dokka.parameters.DokkaSourceSetSpec
-import dev.adamko.dokkatoo.formats.DokkatooHtmlPlugin
-import dev.adamko.dokkatoo.formats.DokkatooJavadocPlugin
-import dev.adamko.dokkatoo.tasks.DokkatooGenerateTask
 import io.github.edricchan03.plugin.library.extensions.LibraryPluginExtension
 import io.github.edricchan03.plugin.library.extensions.LibraryType
 import io.github.edricchan03.plugin.library.extensions.docs.ExternalDocLinks
@@ -48,6 +43,11 @@ import org.gradle.kotlin.dsl.registering
 import org.gradle.kotlin.dsl.withType
 import org.gradle.plugins.signing.SigningExtension
 import org.gradle.plugins.signing.SigningPlugin
+import org.jetbrains.dokka.gradle.DokkaExtension
+import org.jetbrains.dokka.gradle.engine.parameters.DokkaSourceSetSpec
+import org.jetbrains.dokka.gradle.formats.DokkaHtmlPlugin
+import org.jetbrains.dokka.gradle.formats.DokkaJavadocPlugin
+import org.jetbrains.dokka.gradle.tasks.DokkaGenerateModuleTask
 import org.jetbrains.kotlin.gradle.dsl.KotlinAndroidProjectExtension
 import org.jetbrains.kotlin.gradle.dsl.KotlinJvmProjectExtension
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
@@ -155,23 +155,23 @@ class LibraryPlugin : Plugin<Project> {
 
         // Add Javadoc Jar tasks
         tasks {
-            val dokkatooGenerateModuleJavadoc by existing(DokkatooGenerateTask::class)
-            val dokkatooGenerateModuleHtml by existing(DokkatooGenerateTask::class)
+            val dokkaGenerateModuleJavadoc by existing(DokkaGenerateModuleTask::class)
+            val dokkaGenerateModuleHtml by existing(DokkaGenerateModuleTask::class)
 
             android.libraryVariants.configureEach {
                 register<Jar>(computeJavadocTaskName(name, isHtml = false)) {
                     description =
                         "Generates Javadocs for the ${this@configureEach.name} library variant"
-                    dependsOn(dokkatooGenerateModuleJavadoc)
-                    from(dokkatooGenerateModuleJavadoc.map { it.outputs })
+                    dependsOn(dokkaGenerateModuleJavadoc)
+                    from(dokkaGenerateModuleJavadoc.map { it.outputs })
                     archiveClassifier.set(DocsType.JAVADOC)
                 }
                 register<Jar>(computeJavadocTaskName(name, isHtml = true)) {
                     description =
                         "Generates Dokka HTML docs for the ${this@configureEach.name} library " +
                             "variant"
-                    dependsOn(dokkatooGenerateModuleHtml)
-                    from(dokkatooGenerateModuleHtml.map { it.outputs })
+                    dependsOn(dokkaGenerateModuleHtml)
+                    from(dokkaGenerateModuleHtml.map { it.outputs })
                     archiveClassifier.set("html-docs")
                 }
             }
@@ -185,16 +185,16 @@ class LibraryPlugin : Plugin<Project> {
 
         // Add Javadoc Jar tasks
         tasks {
-            val dokkatooGenerateModuleJavadoc by existing(DokkatooGenerateTask::class)
-            val dokkatooGenerateModuleHtml by existing(DokkatooGenerateTask::class)
+            val dokkaGenerateModuleJavadoc by existing(DokkaGenerateModuleTask::class)
+            val dokkaGenerateModuleHtml by existing(DokkaGenerateModuleTask::class)
 
             kmp.testableTargets.configureEach {
                 register<Jar>(computeJavadocTaskName(name, isHtml = false)) {
                     group = BasePlugin.BUILD_GROUP
                     description =
                         "Assembles a jar archive containing the Javadocs for the ${this@configureEach.name} library variant"
-                    dependsOn(dokkatooGenerateModuleJavadoc)
-                    from(dokkatooGenerateModuleJavadoc.map { it.outputs })
+                    dependsOn(dokkaGenerateModuleJavadoc)
+                    from(dokkaGenerateModuleJavadoc.map { it.outputs })
                     archiveClassifier.set(DocsType.JAVADOC)
                 }
                 register<Jar>(computeJavadocTaskName(name, isHtml = true)) {
@@ -202,8 +202,8 @@ class LibraryPlugin : Plugin<Project> {
                     description =
                         "Assembles a jar archive containing the Dokka HTML docs for the ${this@configureEach.name} library " +
                             "variant"
-                    dependsOn(dokkatooGenerateModuleHtml)
-                    from(dokkatooGenerateModuleHtml.map { it.outputs })
+                    dependsOn(dokkaGenerateModuleHtml)
+                    from(dokkaGenerateModuleHtml.map { it.outputs })
                     archiveClassifier.set("html-docs")
                 }
             }
@@ -217,23 +217,23 @@ class LibraryPlugin : Plugin<Project> {
 
         // Add Javadoc Jar tasks
         tasks {
-            val dokkatooGenerateModuleJavadoc by existing(DokkatooGenerateTask::class)
-            val dokkatooGenerateModuleHtml by existing(DokkatooGenerateTask::class)
+            val dokkaGenerateModuleJavadoc by existing(DokkaGenerateModuleTask::class)
+            val dokkaGenerateModuleHtml by existing(DokkaGenerateModuleTask::class)
 
             register<Jar>(computeJavadocTaskName(isHtml = false)) {
                 group = BasePlugin.BUILD_GROUP
                 description =
                     "Assembles a jar archive containing the Javadocs for this library"
-                dependsOn(dokkatooGenerateModuleJavadoc)
-                from(dokkatooGenerateModuleJavadoc.map { it.outputs })
+                dependsOn(dokkaGenerateModuleJavadoc)
+                from(dokkaGenerateModuleJavadoc.map { it.outputs })
                 archiveClassifier.set(DocsType.JAVADOC)
             }
             register<Jar>(computeJavadocTaskName(isHtml = true)) {
                 group = BasePlugin.BUILD_GROUP
                 description =
                     "Assembles a jar archive containing the Dokka HTML docs for this library"
-                dependsOn(dokkatooGenerateModuleHtml)
-                from(dokkatooGenerateModuleHtml.map { it.outputs })
+                dependsOn(dokkaGenerateModuleHtml)
+                from(dokkaGenerateModuleHtml.map { it.outputs })
                 archiveClassifier.set("html-docs")
             }
         }
@@ -245,10 +245,10 @@ class LibraryPlugin : Plugin<Project> {
             apply<PublishingPlugin>()
             apply<MavenPublishPlugin>()
             if (extension.docs.publishJavadoc.getOrElse(true)) {
-                apply<DokkatooJavadocPlugin>()
+                apply<DokkaJavadocPlugin>()
             }
             if (extension.docs.publishHtmlDoc.getOrElse(true)) {
-                apply<DokkatooHtmlPlugin>()
+                apply<DokkaHtmlPlugin>()
             }
             apply<BinaryCompatibilityValidatorPlugin>()
         }
@@ -403,8 +403,8 @@ class LibraryPlugin : Plugin<Project> {
             setConventions()
         }
 
-        // Dokkatoo
-        extensions.findByType<DokkatooExtension>()?.setConventions(project, extension.docs)
+        // Dokka
+        extensions.findByType<DokkaExtension>()?.setConventions(project, extension.docs)
     }
 
     private fun SigningExtension.setConventions(publishing: PublishingExtension) {
@@ -573,11 +573,11 @@ class LibraryPlugin : Plugin<Project> {
         explicitApi()
     }
 
-    private fun DokkatooExtension.setConventions(
+    private fun DokkaExtension.setConventions(
         project: Project,
         extension: LibraryDocsExtension
     ) {
-        dokkatooSourceSets {
+        dokkaSourceSets {
             if (extension.onlyMainSourceLink.getOrElse(true)) {
                 maybeCreate("main").apply {
                     configureSourceLink(project, modulePath)

@@ -1,24 +1,24 @@
 package io.github.edricchan03.plugin.library.extensions.docs
 
-import dev.adamko.dokkatoo.dokka.parameters.DokkaExternalDocumentationLinkSpec
-import dev.adamko.dokkatoo.dokka.parameters.DokkaSourceSetSpec
-import dev.adamko.dokkatoo.formats.DokkatooHtmlPlugin
-import dev.adamko.dokkatoo.formats.DokkatooJavadocPlugin
 import org.gradle.api.file.ConfigurableFileCollection
 import org.gradle.api.file.RegularFileProperty
 import org.gradle.api.provider.Property
 import org.gradle.api.provider.SetProperty
+import org.jetbrains.dokka.gradle.engine.parameters.DokkaExternalDocumentationLinkSpec
+import org.jetbrains.dokka.gradle.engine.parameters.DokkaSourceSetSpec
+import org.jetbrains.dokka.gradle.formats.DokkaHtmlPlugin
+import org.jetbrains.dokka.gradle.formats.DokkaJavadocPlugin
 
 abstract class LibraryDocsExtension {
     /**
      * Whether Javadocs should be published. If enabled, the
-     * [javadoc plugin][DokkatooJavadocPlugin] is applied.
+     * [javadoc plugin][DokkaJavadocPlugin] is applied.
      */
     abstract val publishJavadoc: Property<Boolean>
 
     /**
      * Whether Dokka HTML docs should be published. If enabled, the
-     * [HTML plugin][DokkatooHtmlPlugin] is applied.
+     * [HTML plugin][DokkaHtmlPlugin] is applied.
      */
     abstract val publishHtmlDoc: Property<Boolean>
 

@@ -1,16 +1,16 @@
 plugins {
-    dev.adamko.`dokkatoo-html`
+    org.jetbrains.dokka
 }
 
 group = "io.github.edricchan03.androidx"
 
 dependencies {
-    dokkatoo(projects.androidx.common.commonEnums)
-    dokkatoo(projects.androidx.common.kotestCommonEnums)
-    dokkatoo(projects.androidx.browser.browserKtx)
+    dokka(projects.androidx.common.commonEnums)
+    dokka(projects.androidx.common.kotestCommonEnums)
+    dokka(projects.androidx.browser.browserKtx)
 }
 
-dokkatoo {
+dokka {
     pluginsConfiguration.html {
         customAssets.from(rootDir.toPath().resolve("docs/assets/logo-icon.svg"))
         footerMessage.set(

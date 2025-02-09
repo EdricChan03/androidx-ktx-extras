@@ -1,7 +1,7 @@
 package io.github.edricchan03.plugin.library.extensions.docs
 
-import dev.adamko.dokkatoo.dokka.parameters.DokkaExternalDocumentationLinkSpec
-import dev.adamko.dokkatoo.dokka.parameters.DokkaSourceSetSpec
+import org.jetbrains.dokka.gradle.engine.parameters.DokkaExternalDocumentationLinkSpec
+import org.jetbrains.dokka.gradle.engine.parameters.DokkaSourceSetSpec
 
 /**
  * This object contains the names of the

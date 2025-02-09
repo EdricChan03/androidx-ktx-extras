@@ -1,5 +1,6 @@
 [versions]
 android-gradle = "8.4.0"
+dokka = "2.0.0"
 dokkatoo = "2.3.1"
 kotest = "5.9.0"
 kotlin = "1.9.23"
@@ -17,9 +18,9 @@ android-gradle-plugin = { module = "com.android.tools.build:gradle", version.ref
 # See https://issuetracker.google.com/issues/176079157#comment14
 kotlin-gradle-plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
 
+dokka-gradle-plugin = { module = "org.jetbrains.dokka:dokka-gradle-plugin", version.ref = "dokka" }
+
 [plugins]
 kotlinx-bcv = "org.jetbrains.kotlinx.binary-compatibility-validator:0.13.1"
 android-gradle-library = { id = "com.android.library", version.ref = "android-gradle" }
-dokkatoo-javadoc = { id = "dev.adamko.dokkatoo-javadoc", version.ref = "dokkatoo" }
-dokkatoo-html = { id = "dev.adamko.dokkatoo-html", version.ref = "dokkatoo" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }

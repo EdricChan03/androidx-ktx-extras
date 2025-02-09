@@ -17,8 +17,7 @@ dependencies {
     // See https://issuetracker.google.com/issues/176079157#comment14
     implementation(libs.kotlin.gradle.plugin)
     implementation(libs.android.gradle.plugin)
-    implementation(libs.plugins.dokkatoo.html.asDependency)
-    implementation(libs.plugins.dokkatoo.javadoc.asDependency)
+    implementation(libs.dokka.gradle.plugin)
     implementation(libs.plugins.kotlinx.bcv.asDependency)
 }
 
