@@ -336,3 +336,6 @@ fabric.properties
 !/gradle/wrapper/gradle-wrapper.jar
 
 # End of https://www.toptal.com/developers/gitignore/api/macos,windows,linux,zsh,powershell,android,androidstudio,gradle,kotlin,java
+
+# K2 output
+.kotlin
