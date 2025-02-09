@@ -17,5 +17,6 @@ abstract class LibraryComposeExtension {
      * If unset, this value is grabbed from the `android-libs.versions.toml` file.
      * @see ComposeOptions.kotlinCompilerExtensionVersion
      */
+    @Deprecated("This property has no effect; apply the Compose Compiler plugin instead")
     abstract val kotlinCompilerExtensionVersion: Property<String>
 }
