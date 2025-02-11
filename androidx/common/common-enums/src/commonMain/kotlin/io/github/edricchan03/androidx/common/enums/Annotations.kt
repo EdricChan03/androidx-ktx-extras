@@ -9,4 +9,5 @@ package io.github.edricchan03.androidx.common.enums
     "This Common Enums API is experimental and is likely to be changed " +
         "or removed in the future."
 )
+@MustBeDocumented
 public annotation class ExperimentalEnumsApi
