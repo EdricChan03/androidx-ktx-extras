@@ -20,7 +20,7 @@ kotlin-gradle-plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", v
 dokka-gradle-plugin = { module = "org.jetbrains.dokka:dokka-gradle-plugin", version.ref = "dokka" }
 
 [plugins]
-kotlinx-bcv = "org.jetbrains.kotlinx.binary-compatibility-validator:0.13.1"
+kotlinx-bcv = "org.jetbrains.kotlinx.binary-compatibility-validator:0.17.0"
 android-gradle-library = { id = "com.android.library", version.ref = "android-gradle" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 
