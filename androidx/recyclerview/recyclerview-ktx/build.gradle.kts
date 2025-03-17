@@ -35,12 +35,4 @@ dependencies {
     testImplementation(libs.kotest.assertions.core)
     testImplementation(libs.kotest.property)
     testImplementation(libs.kotest.framework.engine)
-
-    androidTestImplementation(libs.kotest.runner.android)
-    androidTestImplementation(libs.kotest.assertions.core)
-    androidTestImplementation(libs.kotest.property)
-    androidTestImplementation(libs.kotest.framework.engine)
-    androidTestImplementation(libs.mockk)
-    androidTestImplementation(androidLibs.androidx.test.runner)
-    androidTestImplementation(androidLibs.androidx.test.rules)
 }
