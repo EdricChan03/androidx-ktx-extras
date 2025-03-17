@@ -1,0 +1,8 @@
+public final class io/github/edricchan03/androidx/recyclerview/ktx/RecyclerViewPropertiesKt {
+	public static final fun getCanRecycle (Landroidx/recyclerview/widget/RecyclerView$ViewHolder;)Z
+	public static final fun getHasFixedSize (Landroidx/recyclerview/widget/RecyclerView;)Z
+	public static final fun getHasStableIds (Landroidx/recyclerview/widget/RecyclerView$Adapter;)Z
+	public static final fun setCanRecycle (Landroidx/recyclerview/widget/RecyclerView$ViewHolder;Z)V
+	public static final fun setHasFixedSize (Landroidx/recyclerview/widget/RecyclerView;Z)V
+	public static final fun setHasStableIds (Landroidx/recyclerview/widget/RecyclerView$Adapter;Z)V
+}
