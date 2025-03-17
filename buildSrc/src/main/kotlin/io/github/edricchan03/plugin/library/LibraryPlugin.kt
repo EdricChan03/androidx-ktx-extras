@@ -45,6 +45,7 @@ import org.gradle.plugins.signing.SigningExtension
 import org.gradle.plugins.signing.SigningPlugin
 import org.jetbrains.dokka.gradle.DokkaExtension
 import org.jetbrains.dokka.gradle.engine.parameters.DokkaSourceSetSpec
+import org.jetbrains.dokka.gradle.engine.plugins.DokkaHtmlPluginParameters
 import org.jetbrains.dokka.gradle.formats.DokkaHtmlPlugin
 import org.jetbrains.dokka.gradle.formats.DokkaJavadocPlugin
 import org.jetbrains.dokka.gradle.tasks.DokkaGenerateModuleTask
@@ -624,6 +625,22 @@ class LibraryPlugin : Plugin<Project> {
                 includes.from(extension.moduleDocs)
 
                 reportUndocumented.convention(true)
+            }
+        }
+
+        dokkaPublications.configureEach {
+            pluginsConfiguration {
+                val html by existing(DokkaHtmlPluginParameters::class) {
+                    footerMessage.convention(
+                        "&copy; 2023-2025 Edric Chan. androidx-ktx-extras is licensed under the " +
+                            "<a href=\"https://github.com/EdricChan03/androidx-ktx-extras/blob/main/LICENSE\" class=\"footer--link footer--link_external\">" +
+                            "GNU GPL 3.0</a>. AndroidX is licensed under the " +
+                            "<a href=\"https://github.com/androidx/androidx/blob/androidx-main/LICENSE.txt\" class=\"footer--link footer--link_external\">" +
+                            "Apache License 2.0</a>."
+                    )
+                    homepageLink.convention("https://github.com/EdricChan03/androidx-ktx-extras")
+                    separateInheritedMembers.convention(true)
+                }
             }
         }
     }
