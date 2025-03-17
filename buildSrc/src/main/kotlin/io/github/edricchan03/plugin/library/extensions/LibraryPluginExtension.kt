@@ -214,6 +214,8 @@ abstract class LibraryPluginExtension : ExtensionAware {
      * @see ComposeOptions
      * @see compose
      */
+    @Deprecated("The specified version has no effect; apply the Compose Compiler plugin instead")
+    @Suppress("DEPRECATION")
     fun withCompose(version: Provider<String>) {
         compose {
             enabled.set(true)
@@ -228,6 +230,8 @@ abstract class LibraryPluginExtension : ExtensionAware {
      * @see ComposeOptions
      * @see compose
      */
+    @Deprecated("The specified version has no effect; apply the Compose Compiler plugin instead")
+    @Suppress("DEPRECATION")
     fun withCompose(version: String) {
         compose {
             enabled.set(true)
