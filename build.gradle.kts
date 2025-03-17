@@ -9,6 +9,7 @@ dependencies {
     dokka(projects.androidx.common.commonEnums)
     dokka(projects.androidx.common.kotestCommonEnums)
     dokka(projects.androidx.browser.browserKtx)
+    dokka(projects.androidx.recyclerview.recyclerviewKtx)
 }
 
 dokka {
