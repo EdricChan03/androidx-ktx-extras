@@ -89,3 +89,22 @@ androidxtra-recyclerview-ktx = "io.github.edricchan03.androidx.recyclerview:recy
 ```kotlin
 implementation(libs.androidxtra.recyclerview.ktx)
 ```
+
+## Available extensions
+
+Currently, the following extension functions are available:
+
+### Kotlin Properties
+
+The following extension properties have been added:
+
+Extension function | Getter | Setter
+---|---|---
+[`RecyclerView.ViewHolder.canRecycle`][io.github.edricchan03.androidx.recyclerview.ktx.canRecycle] | [`RecyclerView.ViewHolder.isRecyclable`][androidx.recyclerview.widget.RecyclerView.ViewHolder.isRecyclable] | [`RecyclerView.ViewHolder.setIsRecyclable`][androidx.recyclerview.widget.RecyclerView.ViewHolder.setIsRecyclable]
+[`RecyclerView.hasFixedSize`][io.github.edricchan03.androidx.recyclerview.ktx.hasFixedSize] | [`RecyclerView.hasFixedSize`][androidx.recyclerview.widget.RecyclerView.hasFixedSize] | [`RecyclerView.setHasFixedSize`][androidx.recyclerview.widget.RecyclerView.setHasFixedSize]
+[`RecyclerView.Adapter.hasStableIds`][io.github.edricchan03.androidx.recyclerview.ktx.hasStableIds] | [`RecyclerView.Adapter.hasStableIds`][androidx.recyclerview.widget.RecyclerView.Adapter.hasStableIds] | [`RecyclerView.Adapter.setHasStableIds`][androidx.recyclerview.widget.RecyclerView.Adapter.setHasStableIds]
+
+# Package io.github.edricchan03.androidx.recyclerview.ktx
+
+Top-level Kotlin extensions/utils
+for [AndroidX RecyclerView](https://developer.android.com/jetpack/androidx/releases/recyclerview).
