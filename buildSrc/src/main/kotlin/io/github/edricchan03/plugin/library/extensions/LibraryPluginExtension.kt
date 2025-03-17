@@ -73,8 +73,7 @@ abstract class LibraryPluginExtension : ExtensionAware {
      * By default, this value is `true` if [LibraryMavenCoordinates.version] ends with
      * `"SNAPSHOT"`.
      */
-    // FIXME: https://github.com/gradle/gradle/issues/18543
-    abstract fun getIsReleaseVersion(): Property<ReleaseVersionSpec>
+    abstract val releaseVersionSpec: Property<ReleaseVersionSpec>
 
     /**
      * Sets whether the version is a release version based on the value of [isRelease].
@@ -85,7 +84,7 @@ abstract class LibraryPluginExtension : ExtensionAware {
      * @param isRelease Whether the version is a release version.
      */
     fun setReleaseVersion(isRelease: Boolean) {
-        getIsReleaseVersion().set { isRelease }
+        releaseVersionSpec.set { isRelease }
     }
 
     /**
@@ -259,6 +258,11 @@ abstract class LibraryPluginExtension : ExtensionAware {
  * By default, this value is `true` if [LibraryMavenCoordinates.version] ends with
  * `"SNAPSHOT"`.
  */
-// TODO: Remove when https://github.com/gradle/gradle/issues/18543 is fixed
+@Deprecated(
+    "Use releaseVersionSpec",
+    ReplaceWith(
+        "this.releaseVersionSpec"
+    )
+)
 inline val LibraryPluginExtension.isReleaseVersion
-    get() = getIsReleaseVersion()
+    get() = releaseVersionSpec
