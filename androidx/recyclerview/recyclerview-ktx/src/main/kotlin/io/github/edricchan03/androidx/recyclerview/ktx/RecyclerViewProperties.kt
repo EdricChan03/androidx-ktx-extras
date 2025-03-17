@@ -23,7 +23,7 @@ public var RecyclerView.hasFixedSize: Boolean
  * @see RecyclerView.Adapter.hasStableIds
  * @see RecyclerView.Adapter.setHasStableIds
  */
-public var <VH : RecyclerView.ViewHolder> RecyclerView.Adapter<VH>.hasStableIds: Boolean
+public var RecyclerView.Adapter<*>.hasStableIds: Boolean
     get() = hasStableIds()
     set(value) {
         setHasStableIds(value)
