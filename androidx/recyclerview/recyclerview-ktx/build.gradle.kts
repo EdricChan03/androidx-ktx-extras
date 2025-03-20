@@ -7,7 +7,7 @@ plugins {
 }
 
 androidxKtx {
-    mavenCoordinates.version = "0.1.0-SNAPSHOT"
+    mavenCoordinates.version = "0.1.0"
 
     libraryType = LibraryType.Android
 
