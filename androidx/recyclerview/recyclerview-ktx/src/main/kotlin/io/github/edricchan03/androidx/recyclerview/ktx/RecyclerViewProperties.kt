@@ -1,6 +1,10 @@
 package io.github.edricchan03.androidx.recyclerview.ktx
 
 import androidx.recyclerview.widget.RecyclerView
+import io.github.edricchan03.androidx.recyclerview.ktx.annotations.ExperimentalRecyclerViewApi
+import kotlin.contracts.ExperimentalContracts
+import kotlin.contracts.InvocationKind
+import kotlin.contracts.contract
 
 // For https://issuetracker.google.com/issues/204918397
 
@@ -47,3 +51,29 @@ public var RecyclerView.ViewHolder.canRecycle: Boolean
     set(value) {
         setIsRecyclable(value)
     }
+
+/**
+ * Calls the [block] on the [RecyclerView.ViewHolder] receiver with [canRecycle] temporarily
+ * set to `false`, and when [block] is done executing [canRecycle] will be set back to `true`.
+ * @param block Desired lambda to be executed when [canRecycle] is set to `false`.
+ * @since 0.1.0
+ * @see canRecycle
+ * @see RecyclerView.ViewHolder.isRecyclable
+ * @see RecyclerView.ViewHolder.setIsRecyclable
+ */
+@OptIn(ExperimentalContracts::class)
+@ExperimentalRecyclerViewApi
+public fun RecyclerView.ViewHolder.withNoRecycling(
+    block: RecyclerView.ViewHolder.() -> Unit
+) {
+    contract {
+        callsInPlace(block, InvocationKind.EXACTLY_ONCE)
+    }
+
+    try {
+        canRecycle = false
+        block()
+    } finally {
+        canRecycle = true
+    }
+}

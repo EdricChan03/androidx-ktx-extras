@@ -5,6 +5,7 @@ public final class io/github/edricchan03/androidx/recyclerview/ktx/RecyclerViewP
 	public static final fun setCanRecycle (Landroidx/recyclerview/widget/RecyclerView$ViewHolder;Z)V
 	public static final fun setHasFixedSize (Landroidx/recyclerview/widget/RecyclerView;Z)V
 	public static final fun setHasStableIds (Landroidx/recyclerview/widget/RecyclerView$Adapter;Z)V
+	public static final fun withNoRecycling (Landroidx/recyclerview/widget/RecyclerView$ViewHolder;Lkotlin/jvm/functions/Function1;)V
 }
 
 public abstract interface annotation class io/github/edricchan03/androidx/recyclerview/ktx/annotations/ExperimentalRecyclerViewApi : java/lang/annotation/Annotation {
