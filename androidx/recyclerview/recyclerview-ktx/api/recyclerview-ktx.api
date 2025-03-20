@@ -6,3 +6,7 @@ public final class io/github/edricchan03/androidx/recyclerview/ktx/RecyclerViewP
 	public static final fun setHasFixedSize (Landroidx/recyclerview/widget/RecyclerView;Z)V
 	public static final fun setHasStableIds (Landroidx/recyclerview/widget/RecyclerView$Adapter;Z)V
 }
+
+public abstract interface annotation class io/github/edricchan03/androidx/recyclerview/ktx/annotations/ExperimentalRecyclerViewApi : java/lang/annotation/Annotation {
+}
+
