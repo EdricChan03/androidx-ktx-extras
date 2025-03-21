@@ -26,7 +26,7 @@ dependencyResolutionManagement {
 ### Kotlin/Groovy
 
 ```kotlin
-implementation("io.github.edricchan03.androidx.recyclerview:recyclerview-ktx:0.1.0")
+implementation("io.github.edricchan03.androidx.recyclerview:recyclerview-ktx:0.2.0")
 ```
 
 ### TOML
@@ -35,7 +35,7 @@ implementation("io.github.edricchan03.androidx.recyclerview:recyclerview-ktx:0.1
 
 ```toml
 [libaries]
-androidxtra-recyclerview-ktx = "io.github.edricchan03.androidx.recyclerview:recyclerview-ktx:0.1.0"
+androidxtra-recyclerview-ktx = "io.github.edricchan03.androidx.recyclerview:recyclerview-ktx:0.2.0"
 ```
 
 `build.gradle.kts`:
@@ -72,7 +72,7 @@ dependencyResolutionManagement {
 `build.gradle.kts`:
 
 ```kotlin
-implementation("io.github.edricchan03.androidx.recyclerview:recyclerview-ktx:0.1.0-SNAPSHOT")
+implementation("io.github.edricchan03.androidx.recyclerview:recyclerview-ktx:0.3.0-SNAPSHOT")
 ```
 
 #### TOML
@@ -81,7 +81,7 @@ implementation("io.github.edricchan03.androidx.recyclerview:recyclerview-ktx:0.1
 
 ```toml
 [libaries]
-androidxtra-recyclerview-ktx = "io.github.edricchan03.androidx.recyclerview:recyclerview-ktx:0.1.0-SNAPSHOT"
+androidxtra-recyclerview-ktx = "io.github.edricchan03.androidx.recyclerview:recyclerview-ktx:0.3.0-SNAPSHOT"
 ```
 
 `build.gradle.kts`:
@@ -90,7 +90,7 @@ androidxtra-recyclerview-ktx = "io.github.edricchan03.androidx.recyclerview:recy
 implementation(libs.androidxtra.recyclerview.ktx)
 ```
 
-## Available extensions
+## Available extensions/methods
 
 Currently, the following extension functions are available:
 
@@ -103,6 +103,12 @@ Extension function | Getter | Setter
 [`RecyclerView.ViewHolder.canRecycle`][io.github.edricchan03.androidx.recyclerview.ktx.canRecycle] | [`RecyclerView.ViewHolder.isRecyclable`][androidx.recyclerview.widget.RecyclerView.ViewHolder.isRecyclable] | [`RecyclerView.ViewHolder.setIsRecyclable`][androidx.recyclerview.widget.RecyclerView.ViewHolder.setIsRecyclable]
 [`RecyclerView.hasFixedSize`][io.github.edricchan03.androidx.recyclerview.ktx.hasFixedSize] | [`RecyclerView.hasFixedSize`][androidx.recyclerview.widget.RecyclerView.hasFixedSize] | [`RecyclerView.setHasFixedSize`][androidx.recyclerview.widget.RecyclerView.setHasFixedSize]
 [`RecyclerView.Adapter.hasStableIds`][io.github.edricchan03.androidx.recyclerview.ktx.hasStableIds] | [`RecyclerView.Adapter.hasStableIds`][androidx.recyclerview.widget.RecyclerView.Adapter.hasStableIds] | [`RecyclerView.Adapter.setHasStableIds`][androidx.recyclerview.widget.RecyclerView.Adapter.setHasStableIds]
+
+### Top-level methods
+
+* [`callback`][io.github.edricchan03.androidx.recyclerview.ktx.callback] (new in version 0.2.0)
+* [`itemCallback`][io.github.edricchan03.androidx.recyclerview.ktx.itemCallback] (new in version
+  0.2.0)
 
 # Package io.github.edricchan03.androidx.recyclerview.ktx
 
