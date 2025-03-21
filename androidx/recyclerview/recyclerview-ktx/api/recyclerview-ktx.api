@@ -1,3 +1,9 @@
+public final class io/github/edricchan03/androidx/recyclerview/ktx/ListAdapterUtilsKt {
+	public static final fun itemCallback (Lkotlin/jvm/functions/Function2;Lkotlin/jvm/functions/Function2;)Landroidx/recyclerview/widget/DiffUtil$ItemCallback;
+	public static final fun itemCallback (Lkotlin/jvm/functions/Function2;Lkotlin/jvm/functions/Function2;Lkotlin/jvm/functions/Function2;)Landroidx/recyclerview/widget/DiffUtil$ItemCallback;
+	public static synthetic fun itemCallback$default (Lkotlin/jvm/functions/Function2;Lkotlin/jvm/functions/Function2;Lkotlin/jvm/functions/Function2;ILjava/lang/Object;)Landroidx/recyclerview/widget/DiffUtil$ItemCallback;
+}
+
 public final class io/github/edricchan03/androidx/recyclerview/ktx/RecyclerViewPropertiesKt {
 	public static final fun getCanRecycle (Landroidx/recyclerview/widget/RecyclerView$ViewHolder;)Z
 	public static final fun getHasFixedSize (Landroidx/recyclerview/widget/RecyclerView;)Z
