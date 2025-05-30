@@ -15,7 +15,6 @@ androidxKtx {
     description = "Kotlin extensions for AndroidX RecyclerView"
 }
 
-@Suppress("UnstableApiUsage")
 android {
     namespace = "io.github.edricchan03.androidx.recyclerview.ktx"
 

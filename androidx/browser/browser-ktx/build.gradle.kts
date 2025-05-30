@@ -17,7 +17,6 @@ androidxKtx {
     description = "Kotlin extensions for AndroidX Browser"
 }
 
-@Suppress("UnstableApiUsage")
 android {
     namespace = "io.github.edricchan03.androidx.browser.ktx"
 
