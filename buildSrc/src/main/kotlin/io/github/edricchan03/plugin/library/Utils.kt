@@ -75,11 +75,11 @@ const val SOURCE_URL = "https://github.com/EdricChan03/androidx-ktx-extras"
 internal val Project.sourceUrl
     get() = "$SOURCE_URL/tree/main/$pathAsFilePath"
 
-internal inline fun <T> Provider<T>.ifPresent(ifPresent: (value: T) -> Unit) {
+internal inline fun <T : Any> Provider<T>.ifPresent(ifPresent: (value: T) -> Unit) {
     if (isPresent) ifPresent(get())
 }
 
-internal inline fun <T> Provider<T>.ifPresentOrElse(
+internal inline fun <T : Any> Provider<T>.ifPresentOrElse(
     ifPresent: (value: T) -> Unit,
     ifNotPresent: () -> Unit
 ) {
