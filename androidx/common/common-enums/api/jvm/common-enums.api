@@ -1,0 +1,21 @@
+public abstract class io/github/edricchan03/androidx/common/enums/EnumFromValue {
+	public fun <init> (Ljava/lang/Enum;)V
+	public final fun fromValue (Ljava/lang/Object;)Ljava/lang/Enum;
+	public final fun fromValueOrElse (Ljava/lang/Object;Ljava/lang/Enum;)Ljava/lang/Enum;
+	public abstract fun fromValueOrNull (Ljava/lang/Object;)Ljava/lang/Enum;
+	public final fun hasValue (Ljava/lang/Object;)Z
+	public final fun requireValue (Ljava/lang/Object;)Ljava/lang/Enum;
+}
+
+public abstract interface annotation class io/github/edricchan03/androidx/common/enums/ExperimentalEnumsApi : java/lang/annotation/Annotation {
+}
+
+public abstract interface class io/github/edricchan03/androidx/common/enums/ValueEnum {
+	public abstract fun getValue ()Ljava/lang/Object;
+}
+
+public class io/github/edricchan03/androidx/common/enums/impl/ValueEnumFromValue : io/github/edricchan03/androidx/common/enums/EnumFromValue {
+	public fun <init> (Ljava/lang/Enum;Lkotlin/enums/EnumEntries;)V
+	public fun fromValueOrNull (Ljava/lang/Object;)Ljava/lang/Enum;
+}
+
