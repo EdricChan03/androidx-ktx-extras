@@ -50,9 +50,9 @@ import org.jetbrains.dokka.gradle.formats.DokkaHtmlPlugin
 import org.jetbrains.dokka.gradle.formats.DokkaJavadocPlugin
 import org.jetbrains.dokka.gradle.tasks.DokkaGenerateModuleTask
 import org.jetbrains.kotlin.gradle.dsl.KotlinAndroidProjectExtension
+import org.jetbrains.kotlin.gradle.dsl.KotlinBaseExtension
 import org.jetbrains.kotlin.gradle.dsl.KotlinJvmProjectExtension
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
-import org.jetbrains.kotlin.gradle.dsl.KotlinTopLevelExtension
 import org.jetbrains.kotlin.gradle.plugin.KotlinMultiplatformPluginWrapper
 import org.jetbrains.kotlin.gradle.plugin.KotlinPluginWrapper
 import java.net.URI
@@ -581,7 +581,7 @@ class LibraryPlugin : Plugin<Project> {
         }
     }
 
-    private fun KotlinTopLevelExtension.setConventions() {
+    private fun KotlinBaseExtension.setConventions() {
         jvmToolchain(11)
         explicitApi()
     }
