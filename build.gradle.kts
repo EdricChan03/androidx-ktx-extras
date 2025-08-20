@@ -1,6 +1,7 @@
 plugins {
     org.jetbrains.dokka
     alias(libs.plugins.kotlin.composeCompiler) apply false
+    alias(libs.plugins.kotest.multiplatform) apply false
 }
 
 group = "io.github.edricchan03.androidx"

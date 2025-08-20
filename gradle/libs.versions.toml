@@ -1,15 +1,17 @@
 [versions]
 android-gradle = "8.12.1"
 dokka = "2.0.0"
-kotest = "5.9.1"
+kotest = "6.0.0"
 kotlin = "2.2.10"
 
 [libraries]
 kotest-assertions-core = { module = "io.kotest:kotest-assertions-core", version.ref = "kotest" }
-kotest-framework-api = { module = "io.kotest:kotest-framework-api", version.ref = "kotest" }
-kotest-framework-datatest = { module = "io.kotest:kotest-framework-datatest", version.ref = "kotest" }
+# For multiplatform tests
+kotest-framework-engine = { module = "io.kotest:kotest-framework-engine", version.ref = "kotest" }
 kotest-property = { module = "io.kotest:kotest-property", version.ref = "kotest" }
+# For JVM tests
 kotest-runner-junit5 = { module = "io.kotest:kotest-runner-junit5", version.ref = "kotest" }
+
 kotlin-reflect = { module = "org.jetbrains.kotlin:kotlin-reflect", version.ref = "kotlin" }
 
 mockk = "io.mockk:mockk:1.14.5"
@@ -27,3 +29,6 @@ android-gradle-library = { id = "com.android.library", version.ref = "android-gr
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 
 kotlin-composeCompiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+
+kotest-multiplatform = { id = "io.kotest", version.ref = "kotest" }
+ksp = "com.google.devtools.ksp:2.2.10-2.0.2"
