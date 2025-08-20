@@ -19,8 +19,7 @@ tasks.withType<Test>().configureEach {
 dependencies {
     api(libs.kotest.assertions.core)
     api(libs.kotest.property)
-    api(libs.kotest.framework.api)
-    api(libs.kotest.framework.datatest)
+    api(libs.kotest.framework.engine)
     api(libs.kotlin.reflect) {
         because("Kotlin extension support for enum tests")
     }
