@@ -108,6 +108,7 @@ enum class Example(val value: String) {
       else -> null
     }
   }
+}
 ```
 
 # Package io.github.edricchan03.androidx.common.enums.impl
