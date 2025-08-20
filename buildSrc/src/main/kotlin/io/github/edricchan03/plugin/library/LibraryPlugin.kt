@@ -292,7 +292,7 @@ class LibraryPlugin : Plugin<Project> {
         mavenCoordinates {
             groupId.convention(project.getLibraryGroupFromProjectPath())
             artifactId.convention(project.name)
-            version.convention("0.0.1-SNAPSHOT")
+            version.convention("0.1.0-SNAPSHOT")
         }
         releaseVersionSpec.convention(DefaultReleaseVersionSpec)
         inceptionYear.convention(LibraryPluginExtension.CURRENT_YEAR_STRING)
