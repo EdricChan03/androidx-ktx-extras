@@ -8,6 +8,7 @@ import io.github.edricchan03.plugin.library.extensions.docs.LibraryDocsExtension
 import io.github.edricchan03.plugin.library.extensions.publish.DefaultReleaseVersionSpec
 import io.github.edricchan03.plugin.library.extensions.publish.asReadOnlyProvider
 import io.github.edricchan03.plugin.library.extensions.publish.maven.LibraryMavenPublishingExtension
+import io.github.edricchan03.plugin.library.tasks.EmptyJavadocJarTask
 import io.github.edricchan03.publishing.computeJavadocTaskName
 import kotlinx.validation.BinaryCompatibilityValidatorPlugin
 import org.gradle.api.Plugin
@@ -185,18 +186,9 @@ class LibraryPlugin : Plugin<Project> {
 
         // Add Javadoc Jar tasks
         tasks {
-            val dokkaGenerateModuleJavadoc by existing(DokkaGenerateModuleTask::class)
             val dokkaGenerateModuleHtml by existing(DokkaGenerateModuleTask::class)
 
-            kmp.testableTargets.configureEach {
-                register<Jar>(computeJavadocTaskName(name, isHtml = false)) {
-                    group = BasePlugin.BUILD_GROUP
-                    description =
-                        "Assembles a jar archive containing the Javadocs for the ${this@configureEach.name} library variant"
-                    dependsOn(dokkaGenerateModuleJavadoc)
-                    from(dokkaGenerateModuleJavadoc.map { it.outputs })
-                    archiveClassifier.set(DocsType.JAVADOC)
-                }
+            kmp.targets.configureEach {
                 register<Jar>(computeJavadocTaskName(name, isHtml = true)) {
                     group = BasePlugin.BUILD_GROUP
                     description =
@@ -205,6 +197,7 @@ class LibraryPlugin : Plugin<Project> {
                     dependsOn(dokkaGenerateModuleHtml)
                     from(dokkaGenerateModuleHtml.map { it.outputs })
                     archiveClassifier.set("html-docs")
+                    archiveAppendix.set(targetName)
                 }
             }
         }
@@ -273,11 +266,12 @@ class LibraryPlugin : Plugin<Project> {
         with(project) {
             convention(
                 when {
-                    plugins.hasPlugin(AGPLibraryPlugin::class) ||
-                        extensions.hasType<AGPLibraryExtension>() -> LibraryType.Android
-
+                    // Order matters; KMP libraries may also have the AGP library plugin applied
                     plugins.hasPlugin(KotlinMultiplatformPluginWrapper::class) ||
                         extensions.hasType<KotlinMultiplatformExtension>() -> LibraryType.Multiplatform
+
+                    plugins.hasPlugin(AGPLibraryPlugin::class) ||
+                        extensions.hasType<AGPLibraryExtension>() -> LibraryType.Android
 
                     plugins.hasPlugin(KotlinPluginWrapper::class) ||
                         extensions.hasType<KotlinJvmProjectExtension>() -> LibraryType.Jvm
@@ -348,10 +342,11 @@ class LibraryPlugin : Plugin<Project> {
         }
 
         docs {
-            publishHtmlDoc.convention(true)
-            publishJavadoc.convention(true)
-
             val isNotMultiplatform = libraryType.map { it != LibraryType.Multiplatform }
+
+            publishHtmlDoc.convention(true)
+            publishJavadoc.convention(isNotMultiplatform)
+
             onlyMainSourceLink.convention(isNotMultiplatform)
             suppressNonMain.convention(isNotMultiplatform)
 
@@ -396,7 +391,7 @@ class LibraryPlugin : Plugin<Project> {
         // Kotlin Multiplatform
         extensions.findByType<KotlinMultiplatformExtension>()?.apply {
             setConventions()
-            configureKmpPublications(project)
+            setKmpConventions(project)
         }
         // Kotlin/JVM
         extensions.findByType<KotlinJvmProjectExtension>()?.apply {
@@ -471,16 +466,34 @@ class LibraryPlugin : Plugin<Project> {
         }
     }
 
-    private fun KotlinMultiplatformExtension.configureKmpPublications(
+    private fun KotlinMultiplatformExtension.setKmpConventions(
         project: Project
     ) {
-        project.afterEvaluate {
-            testableTargets.configureEach {
-                mavenPublication {
-                    // Add Javadocs as an artifact
-                    artifact(tasks[computeJavadocTaskName(this@configureEach.name, isHtml = false)])
-                    artifact(tasks[computeJavadocTaskName(this@configureEach.name, isHtml = true)])
+        // Maven Central requires a Javadoc jar to be supplied, which isn't really
+        // a thing for Multiplatform libraries - so use an empty jar file
+        targets.configureEach {
+            withSourcesJar()
+
+            val javadocJarTaskName = "emptyJavadoc${
+                targetName.replaceFirstChar {
+                    if (it.isLowerCase()) it.titlecase() else it.toString()
                 }
+            }Jar"
+            logger.info("Registering empty javadoc jar for $name with name $javadocJarTaskName")
+            val emptyJavadocJar =
+                project.tasks.register<EmptyJavadocJarTask>(name = javadocJarTaskName) {
+                    archiveAppendix.set(targetName)
+                    println("Resulting archive file for $targetName: ${archiveFile.get().asFile}")
+                }
+            mavenPublication {
+                artifact(emptyJavadocJar)
+                // Dokka docs are still safe for publishing
+                artifact(
+                    project.tasks[computeJavadocTaskName(
+                        variantName = targetName,
+                        isHtml = true
+                    )]
+                )
             }
         }
     }
@@ -578,6 +591,8 @@ class LibraryPlugin : Plugin<Project> {
         extension: LibraryDocsExtension
     ) {
         dokkaSourceSets {
+            // TODO: Remove workaround when https://github.com/Kotlin/dokka/issues/3701
+            //  is resolved by that upstream bug
             if (extension.onlyMainSourceLink.getOrElse(true)) {
                 maybeCreate("main").apply {
                     configureSourceLink(project, modulePath)
