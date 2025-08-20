@@ -6,7 +6,8 @@ Common enums utilities for androidx-ktx-extras' modules.
 
 <a href="https://central.sonatype.com/artifact/io.github.edricchan03.androidx.common/common-enums"><img src="https://img.shields.io/maven-central/v/io.github.edricchan03.androidx.common/common-enums?style=for-the-badge&logo=apachemaven&logoColor=%23C71A36&label=Maven%20Central" alt="Common Enums on Maven Central"></a>
 
-Common Enums is available on [Maven Central](https://central.sonatype.com) as the Maven coordinate [`io.github.edricchan03.androidx.common:common-enums`](https://central.sonatype.com/artifact/io.github.edricchan03.androidx.common/common-enums):
+Common Enums is available on [Maven Central](https://central.sonatype.com) as the Maven coordinate [
+`io.github.edricchan03.androidx.common:common-enums`](https://central.sonatype.com/artifact/io.github.edricchan03.androidx.common/common-enums):
 
 `settings.gradle.kts`
 
@@ -24,7 +25,7 @@ dependencyResolutionManagement {
 `build.gradle.kts`
 
 ```kotlin
-implementation("io.github.edricchan03.androidx.common:common-enums:0.2.0")
+implementation("io.github.edricchan03.androidx.common:common-enums:0.3.0")
 ```
 
 ### TOML
@@ -33,7 +34,7 @@ implementation("io.github.edricchan03.androidx.common:common-enums:0.2.0")
 
 ```toml
 [libraries]
-androidxtra-common-enums = "io.github.edricchan03.androidx.common:common-enums:0.2.0"
+androidxtra-common-enums = "io.github.edricchan03.androidx.common:common-enums:0.3.0"
 ```
 
 `build.gradle.kts`:
@@ -44,7 +45,7 @@ implementation(libs.androidxtra.common.enums)
 
 ### Snapshots
 
-<a href="https://s01.oss.sonatype.org/content/repositories/snapshots/io/github/edricchan03/androidx/common/common-enums/"><img src="https://img.shields.io/maven-metadata/v?metadataUrl=https%3A%2F%2Fs01.oss.sonatype.org%2Fcontent%2Frepositories%2Fsnapshots%2Fio%2Fgithub%2Fedricchan03%2Fandroidx%2Fcommon%2Fcommon-enums%2Fmaven-metadata.xml&style=for-the-badge&logo=apachemaven&logoColor=%23C71A36&label=Maven%20Central%20(snapshots)" alt="Common Enums on Maven Central (snapshot)"></a>
+<a href="https://central.sonatype.com/repository/maven-snapshots/io/github/edricchan03/androidx/common/common-enums"><img src="https://img.shields.io/maven-metadata/v?metadataUrl=https%3A%2F%2Fcentral.sonatype.com%2Frepository%2Fmaven-snapshots%2Fio%2Fgithub%2Fedricchan03%2Fandroidx%2Fcommon%2Fcommon-enums%2Fmaven-metadata.xml&style=for-the-badge&logo=apachemaven&logoColor=%23C71A36&label=Maven%20Central%20(snapshots)" alt="Common Enums on Maven Central (snapshot)"></a>
 
 Alternatively, you can grab the latest built snapshot from Maven Central's snapshots
 repository:
@@ -55,7 +56,7 @@ repository:
 dependencyResolutionManagement {
   // ...
   repositories {
-    maven("https://s01.oss.sonatype.org/content/repositories/snapshots/") {
+    maven("https://central.sonatype.com/repository/maven-snapshots") {
       // Optionally, you can specify that only snapshots are to be used
       mavenContent {
         snapshotsOnly()
@@ -70,7 +71,7 @@ dependencyResolutionManagement {
 `build.gradle.kts`:
 
 ```kotlin
-implementation("io.github.edricchan03.androidx.common:common-enums:0.2.1-SNAPSHOT")
+implementation("io.github.edricchan03.androidx.common:common-enums:0.3.1-SNAPSHOT")
 ```
 
 #### TOML
@@ -79,7 +80,7 @@ implementation("io.github.edricchan03.androidx.common:common-enums:0.2.1-SNAPSHO
 
 ```toml
 [libaries]
-androidxtra-common-enums = "io.github.edricchan03.androidx.common:common-enums:0.2.1-SNAPSHOT"
+androidxtra-common-enums = "io.github.edricchan03.androidx.common:common-enums:0.3.1-SNAPSHOT"
 ```
 
 `build.gradle.kts`:
@@ -90,22 +91,23 @@ implementation(libs.androidxtra.common.enums)
 
 # Package io.github.edricchan03.androidx.common.enums
 
-Common enum utilities such as [`EnumFromValue`][io.github.edricchan03.androidx.common.enums.EnumFromValue]:
+Common enum utilities such as [
+`EnumFromValue`][io.github.edricchan03.androidx.common.enums.EnumFromValue]:
 
 ```kotlin
 enum class Example(val value: String) {
-    One("one"),
-    Two("two"),
-    Three("abc");
+  One("one"),
+  Two("two"),
+  Three("abc");
 
-    companion object : EnumFromValue<String, Example>(default = Three) {
-        override fun fromValueOrNull(value: String) = when (value) {
-            "one" -> One
-            "two" -> Two
-            "abc", "other value" -> Three
-            else -> null
+  companion object : EnumFromValue<String, Example>(default = Three) {
+    override fun fromValueOrNull(value: String) = when (value) {
+      "one" -> One
+      "two" -> Two
+      "abc", "other value" -> Three
+      else -> null
+    }
   }
-}
 ```
 
 # Package io.github.edricchan03.androidx.common.enums.impl
@@ -114,7 +116,7 @@ Implementations of utilities from the parent package, such as
 [`ValueEnumFromValue`][io.github.edricchan03.androidx.common.enums.impl.ValueEnumFromValue]:
 
 ```kotlin
-enum class ExampleValue(override val value: String): ValueEnum<String> {
+enum class ExampleValue(override val value: String) : ValueEnum<String> {
   One("one"),
   Two("two"),
   Three("three");

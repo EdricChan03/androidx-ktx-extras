@@ -7,7 +7,7 @@ plugins {
 }
 
 androidxKtx {
-    mavenCoordinates.version = "0.3.0-SNAPSHOT"
+    mavenCoordinates.version = "0.3.0"
 
     name = "androidx-ktx-extras-common-enums"
     description = "Common enum utilities for androidx-ktx-extras"

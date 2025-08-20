@@ -25,6 +25,43 @@ the [generated Dokka documentation](https://edricchan03.github.io/androidx-ktx-e
 for API usage.
 
 ---
+<a name="0.3.0"></a>
+
+## 0.3.0 (21 Aug 2025)
+
+* [Maven Central](https://central.sonatype.com/artifact/io.github.edricchan03.androidx.common/common-enums/0.3.0)
+* [GitHub release](https://github.com/EdricChan03/androidx-ktx-extras/releases/tag/common-enums@0.3.0)
+* [Full changelog](https://github.com/EdricChan03/androidx-ktx-extras/compare/common-enums@0.2.0...common-enums@0.3.0)
+
+### Notable changes
+
+* This release adds actual support for KMP targets
+  ([#29](https://github.com/EdricChan03/androidx-ktx-extras/issues/29)), with the
+  following being supported:
+  * wasmJs
+  * macosX64
+  * macosArm64
+  * iosX64
+  * iosArm64
+  * iosSimulatorArm64
+  * watchosArm32
+  * watchosArm64
+  * watchosX64
+  * watchosSimulatorArm64
+  * watchosDeviceArm64
+  * tvosArm64
+  * tvosX64
+  * tvosSimulatorArm64
+  * mingwX64
+  * linuxX64
+  * linuxArm64
+
+### Dependency updates
+
+Artifact | Old version | New version
+---|---|---
+[Kotlin](https://kotlinlang.org) | [`1.9.23`](https://github.com/JetBrains/kotlin/releases/tag/v1.9.23) | [`2.2.10`](https://github.com/JetBrains/kotlin/releases/tag/v2.2.10)
+
 <a name="0.2.0"></a>
 
 ## 0.2.0 (11 May 2024)
