@@ -488,7 +488,6 @@ class LibraryPlugin : Plugin<Project> {
             val emptyJavadocJar =
                 project.tasks.register<EmptyJavadocJarTask>(name = javadocJarTaskName) {
                     archiveAppendix.set(targetName)
-                    println("Resulting archive file for $targetName: ${archiveFile.get().asFile}")
                 }
             mavenPublication {
                 artifact(emptyJavadocJar)
