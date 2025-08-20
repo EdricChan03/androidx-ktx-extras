@@ -62,8 +62,6 @@ import io.github.edricchan03.plugin.library.extensions.publish.gitHubPackagesUrl
 import io.github.edricchan03.plugin.library.extensions.publish.sonatypeSnapshotUrl as SonatypeSnapshotUrl
 import io.github.edricchan03.plugin.library.extensions.publish.sonatypeStagingUrl as SonatypeStagingUrl
 
-// TODO: Add Android convention support
-// TODO: Add Kotlin/JVM + Kotlin Multiplatform convention support
 class LibraryPlugin : Plugin<Project> {
     private lateinit var libs: VersionCatalog
     private lateinit var androidLibs: VersionCatalog
