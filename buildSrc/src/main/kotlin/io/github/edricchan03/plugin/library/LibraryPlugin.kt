@@ -11,6 +11,8 @@ import io.github.edricchan03.plugin.library.extensions.publish.maven.LibraryMave
 import io.github.edricchan03.plugin.library.tasks.EmptyJavadocJarTask
 import io.github.edricchan03.publishing.computeJavadocTaskName
 import kotlinx.validation.BinaryCompatibilityValidatorPlugin
+import nmcp.NmcpExtension
+import nmcp.NmcpPlugin
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.artifacts.VersionCatalog
@@ -242,6 +244,7 @@ class LibraryPlugin : Plugin<Project> {
                 apply<DokkaHtmlPlugin>()
             }
             apply<BinaryCompatibilityValidatorPlugin>()
+            apply<NmcpPlugin>()
         }
     }
 
@@ -399,6 +402,9 @@ class LibraryPlugin : Plugin<Project> {
 
         // Dokka
         extensions.findByType<DokkaExtension>()?.setConventions(project, extension.docs)
+
+        // nmcp
+        extensions.findByType<NmcpExtension>()?.setConventions(project)
     }
 
     private fun SigningExtension.setConventions(publishing: PublishingExtension) {
@@ -677,6 +683,20 @@ class LibraryPlugin : Plugin<Project> {
                 artifact(tasks[computeJavadocTaskName(variantName, isHtml = false)])
                 artifact(tasks[computeJavadocTaskName(variantName, isHtml = true)])
             }
+        }
+    }
+
+    private fun NmcpExtension.setConventions(
+        project: Project
+    ) {
+        publishAllPublicationsToCentralPortal {
+            val usernameEnv = project.providers.environmentVariable("USERNAME")
+            val tokenEnv = project.providers.environmentVariable("TOKEN")
+
+            username.set(usernameEnv.orElse(project.providers.gradleProperty("central.name")))
+            password.set(tokenEnv.orElse(project.providers.gradleProperty("central.token")))
+
+            publishingType.set("USER_MANAGED")
         }
     }
 

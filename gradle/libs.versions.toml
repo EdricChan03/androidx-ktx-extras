@@ -3,6 +3,7 @@ android-gradle = "8.12.1"
 dokka = "2.0.0"
 kotest = "6.0.0"
 kotlin = "2.2.10"
+nmcp = "1.1.0"
 
 [libraries]
 kotest-assertions-core = { module = "io.kotest:kotest-assertions-core", version.ref = "kotest" }
@@ -22,6 +23,9 @@ android-gradle-plugin = { module = "com.android.tools.build:gradle", version.ref
 kotlin-gradle-plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
 
 dokka-gradle-plugin = { module = "org.jetbrains.dokka:dokka-gradle-plugin", version.ref = "dokka" }
+
+gradleup-nmcp-gradle-plugin = { module = "com.gradleup.nmcp:com.gradleup.nmcp.gradle.plugin", version.ref = "nmcp" }
+gradleup-nmcp-aggregation-gradle-plugin = { module = "com.gradleup.nmcp.aggregation:com.gradleup.nmcp.aggregation.gradle.plugin", version.ref = "nmcp" }
 
 [plugins]
 kotlinx-bcv = "org.jetbrains.kotlinx.binary-compatibility-validator:0.18.1"
