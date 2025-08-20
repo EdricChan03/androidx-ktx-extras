@@ -396,6 +396,7 @@ class LibraryPlugin : Plugin<Project> {
         // Kotlin/JVM
         extensions.findByType<KotlinJvmProjectExtension>()?.apply {
             setConventions()
+            setJvmConventions()
         }
 
         // Dokka
@@ -584,6 +585,12 @@ class LibraryPlugin : Plugin<Project> {
     private fun KotlinBaseExtension.setConventions() {
         jvmToolchain(11)
         explicitApi()
+    }
+
+    private fun KotlinJvmProjectExtension.setJvmConventions() {
+        target {
+            withSourcesJar()
+        }
     }
 
     private fun DokkaExtension.setConventions(
