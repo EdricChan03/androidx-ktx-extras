@@ -569,8 +569,7 @@ class LibraryPlugin : Plugin<Project> {
     private fun AGPLibraryExtension.setConventions() {
         logger.info("Setting conventions for AGP library extension")
 
-
-        compileSdk = 33
+        compileSdk = 36
 
         defaultConfig {
             minSdk = 21
