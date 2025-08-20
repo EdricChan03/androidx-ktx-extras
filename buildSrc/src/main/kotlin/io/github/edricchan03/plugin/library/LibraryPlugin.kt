@@ -5,7 +5,6 @@ import io.github.edricchan03.plugin.library.extensions.LibraryPluginExtension
 import io.github.edricchan03.plugin.library.extensions.LibraryType
 import io.github.edricchan03.plugin.library.extensions.docs.ExternalDocLinks
 import io.github.edricchan03.plugin.library.extensions.docs.LibraryDocsExtension
-import io.github.edricchan03.plugin.library.extensions.isReleaseVersion
 import io.github.edricchan03.plugin.library.extensions.publish.DefaultReleaseVersionSpec
 import io.github.edricchan03.plugin.library.extensions.publish.asReadOnlyProvider
 import io.github.edricchan03.plugin.library.extensions.publish.maven.LibraryMavenPublishingExtension
@@ -303,7 +302,7 @@ class LibraryPlugin : Plugin<Project> {
             artifactId.convention(project.name)
             version.convention("0.0.1-SNAPSHOT")
         }
-        isReleaseVersion.convention(DefaultReleaseVersionSpec)
+        releaseVersionSpec.convention(DefaultReleaseVersionSpec)
         inceptionYear.convention(LibraryPluginExtension.CURRENT_YEAR_STRING)
 
         mavenPublishing {
@@ -434,7 +433,7 @@ class LibraryPlugin : Plugin<Project> {
                         name = it.capitalizedName
                         url = it.getUrl(
                             extension.mavenCoordinates.asReadOnlyProvider(project.providers),
-                            extension.isReleaseVersion
+                            extension.releaseVersionSpec
                         ).get()
                         credentials {
                             username = it.credentials.username.orNull

@@ -79,7 +79,7 @@ abstract class LibraryPluginExtension : ExtensionAware {
      * Sets whether the version is a release version based on the value of [isRelease].
      *
      * To conditionally determine if the version is a release version, use the
-     * [isReleaseVersion] `Property` delegate, passing in a [ReleaseVersionSpec] for
+     * [releaseVersionSpec] `Property` delegate, passing in a [ReleaseVersionSpec] for
      * the [Property.set] call.
      * @param isRelease Whether the version is a release version.
      */
@@ -252,17 +252,3 @@ abstract class LibraryPluginExtension : ExtensionAware {
         const val MAVEN_GROUP_ID_PREFIX = "io.github.edricchan03"
     }
 }
-
-/**
- * Whether the version is a release version.
- * By default, this value is `true` if [LibraryMavenCoordinates.version] ends with
- * `"SNAPSHOT"`.
- */
-@Deprecated(
-    "Use releaseVersionSpec",
-    ReplaceWith(
-        "this.releaseVersionSpec"
-    )
-)
-inline val LibraryPluginExtension.isReleaseVersion
-    get() = releaseVersionSpec
