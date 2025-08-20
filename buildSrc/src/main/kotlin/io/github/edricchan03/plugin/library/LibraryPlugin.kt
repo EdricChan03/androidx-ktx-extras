@@ -83,11 +83,11 @@ class LibraryPlugin : Plugin<Project> {
         with(project) {
             applyPlugins(extension)
             applyLibraryExtension(extension)
-            applyExtensions(extension)
             registerTasks()
             registerVariantTasks()
             registerKmpTasks()
             registerJvmTasks()
+            applyExtensions(extension)
         }
     }
 
