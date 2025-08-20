@@ -1,4 +1,5 @@
 plugins {
+    com.android.kotlin.multiplatform.library
     org.jetbrains.kotlin.multiplatform
     io.github.edricchan03.androidx.library
     alias(libs.plugins.kotest.multiplatform)
@@ -18,6 +19,33 @@ kotlin {
             useJUnitPlatform()
         }
     }
+
+    androidLibrary {
+        namespace = "io.github.edricchan03.androidx.common.enums"
+        compileSdk = 36
+    }
+
+    wasmJs {
+        d8()
+    }
+    macosX64()
+    macosArm64()
+    iosX64()
+    iosArm64()
+    iosSimulatorArm64()
+    watchosArm32()
+    watchosArm64()
+    watchosX64()
+    watchosSimulatorArm64()
+    watchosDeviceArm64()
+    tvosArm64()
+    tvosX64()
+    tvosSimulatorArm64()
+    mingwX64 {
+        binaries.getTest(DEBUG).linkerOpts = mutableListOf("-Wl,--subsystem,windows")
+    }
+    linuxX64()
+    linuxArm64()
 
     sourceSets {
         commonTest {
