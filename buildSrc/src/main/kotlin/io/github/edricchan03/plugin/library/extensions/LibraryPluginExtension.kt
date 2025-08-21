@@ -1,6 +1,5 @@
 package io.github.edricchan03.plugin.library.extensions
 
-import com.android.build.api.dsl.ComposeOptions
 import io.github.edricchan03.plugin.library.extensions.compose.LibraryComposeExtension
 import io.github.edricchan03.plugin.library.extensions.docs.LibraryDocsExtension
 import io.github.edricchan03.plugin.library.extensions.publish.LibraryMavenCoordinates
