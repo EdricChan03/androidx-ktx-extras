@@ -21,6 +21,7 @@ import org.gradle.api.artifacts.repositories.MavenArtifactRepository
 import org.gradle.api.attributes.DocsType
 import org.gradle.api.logging.Logging
 import org.gradle.api.plugins.BasePlugin
+import org.gradle.api.plugins.JavaPluginExtension
 import org.gradle.api.provider.Property
 import org.gradle.api.provider.Provider
 import org.gradle.api.publish.PublicationContainer
@@ -394,10 +395,12 @@ class LibraryPlugin : Plugin<Project> {
             setConventions()
             setKmpConventions(project)
         }
+
         // Kotlin/JVM
-        extensions.findByType<KotlinJvmProjectExtension>()?.apply {
-            setConventions()
-            setJvmConventions()
+        extensions.findByType<KotlinJvmProjectExtension>()?.setConventions()
+        // Java Libraries
+        extensions.findByType<JavaPluginExtension>()?.apply {
+            withSourcesJar()
         }
 
         // Dokka
@@ -524,25 +527,23 @@ class LibraryPlugin : Plugin<Project> {
             return
         }
 
-        project.afterEvaluate {
-            logger.info("Setting up default publication")
+        logger.info("Setting up default JVM publication for ${project.name}")
 
-            publications {
-                maybeCreate(
-                    extension.mavenPublishing.jvmPublicationName.get(),
-                    MavenPublication::class
-                ).apply {
-                    pom.setConventions(project, extension)
+        publications {
+            maybeCreate(
+                extension.mavenPublishing.jvmPublicationName.get(),
+                MavenPublication::class
+            ).apply {
+                pom.setConventions(project, extension)
 
-                    extension.mavenPublishing.jvmPublicationComponent.ifPresentOrElse(
-                        ifPresent = { from(it) },
-                        ifNotPresent = { from(components["java"]) }
-                    )
+                extension.mavenPublishing.jvmPublicationComponent.ifPresentOrElse(
+                    ifPresent = { from(it) },
+                    ifNotPresent = { from(project.components["java"]) }
+                )
 
-                    // Add Javadocs as an artifact
-                    artifact(tasks[computeJavadocTaskName(isHtml = false)])
-                    artifact(tasks[computeJavadocTaskName(isHtml = true)])
-                }
+                // Add Javadocs as an artifact
+                artifact(project.tasks[computeJavadocTaskName(isHtml = false)])
+                artifact(project.tasks[computeJavadocTaskName(isHtml = true)])
             }
         }
     }
@@ -587,12 +588,6 @@ class LibraryPlugin : Plugin<Project> {
     private fun KotlinBaseExtension.setConventions() {
         jvmToolchain(11)
         explicitApi()
-    }
-
-    private fun KotlinJvmProjectExtension.setJvmConventions() {
-        target {
-            withSourcesJar()
-        }
     }
 
     private fun DokkaExtension.setConventions(
