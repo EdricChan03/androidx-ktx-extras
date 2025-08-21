@@ -92,12 +92,6 @@ class LibraryPlugin : Plugin<Project> {
         }
     }
 
-    // Versions
-    private val compilerVersion: String by lazy {
-        androidLibs.findVersion("compose-compiler").map { it.requiredVersion }
-            .orElse(DEFAULT_KOTLIN_COMPOSE_EXTENSION_VERSION)
-    }
-
     private fun Project.registerTasks() {
         val publishing = extensions.getByType<PublishingExtension>()
         tasks {
@@ -363,9 +357,6 @@ class LibraryPlugin : Plugin<Project> {
 
         compose {
             enabled.convention(false)
-            kotlinCompilerExtensionVersion.convention(
-                compilerVersion
-            )
         }
     }
 
@@ -554,15 +545,8 @@ class LibraryPlugin : Plugin<Project> {
         logger.info("Setting conventions for androidComponents extension")
         finalizeDsl {
             val composeEnabled = extension.compose.enabled.get()
-            val kotlinCompilerExtensionVersion =
-                extension.compose.kotlinCompilerExtensionVersion.get()
-            logger.info(
-                "Compose config:\nEnabled: $composeEnabled, " +
-                    "Kotlin compiler version: $kotlinCompilerExtensionVersion"
-            )
+            logger.info("Compose config:\nEnabled: $composeEnabled")
             it.buildFeatures.compose = composeEnabled
-            it.composeOptions.kotlinCompilerExtensionVersion =
-                kotlinCompilerExtensionVersion
         }
     }
 
@@ -700,7 +684,6 @@ class LibraryPlugin : Plugin<Project> {
     }
 
     companion object {
-        const val DEFAULT_KOTLIN_COMPOSE_EXTENSION_VERSION = "1.5.3"
         private val logger = Logging.getLogger(LibraryPlugin::class.java)
     }
 }
