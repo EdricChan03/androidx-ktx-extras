@@ -13,12 +13,22 @@ for API usage.
 
 ---
 
+<a name="0.1.1"></a>
+
+## 0.1.1 (21 Aug 2025)
+
+* [Maven Central](https://central.sonatype.com/artifact/io.github.edricchan03.androidx.common/kotest-common-enums/0.1.1)
+* [GitHub release](https://github.com/EdricChan03/androidx-ktx-extras/releases/tag/kotest-common-enums@0.1.1)
+
+This is version [0.1.0](#0.1.0) but with fixed publishing.
+
+> [!warning]
+> Note that this module is built with Kotlin 2.0.0+ and may require
+> the [K2 compiler](https://kotlinlang.org/docs/k2-compiler-migration-guide.html).
+
 <a name="0.1.0"></a>
 
 ## 0.1.0 (29 May 2024)
-
-* [Maven Central](https://central.sonatype.com/artifact/io.github.edricchan03.androidx.common/kotest-common-enums/0.1.0)
-* [GitHub release](https://github.com/EdricChan03/androidx-ktx-extras/releases/tag/kotest-common-enums@0.1.0)
 
 This is the initial release of this artifact, which provides common utilities for testing
 code that
