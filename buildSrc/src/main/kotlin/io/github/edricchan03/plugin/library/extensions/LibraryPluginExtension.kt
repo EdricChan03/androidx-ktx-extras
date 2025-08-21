@@ -205,39 +205,6 @@ abstract class LibraryPluginExtension : ExtensionAware {
         compose.enabled.set(enabled)
     }
 
-    /**
-     * Enables Jetpack Compose for this library module, and sets the
-     * [LibraryComposeExtension.kotlinCompilerExtensionVersion] value to [version].
-     * @param version The [ComposeOptions.kotlinCompilerExtensionVersion] to use as a
-     * [Provider].
-     * @see ComposeOptions
-     * @see compose
-     */
-    @Deprecated("The specified version has no effect; apply the Compose Compiler plugin instead")
-    @Suppress("DEPRECATION")
-    fun withCompose(version: Provider<String>) {
-        compose {
-            enabled.set(true)
-            kotlinCompilerExtensionVersion.set(version)
-        }
-    }
-
-    /**
-     * Enables Jetpack Compose for this library module, and sets the
-     * [LibraryComposeExtension.kotlinCompilerExtensionVersion] value to [version].
-     * @param version The [ComposeOptions.kotlinCompilerExtensionVersion] to use.
-     * @see ComposeOptions
-     * @see compose
-     */
-    @Deprecated("The specified version has no effect; apply the Compose Compiler plugin instead")
-    @Suppress("DEPRECATION")
-    fun withCompose(version: String) {
-        compose {
-            enabled.set(true)
-            kotlinCompilerExtensionVersion.set(version)
-        }
-    }
-
     companion object {
         /** The current year, for use for [LibraryPluginExtension.inceptionYear]. */
         val CURRENT_YEAR = Year.now()
