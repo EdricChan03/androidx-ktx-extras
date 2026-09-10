@@ -32,7 +32,6 @@ import org.gradle.api.publish.plugins.PublishingPlugin
 import org.gradle.api.tasks.bundling.Jar
 import org.gradle.kotlin.dsl.apply
 import org.gradle.kotlin.dsl.create
-import org.gradle.kotlin.dsl.existing
 import org.gradle.kotlin.dsl.findByType
 import org.gradle.kotlin.dsl.get
 import org.gradle.kotlin.dsl.getByType
@@ -40,9 +39,9 @@ import org.gradle.kotlin.dsl.getValue
 import org.gradle.kotlin.dsl.hasPlugin
 import org.gradle.kotlin.dsl.invoke
 import org.gradle.kotlin.dsl.maybeCreate
+import org.gradle.kotlin.dsl.named
 import org.gradle.kotlin.dsl.provideDelegate
 import org.gradle.kotlin.dsl.register
-import org.gradle.kotlin.dsl.registering
 import org.gradle.kotlin.dsl.withType
 import org.gradle.plugins.signing.SigningExtension
 import org.gradle.plugins.signing.SigningPlugin
@@ -96,7 +95,7 @@ class LibraryPlugin : Plugin<Project> {
         val publishing = extensions.getByType<PublishingExtension>()
         tasks {
             // From https://discuss.gradle.org/t/retrieve-gav-of-application-automatically/29889/7
-            val dumpPublications by registering {
+            val dumpPublications = register("dumpPublications") {
                 group = PublishingPlugin.PUBLISH_TASK_GROUP
                 description = "Dumps the publications for project ${project.name}"
                 doLast {
@@ -107,7 +106,7 @@ class LibraryPlugin : Plugin<Project> {
                 }
             }
 
-            val dumpMavenPublicationArtifacts by registering {
+            val dumpMavenPublicationArtifacts = register("dumpMavenPublicationArtifacts") {
                 group = PublishingPlugin.PUBLISH_TASK_GROUP
                 description =
                     "Dumps the Maven publications and their artifacts for project ${project.name}"
@@ -128,7 +127,7 @@ class LibraryPlugin : Plugin<Project> {
                 }
             }
 
-            val dumpMavenRepositories by registering {
+            val dumpMavenRepositories = register("dumpMavenRepositories") {
                 group = PublishingPlugin.PUBLISH_TASK_GROUP
                 description = "Dumps the publishing Maven repositories for project ${project.name}"
                 doLast {
@@ -151,8 +150,8 @@ class LibraryPlugin : Plugin<Project> {
 
         // Add Javadoc Jar tasks
         tasks {
-            val dokkaGenerateModuleJavadoc by existing(DokkaGenerateModuleTask::class)
-            val dokkaGenerateModuleHtml by existing(DokkaGenerateModuleTask::class)
+            val dokkaGenerateModuleJavadoc = named<DokkaGenerateModuleTask>("dokkaGenerateModuleJavadoc")
+            val dokkaGenerateModuleHtml = named<DokkaGenerateModuleTask>("dokkaGenerateModuleHtml")
 
             android.onVariants(android.selector().all()) {
                 register<Jar>(computeJavadocTaskName(it.name, isHtml = false)) {
@@ -181,7 +180,7 @@ class LibraryPlugin : Plugin<Project> {
 
         // Add Javadoc Jar tasks
         tasks {
-            val dokkaGenerateModuleHtml by existing(DokkaGenerateModuleTask::class)
+            val dokkaGenerateModuleHtml = named<DokkaGenerateModuleTask>("dokkaGenerateModuleHtml")
 
             kmp.targets.configureEach {
                 register<Jar>(computeJavadocTaskName(name, isHtml = true)) {
@@ -205,8 +204,8 @@ class LibraryPlugin : Plugin<Project> {
 
         // Add Javadoc Jar tasks
         tasks {
-            val dokkaGenerateModuleJavadoc by existing(DokkaGenerateModuleTask::class)
-            val dokkaGenerateModuleHtml by existing(DokkaGenerateModuleTask::class)
+            val dokkaGenerateModuleJavadoc = named<DokkaGenerateModuleTask>("dokkaGenerateModuleJavadoc")
+            val dokkaGenerateModuleHtml = named<DokkaGenerateModuleTask>("dokkaGenerateModuleHtml")
 
             register<Jar>(computeJavadocTaskName(isHtml = false)) {
                 group = BasePlugin.BUILD_GROUP
@@ -632,7 +631,7 @@ class LibraryPlugin : Plugin<Project> {
 
         dokkaPublications.configureEach {
             pluginsConfiguration {
-                val html by existing(DokkaHtmlPluginParameters::class) {
+                val html = named<DokkaHtmlPluginParameters>("html") {
                     footerMessage.convention(
                         "&copy; 2023-2025 Edric Chan. androidx-ktx-extras is licensed under the " +
                             "<a href=\"https://github.com/EdricChan03/androidx-ktx-extras/blob/main/LICENSE\" class=\"footer--link footer--link_external\">" +

@@ -76,7 +76,7 @@ dependencyResolutionManagement {
     }
 
     versionCatalogs {
-        val androidLibs by creating {
+        register("androidLibs") {
             from(files("gradle/android-libs.versions.toml"))
         }
     }

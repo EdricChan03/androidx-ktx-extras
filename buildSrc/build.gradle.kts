@@ -5,8 +5,7 @@ plugins {
 
 gradlePlugin {
     plugins {
-        val libraryPlugin by creating {
-            id = "io.github.edricchan03.androidx.library"
+        register("io.github.edricchan03.androidx.library") {
             displayName = "Convention plugin for androidx-ktx-extras libraries"
             implementationClass = "io.github.edricchan03.plugin.library.LibraryPlugin"
         }
