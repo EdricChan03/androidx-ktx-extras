@@ -11,8 +11,8 @@ import io.github.edricchan03.plugin.library.extensions.publish.maven.LibraryMave
 import io.github.edricchan03.plugin.library.tasks.EmptyJavadocJarTask
 import io.github.edricchan03.publishing.computeJavadocTaskName
 import kotlinx.validation.BinaryCompatibilityValidatorPlugin
-import nmcp.NmcpExtension
-import nmcp.NmcpPlugin
+import nmcp.NmcpAggregationExtension
+import nmcp.internal.DefaultNmcpAggregationExtensionPlugin
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.artifacts.VersionCatalog
@@ -150,7 +150,8 @@ class LibraryPlugin : Plugin<Project> {
 
         // Add Javadoc Jar tasks
         tasks {
-            val dokkaGenerateModuleJavadoc = named<DokkaGenerateModuleTask>("dokkaGenerateModuleJavadoc")
+            val dokkaGenerateModuleJavadoc =
+                named<DokkaGenerateModuleTask>("dokkaGenerateModuleJavadoc")
             val dokkaGenerateModuleHtml = named<DokkaGenerateModuleTask>("dokkaGenerateModuleHtml")
 
             android.onVariants(android.selector().all()) {
@@ -204,7 +205,8 @@ class LibraryPlugin : Plugin<Project> {
 
         // Add Javadoc Jar tasks
         tasks {
-            val dokkaGenerateModuleJavadoc = named<DokkaGenerateModuleTask>("dokkaGenerateModuleJavadoc")
+            val dokkaGenerateModuleJavadoc =
+                named<DokkaGenerateModuleTask>("dokkaGenerateModuleJavadoc")
             val dokkaGenerateModuleHtml = named<DokkaGenerateModuleTask>("dokkaGenerateModuleHtml")
 
             register<Jar>(computeJavadocTaskName(isHtml = false)) {
@@ -238,7 +240,7 @@ class LibraryPlugin : Plugin<Project> {
                 apply<DokkaHtmlPlugin>()
             }
             apply<BinaryCompatibilityValidatorPlugin>()
-            apply<NmcpPlugin>()
+            apply<DefaultNmcpAggregationExtensionPlugin>()
         }
     }
 
@@ -397,7 +399,7 @@ class LibraryPlugin : Plugin<Project> {
         extensions.findByType<DokkaExtension>()?.setConventions(project, extension.docs)
 
         // nmcp
-        extensions.findByType<NmcpExtension>()?.setConventions(project)
+        extensions.findByType<NmcpAggregationExtension>()?.setConventions(project)
     }
 
     private fun SigningExtension.setConventions(publishing: PublishingExtension) {
@@ -662,10 +664,10 @@ class LibraryPlugin : Plugin<Project> {
         }
     }
 
-    private fun NmcpExtension.setConventions(
+    private fun NmcpAggregationExtension.setConventions(
         project: Project
     ) {
-        publishAllPublicationsToCentralPortal {
+        centralPortal {
             val usernameEnv = project.providers.environmentVariable("USERNAME")
             val tokenEnv = project.providers.environmentVariable("TOKEN")
 
