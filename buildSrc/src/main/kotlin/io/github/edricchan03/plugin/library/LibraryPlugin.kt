@@ -59,7 +59,7 @@ import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 import org.jetbrains.kotlin.gradle.plugin.KotlinMultiplatformPluginWrapper
 import org.jetbrains.kotlin.gradle.plugin.KotlinPluginWrapper
 import java.net.URI
-import com.android.build.gradle.LibraryExtension as AGPLibraryExtension
+import com.android.build.api.dsl.LibraryExtension as AGPLibraryExtension
 import com.android.build.gradle.LibraryPlugin as AGPLibraryPlugin
 import io.github.edricchan03.plugin.library.extensions.publish.gitHubPackagesUrl as GitHubPackagesUrl
 import io.github.edricchan03.plugin.library.extensions.publish.sonatypeSnapshotUrl as SonatypeSnapshotUrl
@@ -145,7 +145,7 @@ class LibraryPlugin : Plugin<Project> {
     }
 
     private fun Project.registerVariantTasks() {
-        val android = extensions.findByType<AGPLibraryExtension>()
+        val android = extensions.findByType<LibraryAndroidComponentsExtension>()
 
         if (android == null) return // Skip creation if the AGP Library plugin is not applied
 
@@ -154,17 +154,17 @@ class LibraryPlugin : Plugin<Project> {
             val dokkaGenerateModuleJavadoc by existing(DokkaGenerateModuleTask::class)
             val dokkaGenerateModuleHtml by existing(DokkaGenerateModuleTask::class)
 
-            android.libraryVariants.configureEach {
-                register<Jar>(computeJavadocTaskName(name, isHtml = false)) {
+            android.onVariants(android.selector().all()) {
+                register<Jar>(computeJavadocTaskName(it.name, isHtml = false)) {
                     description =
-                        "Generates Javadocs for the ${this@configureEach.name} library variant"
+                        "Generates Javadocs for the ${it.name} library variant"
                     dependsOn(dokkaGenerateModuleJavadoc)
                     from(dokkaGenerateModuleJavadoc.map { it.outputs })
                     archiveClassifier.set(DocsType.JAVADOC)
                 }
-                register<Jar>(computeJavadocTaskName(name, isHtml = true)) {
+                register<Jar>(computeJavadocTaskName(it.name, isHtml = true)) {
                     description =
-                        "Generates Dokka HTML docs for the ${this@configureEach.name} library " +
+                        "Generates Dokka HTML docs for the ${it.name} library " +
                             "variant"
                     dependsOn(dokkaGenerateModuleHtml)
                     from(dokkaGenerateModuleHtml.map { it.outputs })

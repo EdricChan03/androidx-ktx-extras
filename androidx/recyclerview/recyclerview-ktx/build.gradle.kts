@@ -2,7 +2,6 @@ import io.github.edricchan03.plugin.library.extensions.LibraryType
 
 plugins {
     `android-library`
-    `kotlin-android`
     io.github.edricchan03.androidx.library
 }
 
