@@ -20,9 +20,9 @@ kotlin {
         }
     }
 
-    androidLibrary {
+    android {
         namespace = "io.github.edricchan03.androidx.common.enums"
-        compileSdk = 36
+        compileSdk = 37
     }
 
     wasmJs {
