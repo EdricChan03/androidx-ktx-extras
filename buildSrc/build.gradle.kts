@@ -17,7 +17,6 @@ dependencies {
     implementation(libs.kotlin.gradle.plugin)
     implementation(libs.android.gradle.plugin)
     implementation(libs.dokka.gradle.plugin)
-    implementation(libs.plugins.kotlinx.bcv.asDependency)
     implementation(libs.gradleup.nmcp.gradle.plugin)
     implementation(libs.gradleup.nmcp.aggregation.gradle.plugin)
 }
