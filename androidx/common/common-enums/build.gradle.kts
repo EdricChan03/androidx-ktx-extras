@@ -28,18 +28,15 @@ kotlin {
     wasmJs {
         d8()
     }
-    macosX64()
     macosArm64()
     iosX64()
     iosArm64()
     iosSimulatorArm64()
     watchosArm32()
     watchosArm64()
-    watchosX64()
     watchosSimulatorArm64()
     watchosDeviceArm64()
     tvosArm64()
-    tvosX64()
     tvosSimulatorArm64()
     mingwX64 {
         binaries.getTest(DEBUG).linkerOpts = mutableListOf("-Wl,--subsystem,windows")
