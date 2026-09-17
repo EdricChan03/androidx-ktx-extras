@@ -15,10 +15,10 @@ dependencyResolutionManagement {
     }
 
     versionCatalogs {
-        create("libs") {
+        register("libs") {
             from(files("../gradle/libs.versions.toml"))
         }
-        create("androidLibs") {
+        register("androidLibs") {
             from(files("../gradle/android-libs.versions.toml"))
         }
     }
