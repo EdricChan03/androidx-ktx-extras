@@ -10,7 +10,6 @@ import io.github.edricchan03.plugin.library.extensions.publish.asReadOnlyProvide
 import io.github.edricchan03.plugin.library.extensions.publish.maven.LibraryMavenPublishingExtension
 import io.github.edricchan03.plugin.library.tasks.EmptyJavadocJarTask
 import io.github.edricchan03.publishing.computeJavadocTaskName
-import kotlinx.validation.BinaryCompatibilityValidatorPlugin
 import nmcp.NmcpAggregationExtension
 import nmcp.internal.DefaultNmcpAggregationExtensionPlugin
 import org.gradle.api.Plugin
@@ -54,6 +53,7 @@ import org.jetbrains.kotlin.gradle.dsl.KotlinAndroidProjectExtension
 import org.jetbrains.kotlin.gradle.dsl.KotlinBaseExtension
 import org.jetbrains.kotlin.gradle.dsl.KotlinJvmProjectExtension
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
+import org.jetbrains.kotlin.gradle.dsl.abi.ExperimentalAbiValidation
 import org.jetbrains.kotlin.gradle.plugin.KotlinMultiplatformPluginWrapper
 import org.jetbrains.kotlin.gradle.plugin.KotlinPluginWrapper
 import java.net.URI
@@ -238,7 +238,6 @@ class LibraryPlugin : Plugin<Project> {
             if (extension.docs.publishHtmlDoc.getOrElse(true)) {
                 apply<DokkaHtmlPlugin>()
             }
-            apply<BinaryCompatibilityValidatorPlugin>()
             apply<DefaultNmcpAggregationExtensionPlugin>()
         }
     }
@@ -569,9 +568,12 @@ class LibraryPlugin : Plugin<Project> {
         }
     }
 
+    @OptIn(ExperimentalAbiValidation::class)
     private fun KotlinBaseExtension.setConventions() {
         jvmToolchain(11)
         explicitApi()
+
+        abiValidation()
     }
 
     private fun DokkaExtension.setConventions(

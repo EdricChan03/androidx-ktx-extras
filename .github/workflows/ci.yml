@@ -23,7 +23,7 @@ jobs:
           gradle-home-cache-strict-match: true
 
       - name: Verify API surface
-        run: ./gradlew apiCheck
+        run: ./gradlew checkKotlinAbi
 
   test:
     name: Test libraries
