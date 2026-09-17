@@ -28,9 +28,7 @@ gradleup-nmcp-gradle-plugin = { module = "com.gradleup.nmcp:com.gradleup.nmcp.gr
 gradleup-nmcp-aggregation-gradle-plugin = { module = "com.gradleup.nmcp.aggregation:com.gradleup.nmcp.aggregation.gradle.plugin", version.ref = "nmcp" }
 
 [plugins]
-kotlinx-bcv = "org.jetbrains.kotlinx.binary-compatibility-validator:0.18.1"
-android-gradle-library = { id = "com.android.library", version.ref = "android-gradle" }
-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+kotlinx-bcv = "org.jetbrains.kotlinx.binary-compatibility-validator:0.18.2"
 
 kotlin-composeCompiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 
