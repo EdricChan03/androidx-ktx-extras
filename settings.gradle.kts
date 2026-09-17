@@ -85,6 +85,12 @@ dependencyResolutionManagement {
 plugins {
     // Apply the foojay-resolver plugin to allow automatic download of JDKs
     id("org.gradle.toolchains.foojay-resolver-convention") version "1.0.0"
+    id("com.android.settings") version "9.4.0"
+}
+
+android {
+    minSdk = 23
+    compileSdk = 37
 }
 
 // Enable type-safe project accessors
