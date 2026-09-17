@@ -40,7 +40,6 @@ import org.gradle.kotlin.dsl.hasPlugin
 import org.gradle.kotlin.dsl.invoke
 import org.gradle.kotlin.dsl.maybeCreate
 import org.gradle.kotlin.dsl.named
-import org.gradle.kotlin.dsl.provideDelegate
 import org.gradle.kotlin.dsl.register
 import org.gradle.kotlin.dsl.withType
 import org.gradle.plugins.signing.SigningExtension
@@ -404,9 +403,9 @@ class LibraryPlugin : Plugin<Project> {
 
     private fun SigningExtension.setConventions(publishing: PublishingExtension) {
         if (System.getenv("CI") == "true") {
-            val signingKeyId: String? by project
-            val signingKey: String? by project
-            val signingPassword: String? by project
+            val signingKeyId = project.findProperty("signingKeyId") as String?
+            val signingKey = project.findProperty("signingKey") as String?
+            val signingPassword = project.findProperty("signingPassword") as String?
             useInMemoryPgpKeys(signingKeyId, signingKey, signingPassword)
         } else {
             // Use the gpg-agent if possible
